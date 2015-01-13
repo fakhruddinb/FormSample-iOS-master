@@ -1,0 +1,22 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.TWWSIN6TIJDQU8EY" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MobileRecruiter\Views\MainPage.cs">
+    <Files>
+      <File FileName="MobileRecruiter\Views\MainPage.cs" Line="30" Column="30" />
+      <File FileName="Android\Properties\AndroidManifest.xml" Line="180" Column="180" />
+      <File FileName="MobileRecruiter\Views\HomePage.cs" Line="31" Column="31" />
+      <File FileName="MobileRecruiter\Views\ContractorPage.cs" Line="25" Column="25" />
+      <File FileName="MobileRecruiter\Views\MenuPage.cs" Line="21" Column="21" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/sudhir.thanki/Desktop/SharedDrive/XamarinForms/MobileRecruiter/MobileRecruiter/Views/MainPage.cs" line="81" column="1" />
+      <Breakpoint file="/Users/sudhir.thanki/Desktop/SharedDrive/XamarinForms/MobileRecruiter/MobileRecruiter/Views/MainPage.cs" line="16" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>iOS\MobileRecruiter.iOS.csproj</String>
+  </DisabledProjects>
+</Properties>
