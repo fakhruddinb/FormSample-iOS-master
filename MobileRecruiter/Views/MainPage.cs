@@ -16,7 +16,7 @@ namespace FormSample
 			menuPage = new MenuPage ();
 
 			Master = menuPage;
-			//this.Detail = new NavigationPage (new HomePage ());//  s.NavigateTo ("Home");
+			this.Detail = new NavigationPage (new HomePage ());//  s.NavigateTo ("Home");
 
 			menuPage.Menu.ItemSelected += (sender, e) => {
 				if(isFirstTime && (e.SelectedItem as string) == "Home")
