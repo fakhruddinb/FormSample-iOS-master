@@ -16,6 +16,7 @@ namespace FormSample.Helpers
 		public static string GOOGLEPLUSURL = "https://plus.google.com/u/0/+Churchill-Knight/about";
 		public static string LINKEDINURL = "http://www.linkedin.com/company/churchill-knight-&-associates-ltd?trk=hb_tab_compy_id_1398435";
 		public static string PDFURL = "http://www.churchill-knight.co.uk/assets/tandc.pdf";
+		public static string CHURCHILKNIGHTURL="http://www.churchill-knight.co.uk/recruiters-zone/";
 		public static string LATITUDE = "51.696975";
 		public static string LONGITUDE = "-0.191415";
 		public static int DEVICEWIDTH;

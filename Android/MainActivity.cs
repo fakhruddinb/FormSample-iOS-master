@@ -32,13 +32,13 @@ namespace FormSample.Droid
 
 			// SetPage(App.GetMainPage());
 
-//			var metrics = Resources.DisplayMetrics;
-//
-//			int widthInDp = ConvertPixelsToDp(metrics.WidthPixels);
-//			int heightInDp = ConvertPixelsToDp(metrics.HeightPixels);
-//
-//			Utility.DEVICEHEIGHT = heightInDp;
-//			Utility.DEVICEWIDTH = widthInDp;
+			var metrics = Resources.DisplayMetrics;
+
+			int widthInDp = ConvertPixelsToDp(metrics.WidthPixels);
+			int heightInDp = ConvertPixelsToDp(metrics.HeightPixels);
+
+			Utility.DEVICEHEIGHT = heightInDp;
+			Utility.DEVICEWIDTH = widthInDp;
 
 			if (string.IsNullOrWhiteSpace (Settings.GeneralSettings)) {
 				SetPage (App.GetLoginPage (this));

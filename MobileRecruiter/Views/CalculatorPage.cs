@@ -17,7 +17,7 @@ namespace FormSample.Views
 		SfChart chart2;
 		Entry txtDailyRate;
 		Entry txtWeeklyExpense;
-		Grid chartGrid;
+		//Grid chartGrid;
 		Grid takeHomeGridBelowChart;
 		Label takeHomePayLimitedLabel;
 		Label percentageLimitedLabel;
@@ -29,9 +29,12 @@ namespace FormSample.Views
 		DataModel limitedCompanyModel;
 		DataModel umbrellaCompanyModel;
 		IProgressService progressiveService;
-
+		double chartwidth;
+		double chartHeight;
 		public CalculatorPage()
 		{
+			chartwidth= (Utility.DEVICEWIDTH)*75/ 100;
+			chartHeight = Utility.DEVICEHEIGHT*75/ 100;
 			progressiveService = DependencyService.Get<IProgressService> ();
 			chart1 = new SfChart();
 			chart2 = new SfChart();
@@ -57,28 +60,44 @@ namespace FormSample.Views
 
 			var lblText = new Label
 			{
-				Text = "Your contractor would be a 64.00 better off with a limited company set through us than through an" +
-					"umbrella company.click refer a contractor button below.", 
+				Text = "Your contractor would be a 64.00 better off with a limited company set through us than through an " +
+					"umbrella company click refer a contractor.",//click refer a contractor button below.", 
 				TextColor = Color.Black,
 				HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
-			this.chartGrid = new Grid
-			{ 
-				RowSpacing = 0,
-				ColumnSpacing = 0
-			};
+//			this.chartGrid = new Grid
+//			{ 
+//				RowSpacing = 0,
+//				ColumnSpacing = 0,
+//				RowDefinitions = 
+//				{
+//					new RowDefinition { Height = GridLength.Auto },
+//					new RowDefinition { Height = new GridLength(1, GridUnitType.Star)},
+//				},
+//				ColumnDefinitions = 
+//				{
+//					new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
+//				}
+//			};
 
 			this.takeHomeGridBelowChart = new Grid
 			{
 				RowSpacing=0,
-				ColumnSpacing=0
-			};
-
-			var downloadButton = new Button { Text = "Download terms and condition", BackgroundColor = Color.FromHex("f7941d"), TextColor = Color.White};
-			downloadButton.Clicked += (object sender, EventArgs e) => 
-			{
-				DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.PDFURL);
+				ColumnSpacing=0,
+				RowDefinitions = 
+				{
+					new RowDefinition { Height = GridLength.Auto },
+					new RowDefinition { Height = GridLength.Auto },
+					new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+				},
+				ColumnDefinitions = 
+				{
+					new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
+					new ColumnDefinition { Width =  new GridLength(1, GridUnitType.Star) },
+					new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
+				}
+				
 			};
 
 			var contactUsButton = new Button { Text = "Contact us",BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
@@ -90,18 +109,28 @@ namespace FormSample.Views
 			var layout = new StackLayout
 			{
 				Orientation = StackOrientation.Vertical,
+				VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
 			layout.Children.Add(label);
 			layout.Children.Add(grid);
 			layout.Children.Add(lblText);
-			layout.Children.Add(new ScrollView
+			layout.Children.Add (new StackLayout
 				{
-					Content = chartGrid,
-					Orientation = ScrollOrientation.Vertical,
-					VerticalOptions = LayoutOptions.FillAndExpand,
-					HorizontalOptions = LayoutOptions.FillAndExpand
+					Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+					Orientation = StackOrientation.Vertical,
+					HorizontalOptions = LayoutOptions.Fill,
+					VerticalOptions = LayoutOptions.Fill,
+					Children = {chart1,chart2}
 				});
+			//layout.Children.Add (chart2);
+//			layout.Children.Add(new ScrollView
+//				{
+//					Content = chartGrid,
+//					Orientation = ScrollOrientation.Vertical,
+//					VerticalOptions = LayoutOptions.FillAndExpand,
+//					HorizontalOptions = LayoutOptions.FillAndExpand
+//				});
 			layout.Children.Add(this.takeHomeGridBelowChart);
 			layout.Children.Add(labelAfterChart);
 			layout.Children.Add (new StackLayout
@@ -110,7 +139,7 @@ namespace FormSample.Views
 					Orientation = StackOrientation.Vertical,
 					HorizontalOptions = LayoutOptions.Fill,
 					VerticalOptions = LayoutOptions.Fill,
-					Children = {downloadButton,contactUsButton}
+					Children = {contactUsButton}
 				});
 
 			Content = new ScrollView { Content = layout };
@@ -119,7 +148,6 @@ namespace FormSample.Views
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
-			this.progressiveService.Show();
 			CalculatePayTableData();
 		}
 
@@ -284,7 +312,7 @@ namespace FormSample.Views
 				var expense = 100 - percentLimited;
 				limitedCompanyModel = new DataModel();
 				limitedCompanyModel.SetLimitedCompanyData("Take home", percentLimited);
-				limitedCompanyModel.SetLimitedCompanyData("Expense", expense);
+				limitedCompanyModel.SetLimitedCompanyData("Deductions", expense);
 				GenerateSyncFusionchartLimited("Pay break down - Limited Company");
 
 
@@ -317,7 +345,7 @@ namespace FormSample.Views
 
 				umbrellaCompanyModel = new DataModel();
 				umbrellaCompanyModel.SetUmbrellaCompanyData("Take home", percentUmbrella);
-				umbrellaCompanyModel.SetUmbrellaCompanyData("Expense", expense);
+				umbrellaCompanyModel.SetUmbrellaCompanyData("Deductions", expense);
 				GenerateSyncFusionchartUmbrella("Pay break down - Umbrella Company");
 
 				Label umbrellaCompany = new Label()
@@ -336,20 +364,18 @@ namespace FormSample.Views
 		{
 			// SfChart  chart=new SfChart();
 			chart1.Title=new ChartTitle(){Text=title};
-			chart1.Title.Font = Font.OfSize("Arial", 10);
-			chart1.WidthRequest = 200;
-			chart1.HeightRequest = 100;
+			chart1.Title.Font = Font.OfSize("Arial", 12);
+			chart1.WidthRequest = chartwidth;
+			chart1.HeightRequest = chartHeight;
 
 			//Adding ColumnSeries to the chart for percipitation
 			chart1.Series.Add(new Syncfusion.SfChart.XForms.PieSeries()
 				{
 					ItemsSource = limitedCompanyModel.limitedCompanyTax,
-					DataMarker = new ChartDataMarker (){ShowLabel  =true},
-					IsVisibleOnLegend =true  ,
-					// ExplodeAll=true,
-
+					DataMarker = new ChartDataMarker (){ShowLabel = true},
+					IsVisibleOnLegend =true ,
+					 Color = Color.FromHex("f7941d"),
 				});
-
 			chart1.ColorModel.Palette = ChartColorPalette.Metro;
 
 			//Adding Chart Legend for the Chart
@@ -359,23 +385,24 @@ namespace FormSample.Views
 				DockPosition= Syncfusion.SfChart.XForms.LegendPlacement.Bottom ,
 				LabelStyle = new ChartLegendLabelStyle(){Font = Font.OfSize("Arial", 10) }
 			};
-			this.chartGrid.Children.Add(chart1, 0, 0);
+			//this.chartGrid.Children.Add(chart1, 0, 0);
 		}
 
 		private void GenerateSyncFusionchartUmbrella(string title)
 		{
 
 			chart2.Title=new ChartTitle() { Text=title};
-			chart2.Title.Font = Font.OfSize("Arial", 10);
-			chart2.HeightRequest = 200;
+			chart2.Title.Font = Font.OfSize("Arial", 12);
+			chart2.WidthRequest = chartwidth;
+			chart2.HeightRequest = chartHeight;
 
 			//Adding Series to the chart 
 			chart2.Series.Add(new Syncfusion.SfChart.XForms.PieSeries()
 				{
 					ItemsSource = umbrellaCompanyModel.umbrallaCompanyTax,
-					DataMarker = new ChartDataMarker (){ShowLabel  =true },
-					IsVisibleOnLegend =true
-						// ExplodeAll=true
+					DataMarker = new ChartDataMarker (){ShowLabel = true,LabelStyle=new DataMarkerLabelStyle(){TextColor=Color.Black}},
+					IsVisibleOnLegend =true,
+					Color = Color.FromHex("f7941d")
 				});
 
 
@@ -386,7 +413,7 @@ namespace FormSample.Views
 				DockPosition= Syncfusion.SfChart.XForms.LegendPlacement.Bottom ,
 				LabelStyle = new ChartLegendLabelStyle(){Font = Font.OfSize("Arial", 10) }
 			};
-			this.chartGrid.Children.Add(chart2,1, 0);
+			//this.chartGrid.Children.Add(chart2,0, 1);
 		}
 
 	}
@@ -417,3 +444,5 @@ namespace FormSample.Views
 
 
 }
+
+

@@ -18,11 +18,12 @@ namespace FormSample.Views
 
 		public HomePage()
 		{
+			//ToolbarItems.Add(new ToolbarItem(new ToolbarItem("logo","logo_large_c9y13k30",()=>{DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL)},0,0,));
 			double width = 175;
 			double height = 150;
 
 			//progressService = DependencyService.Get<IProgressService> ();
-
+		
 			imgReferContractor = new Image () {
 				WidthRequest = width,
 				HeightRequest = height,
@@ -67,6 +68,20 @@ namespace FormSample.Views
 
 		public StackLayout AssignValues()
 		{
+			//double imagewidth = (Utility.DEVICEWIDTH-10)*50/ 100;
+			//double imageHeight = Utility.DEVICEHEIGHT;
+			//
+			//			//double padding = Utility.DEVICEWIDTH*2.5/ 100;
+			//
+			//			var grid = new Grid
+			//			{
+			//				RowSpacing = 10,
+			//				ColumnSpacing = 10
+			//				//ColumnSpacing = Utility.DEVICEWIDTH*2.4 / 100
+			//			};
+			//
+			//double width = imagewidth;
+
 			Label lblTitle = new Label(){Text = "Home",BackgroundColor = Color.Black, Font = Font.SystemFontOfSize(NamedSize.Large),
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
@@ -150,35 +165,66 @@ namespace FormSample.Views
 			grid.Children.Add(imgPayCalc, 1, 2); // Right, Thrid element
 			grid.Children.Add(payCalcButton, 1, 2);
 
+			var tapGestureRecognizer = new TapGestureRecognizer();
+			tapGestureRecognizer.Tapped +=   (object sender, EventArgs e) =>
+			{
+				App.RootPage.NavigateTo("Refer a contractor");
+			};
+			imgReferContractor.GestureRecognizers.Add(tapGestureRecognizer);
 
 			referContractorButton.Clicked += async (object sender, EventArgs e) => {
 				App.RootPage.NavigateTo("Refer a contractor");
 			};
 
+			var myContractorGestureRecognizer = new TapGestureRecognizer();
+			myContractorGestureRecognizer.Tapped +=   (object sender, EventArgs e) => 
+			{
+				App.RootPage.NavigateTo("My contractors");
+			};
+			imgMyContractor.GestureRecognizers.Add(myContractorGestureRecognizer);
+
 			myContractorButton.Clicked += async (object sender, EventArgs e) => {
 				App.RootPage.NavigateTo("My contractors");
 			};
+
+			var aboutUsGestureRecognizer = new TapGestureRecognizer ();
+			aboutUsGestureRecognizer.Tapped +=  (object sender, EventArgs e) => {
+				App.RootPage.NavigateTo("About us");
+			};
+			imgAboutUs.GestureRecognizers.Add (aboutUsGestureRecognizer);
 
 			aboutUsButton.Clicked += async (object sender, EventArgs e) => {
 				App.RootPage.NavigateTo("About us");
 			};
 
+			var amendDetailsGestureRecognizer = new TapGestureRecognizer ();
+			amendDetailsGestureRecognizer.Tapped +=  (object sender, EventArgs e) => {
+				App.RootPage.NavigateTo("Amend my details");
+			};
+			imgAmendDetail.GestureRecognizers.Add (amendDetailsGestureRecognizer);
+
 			amendDetailButton.Clicked += async (object sender, EventArgs e) => {
 				App.RootPage.NavigateTo("Amend my details");
 			};
+
+			var payCalculatorGestureRecognizer = new TapGestureRecognizer ();
+			payCalculatorGestureRecognizer.Tapped +=  (object sender, EventArgs e) => {
+				App.RootPage.NavigateTo("Take home pay calculator");
+			};
+			imgPayCalc.GestureRecognizers.Add (payCalculatorGestureRecognizer);
 
 			payCalcButton.Clicked += async (object sender, EventArgs e) => {
 				App.RootPage.NavigateTo("Take home pay calculator");
 			};
 
-			payChartButton.Clicked += async (object sender, EventArgs e) => {
+			var payChartGestureReconizer = new TapGestureRecognizer ();
+			payChartGestureReconizer.Tapped +=  (object sender, EventArgs e) => {
 				App.RootPage.NavigateTo("Weekly pay chart");
 			};
+			imgPayChart.GestureRecognizers.Add (payChartGestureReconizer);
 
-			var downloadButton = new Button { Text = "Download terms and condition", BackgroundColor = Color.FromHex("f7941d"), TextColor = Color.White};
-			downloadButton.Clicked +=  (object sender, EventArgs e) => 
-			{
-				DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.PDFURL);
+			payChartButton.Clicked += async (object sender, EventArgs e) => {
+				App.RootPage.NavigateTo("Weekly pay chart");
 			};
 
 			var contactUsButton = new Button { Text = "Contact us", BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
@@ -202,7 +248,7 @@ namespace FormSample.Views
 				HorizontalOptions = LayoutOptions.Fill,
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				Orientation = StackOrientation.Vertical,
-				Children= {downloadButton,contactUsButton }
+				Children= {contactUsButton }
 			};
 
 			var layout = new StackLayout

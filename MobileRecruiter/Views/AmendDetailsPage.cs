@@ -79,18 +79,13 @@ namespace FormSample.Views
 			Button btnUpdate = new Button
 			{
 				HorizontalOptions = LayoutOptions.Fill,
-				BackgroundColor = Color.FromHex("22498a"),
+				BackgroundColor = Color.FromHex("#22498a"),
+				TextColor = Color.White,
 				Text = "Update"
 			};
 			btnUpdate.Clicked += async (object sender, EventArgs e) => 
 			{
 				await  ExecuteUpdateCommand();
-			};
-
-			var downloadButton = new Button { Text = "Download Terms and Conditions", BackgroundColor = Color.FromHex("f7941d"), TextColor = Color.White };
-			downloadButton.Clicked += (object sender, EventArgs e) => 
-			{
-				DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.PDFURL);
 			};
 
 			var contactUsButton = new Button { Text = "Contact Us", BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
@@ -122,7 +117,7 @@ namespace FormSample.Views
 				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				Orientation = StackOrientation.Vertical,
-				Children= {btnUpdate, downloadButton, contactUsButton}
+				Children= {btnUpdate, contactUsButton}
 			};
 
 			var nameLayout = new StackLayout()

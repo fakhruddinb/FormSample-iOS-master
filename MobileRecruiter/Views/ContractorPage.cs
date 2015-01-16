@@ -92,15 +92,11 @@ namespace FormSample.Views
 			Button btnSubmitContractor = new Button
 			{
 				HorizontalOptions = LayoutOptions.Fill,
-				BackgroundColor = Color.FromHex("22498a"),
+				BackgroundColor = Color.FromHex("#22498a"),
+				TextColor = Color.White,
 				Text = "Submit"
 			};
 			btnSubmitContractor.SetBinding(Button.CommandProperty,ContractorViewModel.SubmitCommandPropertyName);
-
-			var downloadButton = new Button { Text = "Download Terms and Conditions", BackgroundColor =  Color.FromHex("f7941d"), TextColor = Color.White };
-			downloadButton.Clicked += (object sender, EventArgs e) =>  {
-				DependencyService.Get<FormSample.Helpers.Utility.IUrlService> ().OpenUrl (Utility.PDFURL);
-			};
 
 			var contactUsButton = new Button { Text = "Contact Us", BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
 			contactUsButton.Clicked +=  (object sender, EventArgs e) =>
@@ -133,7 +129,7 @@ namespace FormSample.Views
 				HorizontalOptions = LayoutOptions.Fill,
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				Orientation = StackOrientation.Vertical,
-				Children= {btnSubmitContractor, downloadButton, contactUsButton}
+				Children= {btnSubmitContractor, contactUsButton}
 			};
 
 			var nameLayout = new StackLayout()

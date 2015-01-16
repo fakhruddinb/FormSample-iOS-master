@@ -87,7 +87,7 @@
       <HintPath>..\packages\SQLite.Net-PCL.2.4.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfChart.XForms">
-      <HintPath>..\packages\Static_Syncfusion\PCL\Syncfusion.SfChart.XForms.dll</HintPath>
+      <HintPath>C:\Program Files\Syncfusion\Essential Studio\12.4.0.24\lib\android\Syncfusion.SfChart.XForms.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>

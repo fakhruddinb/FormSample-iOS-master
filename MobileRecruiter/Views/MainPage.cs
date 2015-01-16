@@ -71,10 +71,10 @@ namespace FormSample
 			case "Weekly pay chart":
 				page = new ChartPage();
 				break;
-			case "Log out":
-				Settings.GeneralSettings = string.Empty;
-				App.Logout ();
-				break;
+//			case "Log out":
+//				Settings.GeneralSettings = string.Empty;
+//				App.Logout ();
+//				break;
 			default:
 				//menuPage.Menu.SelectedItem = item;
 				page = new HomePage();

@@ -57,7 +57,8 @@ namespace FormSample
 			var forgotPassword = new Button { Text = "I have forgotton my password", BackgroundColor=Color.FromHex("3b73b9")};
 			forgotPassword.SetBinding (Button.CommandProperty, LoginViewModel.ForgotPasswordCommandPropertyName);
 
-			var loginButton = new Button { Text = "Sign In",BackgroundColor = Color.FromHex("22498a")};
+			var loginButton = new Button { Text = "Sign In",BackgroundColor = Color.FromHex("#22498a"),
+				TextColor=Color.White};
 			loginButton.SetBinding(Button.CommandProperty, LoginViewModel.LoginCommandPropertyName);
 
 			var registerButton = new Button { Text = "I don't have a recruiter account..", BackgroundColor=Color.FromHex("3b73b9")};

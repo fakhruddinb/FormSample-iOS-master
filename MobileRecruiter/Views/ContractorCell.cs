@@ -37,6 +37,7 @@ namespace FormSample
 			{
 				HorizontalOptions = LayoutOptions.StartAndExpand,
 				Orientation = StackOrientation.Horizontal,
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), 
 				Children = { nameLabel, referDateLabel, contractorIdLabel }
 			};
 			return nameLayout;

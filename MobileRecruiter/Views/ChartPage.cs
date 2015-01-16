@@ -34,7 +34,7 @@ namespace FormSample
 				Text="Please find the helpful guide below to show how much difference a Limited company option could make to " +
 					"your contractor's take home pay.",
 				TextColor = Color.Black,
-				HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand
+				HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand,
 			};
 
 			var grid = new Grid
@@ -46,16 +46,9 @@ namespace FormSample
 			grid.Children.Add(new Label { Text = "Umbrella Company" , BackgroundColor=Color.Maroon, TextColor=Color.White }, 2, 0);
 
 			ListView list= new ListView{};
-
 			list.ItemTemplate = new DataTemplate(typeof(DailyRateCell));
 			list.ItemsSource = GenerateDailyRateTable();
 			chart1= new SfChart();
-
-			var downloadButton = new Button { Text = "Download terms and condition", BackgroundColor = Color.FromHex("f7941d"), TextColor = Color.White};
-			downloadButton.Clicked += (object sender, EventArgs e) => 
-			{
-				DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.PDFURL);
-			};
 
 			var contactUsButton = new Button { Text = "Contact us",BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
 			contactUsButton.Clicked +=  (object sender, EventArgs e) => 
@@ -70,17 +63,25 @@ namespace FormSample
 				Orientation = StackOrientation.Vertical
 			};
 
+			var descriptionLayout = new StackLayout () {
+				Orientation = StackOrientation.Vertical,
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+				VerticalOptions = LayoutOptions.FillAndExpand, 
+				HorizontalOptions = LayoutOptions.Fill,
+				Children= {description}
+			};
+
 			var buttonLayout = new StackLayout (){ 
 				Orientation = StackOrientation.Vertical,
 				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
-				Children= { downloadButton,contactUsButton}
+				Children= {contactUsButton}
 			};
 
 			var layout = new StackLayout
 			{
-				Children = {headerStackLayout, description,grid, list, chart1,buttonLayout},
+				Children = {headerStackLayout,descriptionLayout,grid, list, chart1,buttonLayout},
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				HorizontalOptions = LayoutOptions.Fill,
 			};

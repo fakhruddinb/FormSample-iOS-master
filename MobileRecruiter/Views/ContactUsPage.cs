@@ -8,10 +8,14 @@ namespace FormSample.Views
 	public class ContactUsPage : ContentPage
 	{
 		Image phoneNumberImage,agencyImage,contactMapImage,googleImage,linkedinImage;
+
 		public ContactUsPage()
 		{
 			double width = 350;
 			double height = 150;
+
+			double widthGoogleandLinkedIn = 175;
+
 			phoneNumberImage = new Image (){
 				WidthRequest = width,
 				HeightRequest = height,
@@ -31,13 +35,13 @@ namespace FormSample.Views
 			};
 
 			googleImage = new Image (){ 
-				WidthRequest = width,
+				WidthRequest = widthGoogleandLinkedIn,
 				HeightRequest = height,
 				Aspect = Aspect.AspectFill
 			};
 
 			linkedinImage = new Image (){
-				WidthRequest = width,
+				WidthRequest = widthGoogleandLinkedIn,
 				HeightRequest = height,
 				Aspect = Aspect.AspectFill
 			};
@@ -65,8 +69,8 @@ namespace FormSample.Views
 				{
 					new RowDefinition { Height = GridLength.Auto },
 					new RowDefinition { Height = GridLength.Auto },
-					new RowDefinition { Height = GridLength.Auto },
-					new RowDefinition { Height = GridLength.Auto },
+					//new RowDefinition { Height = GridLength.Auto },
+					//new RowDefinition { Height = GridLength.Auto },
 					new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
 				},
 				ColumnDefinitions = 
@@ -74,6 +78,21 @@ namespace FormSample.Views
 					new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
 				}
 				};
+
+			var gridGoogleAndLinkedIn = new Grid
+			{ 
+				RowSpacing = 10,
+				RowDefinitions =
+				{
+
+					new RowDefinition {Height = new GridLength(1, GridUnitType.Star)},
+				},
+				ColumnDefinitions=
+				{
+					new ColumnDefinition{Width = new GridLength(1,GridUnitType.Star)},
+					new ColumnDefinition{Width = new GridLength(1,GridUnitType.Star)},
+				}
+			};
 
 			Button callPhoneNo = new Button
 			{
@@ -123,15 +142,14 @@ namespace FormSample.Views
 			grid.Children.Add (agencyEmail, 0, 1);
 			grid.Children.Add (contactMapImage, 0, 2);
 			grid.Children.Add (mapText, 0, 2);
-			grid.Children.Add (googleImage, 0, 3);
-			grid.Children.Add (googleText, 0, 3);
-			grid.Children.Add (linkedinImage, 0, 4);
-			grid.Children.Add (linkdinText, 0, 4);
+//			grid.Children.Add (googleImage, 0, 3);
+//			grid.Children.Add (googleText, 0, 3);
 
-			var downloadButton = new Button { Text = "Download Terms and Conditions", BackgroundColor = Color.FromHex("f7941d"), TextColor = Color.White};
-			downloadButton.Clicked += (object sender, EventArgs e) => {
-				DependencyService.Get<FormSample.Helpers.Utility.IUrlService> ().OpenUrl (Utility.PDFURL);
-			};
+			gridGoogleAndLinkedIn.Children.Add (googleImage, 0, 0);
+			gridGoogleAndLinkedIn.Children.Add (googleText, 0, 0);
+
+			gridGoogleAndLinkedIn.Children.Add (linkedinImage, 1, 0);
+			gridGoogleAndLinkedIn.Children.Add (linkdinText, 1, 0);
 
 			var labelStakeLayout = new StackLayout ()
 			{
@@ -148,12 +166,20 @@ namespace FormSample.Views
 				Children = {label}
 			};
 
+			var gridLayout = new StackLayout () {
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+				VerticalOptions = LayoutOptions.FillAndExpand, 
+				HorizontalOptions = LayoutOptions.Fill,
+				Orientation = StackOrientation.Vertical,
+				Children = {grid,gridGoogleAndLinkedIn}
+			};
+
 			var controlStakeLayout = new StackLayout (){
 				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
-				Children = {new ScrollView{ Content = grid},downloadButton}
+				Children = {new ScrollView{ Content = gridLayout}}
 			};
 
 			var layout = new StackLayout

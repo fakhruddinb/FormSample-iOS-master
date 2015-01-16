@@ -166,14 +166,15 @@ namespace FormSample.ViewModel
 					{
 						this.CreateContractor(obj);
 						progressService.Dismiss();
-						App.RootPage.NavigateTo("Home");
+						App.RootPage.NavigateTo("My contractors");
 					}
 					else
 					{
+						progressService.Dismiss();
 						var result= await contractorDataService.AddContractor(obj);
 						if (result != null)
 						{
-							App.RootPage.NavigateTo("Home");
+							App.RootPage.NavigateTo("My contractors");
 						}
 					}
 				}
@@ -199,9 +200,8 @@ namespace FormSample.ViewModel
 		{
 			try
 			{
-				progressService.Show();
 				var result = await contractorDataService.DeleteAllContractor(Settings.GeneralSettings);
-				App.RootPage.NavigateTo("Home");
+				App.RootPage.NavigateTo("My contractors");
 			}
 			catch
 			{

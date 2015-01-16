@@ -33,10 +33,6 @@ namespace FormSample
 			}
 			browser.Source = htmlSource;
 			browser.VerticalOptions = LayoutOptions.FillAndExpand;
-			var downloadButton = new Button{Text = "Download terms and conditions",BackgroundColor = Color.FromHex("f7941d"), TextColor = Color.White};
-			downloadButton.Clicked +=  (object sender, EventArgs e) => {
-				DependencyService.Get<FormSample.Helpers.Utility.IUrlService> ().OpenUrl (Utility.PDFURL);
-			};
 
 			var contactUsButton = new Button{Text = "Contact us",BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White};
 
@@ -53,7 +49,7 @@ namespace FormSample
 			var buttonLayout = new StackLayout (){ 
 				Orientation = StackOrientation.Vertical,
 				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
-				Children= { downloadButton, contactUsButton}
+				Children= {contactUsButton}
 			};
 
 			var layout = new StackLayout()

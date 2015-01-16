@@ -86,7 +86,8 @@ namespace FormSample.Views
 			Button btnRegister = new Button
 			{
 				HorizontalOptions = LayoutOptions.Fill,
-				BackgroundColor = Color.FromHex("22498a"),
+				BackgroundColor = Color.FromHex("#22498a"),
+				TextColor=Color.White,
 				Text = "Register"
 			};
 			btnRegister.SetBinding(Button.CommandProperty, AgentViewModel.SubmitCommandPropertyName);

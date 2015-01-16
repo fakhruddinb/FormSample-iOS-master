@@ -42,15 +42,30 @@ namespace FormSample
 			grid.Children.Add(new Label { Text = "Contractor", TextColor=Color.Red }, 0, 0); // Left, First element
 			grid.Children.Add(new Label { Text = "Date refered" ,TextColor=Color.Red}, 1, 0);
 
-			//TODO clear all contractor
 			var btnClearAllContractor = new Button { Text = "Clear all contractor", BackgroundColor = Color.FromHex("3b73b9"), TextColor = Color.White };
 			btnClearAllContractor.SetBinding (Button.CommandProperty, ContractorViewModel.GotoDeleteAllContractorCommandPropertyName);
 
-			var downloadButton = new Button { Text = "Download Terms and Conditions", BackgroundColor = Color.FromHex("f7941d"), TextColor = Color.White };
-			downloadButton.Clicked += (object sender, EventArgs e) => {
-				DependencyService.Get<FormSample.Helpers.Utility.IUrlService> ().OpenUrl (Utility.PDFURL);
+			btnClearAllContractor.Clicked += async (object sender, EventArgs e) => {
+				try
+				{
+					var answer = await DisplayAlert("Confirm", "Do you wish to clear all item", "Yes", "No");
+					if (answer)
+					{
+						progressService.Show();
+						var result = await dataService.DeleteAllContractor(Settings.GeneralSettings);
+						if(result != null)
+						{
+							progressService.Dismiss();
+							listView.ItemsSource = this.contractorViewModel.contractorList;
+						}
+					}
+				}
+				catch
+				{
+					//progressService.Dismiss();
+					DisplayAlert("Message", Utility.SERVERERRORMESSAGE, "OK");
+				}
 			};
-
 			var contactUsButton = new Button { Text = "Contact Us", BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
 			contactUsButton.Clicked += delegate
 			{
@@ -72,7 +87,7 @@ namespace FormSample
 			var buttonLayout = new StackLayout (){ 
 				Orientation = StackOrientation.Vertical,
 				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
-				Children= {btnClearAllContractor,downloadButton, contactUsButton}
+				Children= {btnClearAllContractor, contactUsButton}
 			};
 
 			var nameLayOut = new StackLayout
@@ -122,7 +137,7 @@ namespace FormSample
 				var x = DependencyService.Get<FormSample.Helpers.Utility.INetworkService>().IsReachable();
 				if (!x) {
 					progressService.Dismiss ();
-					await DisplayAlert ("Message", "Could not connect to the internet.", "OK");
+					await DisplayAlert ("Message", Utility.NOINTERNETMESSAGE, "OK");
 				} else {
 					await this.contractorViewModel.BindContractor ();
 					listView.ItemTemplate = new DataTemplate (typeof(ContractorCell));
@@ -131,7 +146,7 @@ namespace FormSample
 			}
 			catch(Exception) {
 				progressService.Dismiss ();
-				DisplayAlert ("Message", "Something went wrong. please try again letter...", "OK");
+				DisplayAlert ("Message", Utility.SERVERERRORMESSAGE, "OK");
 			}
 		}
 
