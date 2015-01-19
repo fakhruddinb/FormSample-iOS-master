@@ -22,7 +22,8 @@ namespace FormSample
 			contractorViewModel = new ContractorViewModel();
 			counter = 1;
 
-			var label = new Label{ Text = "My contractor",BackgroundColor = Color.Black,Font = Font.SystemFontOfSize(NamedSize.Large),
+			var label = new Label{ Text = "My contractor",
+				BackgroundColor = Color.Blue,
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.

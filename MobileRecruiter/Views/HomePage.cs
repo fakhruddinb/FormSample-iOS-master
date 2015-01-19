@@ -14,16 +14,26 @@ namespace FormSample.Views
 	{
 		//private IProgressService progressService;
 		Image imgReferContractor,imgMyContractor,imgAboutUs,imgAmendDetail,imgPayChart,imgPayCalc;
-
+		double width;
+		double height;
+		// public IList<WeakReference> WeakRefs = new List<WeakReference>();
 
 		public HomePage()
 		{
-			//ToolbarItems.Add(new ToolbarItem(new ToolbarItem("logo","logo_large_c9y13k30",()=>{DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL)},0,0,));
-			double width = 175;
-			double height = 150;
 
-			//progressService = DependencyService.Get<IProgressService> ();
-		
+			width= (Utility.DEVICEWIDTH)*25/ 100;
+			height = (Utility.DEVICEHEIGHT)*23/ 100;
+			ToolbarItems.Add(new ToolbarItem("logo","logo.png",()=>
+				{
+					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
+				ToolbarItemOrder.Primary
+				,0));
+
+			ToolbarItems.Add(new ToolbarItem("logo2","Icon.png",()=>
+				{
+					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
+				ToolbarItemOrder.Secondary
+				,1));
 			imgReferContractor = new Image () {
 				WidthRequest = width,
 				HeightRequest = height,
@@ -60,7 +70,7 @@ namespace FormSample.Views
 				Aspect = Aspect.AspectFill
 			};
 
-			BindingContext = new HomeViewModel();
+			// BindingContext = new HomeViewModel();
 			var Layout = this.AssignValues();
 			this.Content = Layout;
 
@@ -82,7 +92,9 @@ namespace FormSample.Views
 			//
 			//double width = imagewidth;
 
-			Label lblTitle = new Label(){Text = "Home",BackgroundColor = Color.Black, Font = Font.SystemFontOfSize(NamedSize.Large),
+			Label lblTitle = new Label(){
+				Text = "Home",
+				BackgroundColor = Color.Blue,
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
@@ -172,7 +184,7 @@ namespace FormSample.Views
 			};
 			imgReferContractor.GestureRecognizers.Add(tapGestureRecognizer);
 
-			referContractorButton.Clicked += async (object sender, EventArgs e) => {
+			referContractorButton.Clicked +=   (object sender, EventArgs e) => {
 				App.RootPage.NavigateTo("Refer a contractor");
 			};
 
@@ -183,7 +195,7 @@ namespace FormSample.Views
 			};
 			imgMyContractor.GestureRecognizers.Add(myContractorGestureRecognizer);
 
-			myContractorButton.Clicked += async (object sender, EventArgs e) => {
+			myContractorButton.Clicked +=   (object sender, EventArgs e) => {
 				App.RootPage.NavigateTo("My contractors");
 			};
 
@@ -193,7 +205,7 @@ namespace FormSample.Views
 			};
 			imgAboutUs.GestureRecognizers.Add (aboutUsGestureRecognizer);
 
-			aboutUsButton.Clicked += async (object sender, EventArgs e) => {
+			aboutUsButton.Clicked +=   (object sender, EventArgs e) => {
 				App.RootPage.NavigateTo("About us");
 			};
 
@@ -203,7 +215,7 @@ namespace FormSample.Views
 			};
 			imgAmendDetail.GestureRecognizers.Add (amendDetailsGestureRecognizer);
 
-			amendDetailButton.Clicked += async (object sender, EventArgs e) => {
+			amendDetailButton.Clicked +=   (object sender, EventArgs e) => {
 				App.RootPage.NavigateTo("Amend my details");
 			};
 
@@ -213,7 +225,7 @@ namespace FormSample.Views
 			};
 			imgPayCalc.GestureRecognizers.Add (payCalculatorGestureRecognizer);
 
-			payCalcButton.Clicked += async (object sender, EventArgs e) => {
+			payCalcButton.Clicked +=   (object sender, EventArgs e) => {
 				App.RootPage.NavigateTo("Take home pay calculator");
 			};
 
@@ -223,13 +235,16 @@ namespace FormSample.Views
 			};
 			imgPayChart.GestureRecognizers.Add (payChartGestureReconizer);
 
-			payChartButton.Clicked += async (object sender, EventArgs e) => {
+			payChartButton.Clicked +=   (object sender, EventArgs e) => {
 				App.RootPage.NavigateTo("Weekly pay chart");
 			};
 
 			var contactUsButton = new Button { Text = "Contact us", BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
-			contactUsButton.SetBinding (Button.CommandProperty, HomeViewModel.GotoContactUsCommandPropertyName);
+			// contactUsButton.SetBinding (Button.CommandProperty, HomeViewModel.GotoContactUsCommandPropertyName);
 
+			contactUsButton.Clicked += (object sender, EventArgs e) => {
+				App.RootPage.NavigateTo("Contact us");
+			};
 			var labelStakeLayout = new StackLayout (){ 
 				Children = {lblTitle},
 				Orientation = StackOrientation.Vertical
@@ -260,10 +275,12 @@ namespace FormSample.Views
 			return new StackLayout{ Children= {layout}};
 		}
 
-		protected override async void OnAppearing()
+		protected override  void OnAppearing()
 		{
 			base.OnAppearing ();
 			//progressService.Show ();
+
+
 			imgReferContractor.Source = ImageSource.FromResource("MobileRecruiter.Images.homeheader.jpg");
 			imgAboutUs.Source = ImageSource.FromResource("MobileRecruiter.Images.aboutus.jpg");
 			imgMyContractor.Source = ImageSource.FromResource("MobileRecruiter.Images.MyContractors.jpg");
@@ -272,7 +289,7 @@ namespace FormSample.Views
 			imgPayCalc.Source = ImageSource.FromResource ("MobileRecruiter.Images.PayCalculator.jpg");
 		}
 
-		protected override async void OnDisappearing()
+		protected override  void OnDisappearing()
 		{
 			base.OnDisappearing ();
 			//progressService.Dismiss ();
@@ -282,6 +299,7 @@ namespace FormSample.Views
 			imgAboutUs.Source = null;
 			imgPayChart.Source = null;
 			imgPayCalc.Source = null;
+			GC.Collect ();
 		}
 	}
 }

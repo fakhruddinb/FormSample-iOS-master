@@ -52,12 +52,12 @@ namespace FormSample.Views
 
 		public StackLayout AssignValues()
 		{
-			Label lblTitle = new Label{Text = "Contact us",BackgroundColor= Color.Black, Font = Font.SystemFontOfSize(NamedSize.Large),
+			Label lblTitle = new Label{Text = "Contact us",
+				BackgroundColor = Color.Blue,
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
 				YAlign = TextAlignment.Center
-
 			};
 
 			Label label = new Label() { Text = "To speak with a member of our dedicated team:" };

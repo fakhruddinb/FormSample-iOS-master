@@ -21,12 +21,12 @@ namespace FormSample
 
 			Label header = new Label
 			{
-				Text = "Pay Chart", BackgroundColor = Color.Black, Font = Font.SystemFontOfSize(NamedSize.Large),
+				Text = "Pay Chart", 
+				BackgroundColor = Color.Blue,
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center,
-				HeightRequest = 30
+				YAlign = TextAlignment.Center
 			};
 
 			Label description = new Label
@@ -145,7 +145,7 @@ namespace FormSample
 			chart1.Series.Add(new Syncfusion.SfChart.XForms.ColumnSeries()
 				{
 					ItemsSource = model.limitedCompanyTax,
-					YAxis=new NumericalAxis(){IsVisible=false },
+					YAxis=new NumericalAxis(){IsVisible=true },
 					IsVisibleOnLegend =true  ,
 					Label="Limited"
 				});

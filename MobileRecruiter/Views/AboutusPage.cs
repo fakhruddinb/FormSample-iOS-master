@@ -16,8 +16,7 @@ namespace FormSample
 		{
 			var lblTitle = new Label {
 				Text = "About Churchill Knight & Associate Ltd.",
-				BackgroundColor = Color.Black,
-				Font = Font.SystemFontOfSize(NamedSize.Large),
+				BackgroundColor = Color.Blue,
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.

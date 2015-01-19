@@ -32,12 +32,11 @@ namespace FormSample.Views
 			var label = new Label
 			{
 				Text = "Refer a contractor",
-				BackgroundColor= Color.Black,
-				Font = Font.SystemFontOfSize(NamedSize.Large),
+				BackgroundColor = Color.Blue,
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center, // Center the text in the blue box.
+				YAlign = TextAlignment.Center //in the blue box.
 			};
 
 			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill };

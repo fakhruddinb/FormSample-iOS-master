@@ -1,11 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.TWWSIN6TIJDQU8EY" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MobileRecruiter\Views\CalculatorPage.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.AVD_for_Nexus_10_by_Google" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MobileRecruiter\Views\ChartPage.cs">
     <Files>
-      <File FileName="MobileRecruiter\Views\ChartPage.cs" Line="4" Column="4" />
-      <File FileName="MobileRecruiter\Views\CalculatorPage.cs" Line="24" Column="24" />
+      <File FileName="MobileRecruiter\Views\ContractorPage.cs" Line="12" Column="12" />
       <File FileName="MobileRecruiter\Views\HomePage.cs" Line="1" Column="1" />
-      <File FileName="MobileRecruiter\Views\ContactUsPage.cs" Line="1" Column="1" />
+      <File FileName="MobileRecruiter\Views\ChartPage.cs" Line="44" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

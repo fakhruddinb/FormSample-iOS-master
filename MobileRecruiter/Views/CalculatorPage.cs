@@ -48,12 +48,12 @@ namespace FormSample.Views
 
 			var label = new Label  
 			{ 
-				Text = "Take home pay calculator", BackgroundColor = Color.Black, Font = Font.SystemFontOfSize(NamedSize.Large),
+				Text = "Take home pay calculator", 
+				BackgroundColor = Color.Blue,
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center,
-				HeightRequest=30
+				YAlign = TextAlignment.Center
 			};
 
 			var grid = SetDailyGrid();
@@ -66,20 +66,20 @@ namespace FormSample.Views
 				HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
-//			this.chartGrid = new Grid
-//			{ 
-//				RowSpacing = 0,
-//				ColumnSpacing = 0,
-//				RowDefinitions = 
-//				{
-//					new RowDefinition { Height = GridLength.Auto },
-//					new RowDefinition { Height = new GridLength(1, GridUnitType.Star)},
-//				},
-//				ColumnDefinitions = 
-//				{
-//					new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
-//				}
-//			};
+			//			this.chartGrid = new Grid
+			//			{ 
+			//				RowSpacing = 0,
+			//				ColumnSpacing = 0,
+			//				RowDefinitions = 
+			//				{
+			//					new RowDefinition { Height = GridLength.Auto },
+			//					new RowDefinition { Height = new GridLength(1, GridUnitType.Star)},
+			//				},
+			//				ColumnDefinitions = 
+			//				{
+			//					new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
+			//				}
+			//			};
 
 			this.takeHomeGridBelowChart = new Grid
 			{
@@ -97,8 +97,8 @@ namespace FormSample.Views
 					new ColumnDefinition { Width =  new GridLength(1, GridUnitType.Star) },
 					new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
 				}
-				
-			};
+
+				};
 
 			var contactUsButton = new Button { Text = "Contact us",BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
 			contactUsButton.Clicked +=  (object sender, EventArgs e) => 
@@ -123,14 +123,6 @@ namespace FormSample.Views
 					VerticalOptions = LayoutOptions.Fill,
 					Children = {chart1,chart2}
 				});
-			//layout.Children.Add (chart2);
-//			layout.Children.Add(new ScrollView
-//				{
-//					Content = chartGrid,
-//					Orientation = ScrollOrientation.Vertical,
-//					VerticalOptions = LayoutOptions.FillAndExpand,
-//					HorizontalOptions = LayoutOptions.FillAndExpand
-//				});
 			layout.Children.Add(this.takeHomeGridBelowChart);
 			layout.Children.Add(labelAfterChart);
 			layout.Children.Add (new StackLayout
@@ -294,16 +286,23 @@ namespace FormSample.Views
 			return grid;
 		}
 
+		private List<PayTable> payTableData = new List<PayTable> ();
 		private async Task CalculatePayTableData()
 		{
 			this.progressiveService.Show();
-			FormSample.PayTableDatabase d = new PayTableDatabase();
+			 
+			if (!payTableData.Any ()) {
+				FormSample.PayTableDatabase d = new PayTableDatabase();
+				payTableData = d.GetPayTables().ToList();
+
+			}
+
 			var dailyRate = Convert.ToInt32(this.txtDailyRate.Text);
 			var weeklyExpense = Convert.ToInt32(this.txtWeeklyExpense.Text);
 			var grossPay = dailyRate * 5;
 			var taxablePay = grossPay - weeklyExpense;
-			var allData = d.GetPayTables().ToList();
-			var payData = d.GetPayTableTaxablePay(taxablePay); //TODO: replace it with taxablePay variable.
+			var allData = payTableData;
+			var payData = payTableData.FirstOrDefault (d => d.TaxablePay == taxablePay); // d.GetPayTableTaxablePay(taxablePay); //TODO: replace it with taxablePay variable.
 			if (payData != null)
 			{
 				var netPay = payData.TakeHomeLimited;
@@ -336,7 +335,7 @@ namespace FormSample.Views
 				this.takeHomeGridBelowChart.Children.Add(percentPayLabel, 1, 3);
 			}
 
-			payData = d.GetPayTableTaxablePay(grossPay);
+			payData = payTableData.FirstOrDefault (d => d.TaxablePay == grossPay);
 			if (payData != null)
 			{
 				var takeHomeUmbrella = payData.TakeHomeUmbrella;
@@ -372,11 +371,12 @@ namespace FormSample.Views
 			chart1.Series.Add(new Syncfusion.SfChart.XForms.PieSeries()
 				{
 					ItemsSource = limitedCompanyModel.limitedCompanyTax,
-					DataMarker = new ChartDataMarker (){ShowLabel = true},
+					DataMarker = new ChartDataMarker (){ShowLabel = true,LabelStyle=new DataMarkerLabelStyle(){TextColor=Color.Black, Font = Font.OfSize("Arial",30)}},
 					IsVisibleOnLegend =true ,
-					 Color = Color.FromHex("f7941d"),
+					Color = Color.FromHex("f7941d"),
+
 				});
-			chart1.ColorModel.Palette = ChartColorPalette.Metro;
+			// chart1.ColorModel.Palette = ChartColorPalette.Metro;
 
 			//Adding Chart Legend for the Chart
 			chart1.Legend = new ChartLegend() 
@@ -400,9 +400,9 @@ namespace FormSample.Views
 			chart2.Series.Add(new Syncfusion.SfChart.XForms.PieSeries()
 				{
 					ItemsSource = umbrellaCompanyModel.umbrallaCompanyTax,
-					DataMarker = new ChartDataMarker (){ShowLabel = true,LabelStyle=new DataMarkerLabelStyle(){TextColor=Color.Black}},
+					DataMarker = new ChartDataMarker (){ShowLabel = true,LabelStyle=new DataMarkerLabelStyle(){TextColor=Color.Black,Font= Font.OfSize("Arial",16)}},
 					IsVisibleOnLegend =true,
-					Color = Color.FromHex("f7941d")
+					//Color = Color.FromHex("f7941d")
 				});
 
 
@@ -411,7 +411,7 @@ namespace FormSample.Views
 			{ 
 				IsVisible = true, 
 				DockPosition= Syncfusion.SfChart.XForms.LegendPlacement.Bottom ,
-				LabelStyle = new ChartLegendLabelStyle(){Font = Font.OfSize("Arial", 10) }
+				LabelStyle = new ChartLegendLabelStyle(){TextColor=Color.Black,Font = Font.OfSize("Arial", 10) }
 			};
 			//this.chartGrid.Children.Add(chart2,0, 1);
 		}
