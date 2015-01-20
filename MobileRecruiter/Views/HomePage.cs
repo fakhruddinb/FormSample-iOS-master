@@ -29,11 +29,11 @@ namespace FormSample.Views
 				ToolbarItemOrder.Primary
 				,0));
 
-			ToolbarItems.Add(new ToolbarItem("logo2","Icon.png",()=>
-				{
-					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
-				ToolbarItemOrder.Secondary
-				,1));
+//			ToolbarItems.Add(new ToolbarItem("logo2","Icon.png",()=>
+//				{
+//					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
+//				ToolbarItemOrder.Secondary
+//				,1));
 			imgReferContractor = new Image () {
 				WidthRequest = width,
 				HeightRequest = height,
@@ -78,19 +78,6 @@ namespace FormSample.Views
 
 		public StackLayout AssignValues()
 		{
-			//double imagewidth = (Utility.DEVICEWIDTH-10)*50/ 100;
-			//double imageHeight = Utility.DEVICEHEIGHT;
-			//
-			//			//double padding = Utility.DEVICEWIDTH*2.5/ 100;
-			//
-			//			var grid = new Grid
-			//			{
-			//				RowSpacing = 10,
-			//				ColumnSpacing = 10
-			//				//ColumnSpacing = Utility.DEVICEWIDTH*2.4 / 100
-			//			};
-			//
-			//double width = imagewidth;
 
 			Label lblTitle = new Label(){
 				Text = "Home",

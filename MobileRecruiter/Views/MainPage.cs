@@ -2,6 +2,7 @@
 using FormSample.Helpers;
 using FormSample.Views;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace FormSample
 {
@@ -9,6 +10,7 @@ namespace FormSample
 	{
 		bool isFirstTime=true;
 		MenuPage menuPage;
+
 		public MainPage()
 		{
 
@@ -19,13 +21,17 @@ namespace FormSample
 			this.Detail = new NavigationPage (new HomePage ());//  s.NavigateTo ("Home");
 
 			menuPage.Menu.ItemSelected += (sender, e) => {
-				if(isFirstTime && (e.SelectedItem as string) == "Home")
-				{
-				}
-				else
-				{
-					NavigateTo (e.SelectedItem as string);
-				}
+				var menuItem = e.SelectedItem as MenuData;
+				// menuItem.IsSelected = true;
+				NavigateTo (menuItem.Title,false);
+
+//				if(isFirstTime && (e.SelectedItem as string) == "Home")
+//				{
+//				}
+//				else
+//				{
+//					NavigateTo (e.SelectedItem as string);
+//				}
 			};
 		}
 
@@ -34,10 +40,15 @@ namespace FormSample
 			base.OnAppearing ();
 		}
 
-		public void NavigateTo(string item)
+		public void NavigateTo(string item,bool isCalledFromDashboard = true)
 		{
 			Page page = new Page();
-			menuPage.Menu.SelectedItem = item;
+			if (isCalledFromDashboard) {
+				var selectedItem = menuPage.Menu.ItemsSource.Cast<MenuData> ().Where (t => t.Title == item).FirstOrDefault ();
+
+				// t.IsSelected = true;
+				menuPage.Menu.SelectedItem = selectedItem;
+			}
 
 			switch (item)
 			{

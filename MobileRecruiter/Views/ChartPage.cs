@@ -39,13 +39,27 @@ namespace FormSample
 
 			var grid = new Grid
 			{
-				ColumnSpacing = 20
+				ColumnSpacing = 10,
+//				RowDefinitions = 
+//				{
+//					new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+//				},
+//				ColumnDefinitions = 
+//				{
+//					new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
+//					new ColumnDefinition { Width =  new GridLength(1, GridUnitType.Star) },
+//					new ColumnDefinition { Width =  new GridLength(1, GridUnitType.Star) },
+//				},
+				Padding= new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0)
 			};
-			grid.Children.Add(new Label { Text = "Daily Rate", BackgroundColor=Color.Maroon, TextColor=Color.White }, 0, 0); // Left, First element
-			grid.Children.Add(new Label { Text = "Limited Company" , BackgroundColor=Color.Maroon, TextColor=Color.White }, 1, 0);
-			grid.Children.Add(new Label { Text = "Umbrella Company" , BackgroundColor=Color.Maroon, TextColor=Color.White }, 2, 0);
+			grid.Children.Add(new Label { Text = "Daily Rate", BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.Black}, 0, 0); // Left, First element
+			grid.Children.Add(new Label { Text = "Limited Company" , BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.Black}, 1, 0);
+			grid.Children.Add(new Label { Text = "Umbrella Company" , BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.Black}, 2, 0);
 
 			ListView list= new ListView{};
+			list.VerticalOptions  = LayoutOptions.EndAndExpand;
+			list.HeightRequest = Utility.DEVICEHEIGHT*70/100;
+			list.WidthRequest = Utility.DEVICEWIDTH;
 			list.ItemTemplate = new DataTemplate(typeof(DailyRateCell));
 			list.ItemsSource = GenerateDailyRateTable();
 			chart1= new SfChart();
@@ -85,7 +99,7 @@ namespace FormSample
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				HorizontalOptions = LayoutOptions.Fill,
 			};
-			Content = layout;
+			Content = new ScrollView(){Content= layout};
 		}
 
 		private List<DailyRateCalcuationTable> GenerateDailyRateTable()
@@ -128,31 +142,34 @@ namespace FormSample
 		private void GenerateChart()
 		{
 			chart1.Title=new ChartTitle(){Text="Your weekly pay"};
-			chart1.Title.Font = Font.OfSize("Arial", 10);
-			chart1.WidthRequest = 200;
-			chart1.HeightRequest = 200;
+			chart1.Title.Font = Font.OfSize("Arial", 18);
+			//chart1.WidthRequest = 200;
+			//chart1.HeightRequest = 200;
+
+			chart1.WidthRequest = (Utility.DEVICEWIDTH * 20) / 100;
+			chart1.HeightRequest = (Utility.DEVICEHEIGHT*50)/100;
 
 			//Initializing Primary Axis
-			Syncfusion.SfChart.XForms.CategoryAxis primaryAxis=new Syncfusion.SfChart.XForms.CategoryAxis();
-			primaryAxis.Title = new ChartAxisTitle(){Text= "Daily Rate"};;
-			chart1.PrimaryAxis=primaryAxis;
+			Syncfusion.SfChart.XForms.CategoryAxis primaryAxis =new Syncfusion.SfChart.XForms.CategoryAxis();
+			primaryAxis.Title = new ChartAxisTitle(){Text= "Daily Rate",Font = Font.OfSize("Arial",22)};
+			chart1.PrimaryAxis = primaryAxis;
 
 			//			//Initializing Secondary Axis
-			//			Syncfusion.SfChart.XForms.NumericalAxis secondaryAxis=new Syncfusion.SfChart.XForms.NumericalAxis();
-			//			secondaryAxis.Title= new ChartAxisTitle(){Text="Temperature"};
-			//			chart1.SecondaryAxis=secondaryAxis;
+			Syncfusion.SfChart.XForms.NumericalAxis secondaryAxis=new Syncfusion.SfChart.XForms.NumericalAxis();
+			secondaryAxis.Title= new ChartAxisTitle(){Text="Take Home Pay",Font = Font.OfSize("Arial",22)};
+			chart1.SecondaryAxis=secondaryAxis;
 
 			chart1.Series.Add(new Syncfusion.SfChart.XForms.ColumnSeries()
 				{
 					ItemsSource = model.limitedCompanyTax,
-					YAxis=new NumericalAxis(){IsVisible=true },
+					//YAxis=new NumericalAxis(){IsVisible=true},
 					IsVisibleOnLegend =true  ,
 					Label="Limited"
 				});
 			chart1.Series.Add(new Syncfusion.SfChart.XForms.ColumnSeries()
 				{
 					ItemsSource = model.umbrallaCompanyTax,
-					YAxis=new NumericalAxis(){IsVisible=false },
+					//YAxis=new NumericalAxis(){IsVisible=false },
 					IsVisibleOnLegend =true,
 					Label="Umbrella"
 				});
@@ -161,7 +178,7 @@ namespace FormSample
 			{ 
 				IsVisible = true, 
 				DockPosition= Syncfusion.SfChart.XForms.LegendPlacement.Bottom ,
-				LabelStyle = new ChartLegendLabelStyle(){Font = Font.OfSize("Arial", 10) }
+				LabelStyle = new ChartLegendLabelStyle(){Font = Font.OfSize("Arial", 18) }
 			};
 		}
 	}
@@ -207,8 +224,9 @@ namespace FormSample
 			{
 				Orientation = StackOrientation.Horizontal,
 				Children = { nameLayout },
+				Padding = new Thickness(Device.OnPlatform(5,5,5),0 ,Device.OnPlatform(5,5,5),0)
 			};
-			viewLayout.BackgroundColor = MyContractorPage.counter % 2 == 0 ? Color.Silver: Color.Gray ;
+			viewLayout.BackgroundColor = MyContractorPage.counter % 2 == 0 ? Color.FromHex ("#ccc") : Color.FromHex ("#eef2f3"); ;
 			MyContractorPage.counter++;
 			View = viewLayout;
 		}
@@ -216,17 +234,20 @@ namespace FormSample
 		{
 			var nameLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand };
 			nameLabel.SetBinding(Label.TextProperty, new Binding("DailyRate"));
-			nameLabel.WidthRequest = 130;
+			//nameLabel.WidthRequest = 130;
+			nameLabel.WidthRequest = Utility.DEVICEWIDTH * 32 / 100;
 			nameLabel.TextColor = Color.Black;
 
 			var limitedCompanyLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand };
 			limitedCompanyLabel.SetBinding(Label.TextProperty, new Binding("LimitedCompany"));
-			limitedCompanyLabel.WidthRequest = 130;
+			//limitedCompanyLabel.WidthRequest = 130;
+			limitedCompanyLabel.WidthRequest =Utility.DEVICEWIDTH * 32 / 100;
 			limitedCompanyLabel.TextColor = Color.Black;
 
 			var UmbrellaCompanyLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand };
 			UmbrellaCompanyLabel.SetBinding(Label.TextProperty, new Binding("UmbrellaCompany"));
-			UmbrellaCompanyLabel.WidthRequest = 80;
+			//UmbrellaCompanyLabel.WidthRequest = 80;
+			UmbrellaCompanyLabel.WidthRequest =Utility.DEVICEWIDTH * 32 / 100;
 			UmbrellaCompanyLabel.TextColor = Color.Black;
 
 			var nameLayout = new StackLayout()

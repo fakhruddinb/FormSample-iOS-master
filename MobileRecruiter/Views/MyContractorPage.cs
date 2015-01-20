@@ -44,22 +44,31 @@ namespace FormSample
 			grid.Children.Add(new Label { Text = "Date refered" ,TextColor=Color.Red}, 1, 0);
 
 			var btnClearAllContractor = new Button { Text = "Clear all contractor", BackgroundColor = Color.FromHex("3b73b9"), TextColor = Color.White };
-			btnClearAllContractor.SetBinding (Button.CommandProperty, ContractorViewModel.GotoDeleteAllContractorCommandPropertyName);
 
 			btnClearAllContractor.Clicked += async (object sender, EventArgs e) => {
 				try
 				{
-					var answer = await DisplayAlert("Confirm", "Do you wish to clear all item", "Yes", "No");
-					if (answer)
-					{
-						progressService.Show();
-						var result = await dataService.DeleteAllContractor(Settings.GeneralSettings);
-						if(result != null)
-						{
-							progressService.Dismiss();
-							listView.ItemsSource = this.contractorViewModel.contractorList;
-						}
-					}
+					var answer =  await DisplayAlert("Confirm", "Do you wish to clear all item", "Yes", "No");
+						if(answer)
+							{
+								progressService.Show();
+								var result =  dataService.DeleteAllContractor(Settings.GeneralSettings);
+								if(result != null)
+								{
+									progressService.Dismiss();
+									listView.ItemsSource = this.contractorViewModel.contractorList;
+								}
+							}
+//					if (answer)
+//					{
+//						progressService.Show();
+//						var result = await dataService.DeleteAllContractor(Settings.GeneralSettings);
+//						if(result != null)
+//						{
+//							progressService.Dismiss();
+//							listView.ItemsSource = this.contractorViewModel.contractorList;
+//						}
+//					}
 				}
 				catch
 				{

@@ -166,7 +166,7 @@ namespace FormSample.ViewModel
 					{
 						this.CreateContractor(obj);
 						progressService.Dismiss();
-						App.RootPage.NavigateTo("My contractors");
+						App.RootPage.NavigateTo("My contractors",true);
 					}
 					else
 					{
@@ -174,36 +174,12 @@ namespace FormSample.ViewModel
 						var result= await contractorDataService.AddContractor(obj);
 						if (result != null)
 						{
-							App.RootPage.NavigateTo("My contractors");
+							App.RootPage.NavigateTo("My contractors",true);
 						}
 					}
 				}
 			}
 			catch (Exception)
-			{
-				progressService.Dismiss();
-				MessagingCenter.Send(this, "msg", Utility.SERVERERRORMESSAGE);
-			}
-		}
-
-		private Command gotoDeleteAllContractorCommand;
-		public const string GotoDeleteAllContractorCommandPropertyName = "GotoDeleteAllContractorCommand";
-		public Command GotoDeleteAllContractorCommand
-		{
-			get
-			{
-				return gotoDeleteAllContractorCommand ?? (gotoDeleteAllContractorCommand = new Command(async () => await ExecuteDeleteAllContractorCommand()));
-			}
-		}
-
-		protected async Task ExecuteDeleteAllContractorCommand()
-		{
-			try
-			{
-				var result = await contractorDataService.DeleteAllContractor(Settings.GeneralSettings);
-				App.RootPage.NavigateTo("My contractors");
-			}
-			catch
 			{
 				progressService.Dismiss();
 				MessagingCenter.Send(this, "msg", Utility.SERVERERRORMESSAGE);

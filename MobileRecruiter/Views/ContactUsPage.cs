@@ -5,10 +5,11 @@ namespace FormSample.Views
 {
 	using Xamarin.Forms;
 	using FormSample;
+
 	public class ContactUsPage : ContentPage
 	{
 		Image phoneNumberImage,agencyImage,contactMapImage,googleImage,linkedinImage;
-
+	
 		public ContactUsPage()
 		{
 			double width = 350;
@@ -210,6 +211,7 @@ namespace FormSample.Views
 			contactMapImage.Source = null;
 			googleImage.Source = null;
 			linkedinImage.Source = null;
+			GC.Collect ();
 		}
 	}
 }
