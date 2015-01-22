@@ -27,6 +27,8 @@ namespace FormSample.Views
 
 		public StackLayout AssignValues()
 		{
+			var topPadding = Utility.DEVICEHEIGHT * 34 / 100;
+
 			var label = new Label
 			{
 				Text = "Amend Details",
@@ -113,7 +115,7 @@ namespace FormSample.Views
 			};
 
 			var buttonLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),Device.OnPlatform(topPadding,topPadding,topPadding), Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				Orientation = StackOrientation.Vertical,
 				Children= {btnUpdate, contactUsButton}

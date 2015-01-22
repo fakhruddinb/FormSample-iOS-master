@@ -152,11 +152,15 @@ namespace FormSample
 			//Initializing Primary Axis
 			Syncfusion.SfChart.XForms.CategoryAxis primaryAxis =new Syncfusion.SfChart.XForms.CategoryAxis();
 			primaryAxis.Title = new ChartAxisTitle(){Text= "Daily Rate",Font = Font.OfSize("Arial",22)};
+			primaryAxis.LabelStyle.Font = Font.OfSize("Arial", 30);
+			primaryAxis.LabelStyle.TextColor = Color.Red;
 			chart1.PrimaryAxis = primaryAxis;
 
 			//			//Initializing Secondary Axis
 			Syncfusion.SfChart.XForms.NumericalAxis secondaryAxis=new Syncfusion.SfChart.XForms.NumericalAxis();
 			secondaryAxis.Title= new ChartAxisTitle(){Text="Take Home Pay",Font = Font.OfSize("Arial",22)};
+			secondaryAxis.LabelStyle.Font = Font.OfSize("Arial", 30);
+			secondaryAxis.LabelStyle.TextColor = Color.Red;
 			chart1.SecondaryAxis=secondaryAxis;
 
 			chart1.Series.Add(new Syncfusion.SfChart.XForms.ColumnSeries()
@@ -226,7 +230,7 @@ namespace FormSample
 				Children = { nameLayout },
 				Padding = new Thickness(Device.OnPlatform(5,5,5),0 ,Device.OnPlatform(5,5,5),0)
 			};
-			viewLayout.BackgroundColor = MyContractorPage.counter % 2 == 0 ? Color.FromHex ("#ccc") : Color.FromHex ("#eef2f3"); ;
+			viewLayout.BackgroundColor = MyContractorPage.counter % 2 == 0 ? Color.FromHex ("#ccc") : Color.FromHex ("#eef2f3");
 			MyContractorPage.counter++;
 			View = viewLayout;
 		}

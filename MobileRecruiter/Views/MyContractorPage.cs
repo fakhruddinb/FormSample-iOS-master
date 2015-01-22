@@ -14,7 +14,7 @@ namespace FormSample
 		private ContractorDataService dataService = new ContractorDataService();
 		private ListView listView;
 		private IProgressService progressService;
-
+		Button btnClearAllContractor;
 		public MyContractorPage()
 		{
 			BindingContext = new ContractorViewModel ();
@@ -30,8 +30,6 @@ namespace FormSample
 				YAlign = TextAlignment.Center
 			};
 
-
-
 			listView = new ListView
 			{
 				RowHeight = 40
@@ -43,12 +41,12 @@ namespace FormSample
 			grid.Children.Add(new Label { Text = "Contractor", TextColor=Color.Red }, 0, 0); // Left, First element
 			grid.Children.Add(new Label { Text = "Date refered" ,TextColor=Color.Red}, 1, 0);
 
-			var btnClearAllContractor = new Button { Text = "Clear all contractor", BackgroundColor = Color.FromHex("3b73b9"), TextColor = Color.White };
-
-			btnClearAllContractor.Clicked += async (object sender, EventArgs e) => {
+           btnClearAllContractor = new Button { Text = "Clear all contractor", BackgroundColor = Color.FromHex("3b73b9"), TextColor = Color.White };
+            btnClearAllContractor.Clicked += async (object sender, EventArgs e) =>
+            {
 				try
 				{
-					var answer =  await DisplayAlert("Confirm", "Do you wish to clear all item", "Yes", "No");
+					var answer =  await DisplayAlert("Confirm", "Do you wish to clear all item?", "Yes", "No");
 						if(answer)
 							{
 								progressService.Show();
@@ -119,7 +117,7 @@ namespace FormSample
 				{
 					return;
 				}
-				var answer = await DisplayAlert("Confirm", "Do you wish to clear this item", "Yes", "No");
+				var answer = await DisplayAlert("Confirm", "Do you wish to clear this item?", "Yes", "No");
 				if (answer)
 				{
 					progressService.Show();
@@ -129,6 +127,14 @@ namespace FormSample
 						await this.contractorViewModel.DeleteContractor(contractor.Id);
 						progressService.Dismiss();
 						listView.ItemsSource = this.contractorViewModel.contractorList;
+                        if (this.contractorViewModel.contractorList.Count <= 0)
+                        {
+                            this.btnClearAllContractor.IsVisible = false;
+                        }
+                        else
+                        {
+                            this.btnClearAllContractor.IsVisible = true;
+                        }
 					}
 				}
 
@@ -152,6 +158,14 @@ namespace FormSample
 					await this.contractorViewModel.BindContractor ();
 					listView.ItemTemplate = new DataTemplate (typeof(ContractorCell));
 					listView.ItemsSource = this.contractorViewModel.contractorList;
+                    if (this.contractorViewModel.contractorList.Count <= 0)
+                    {
+                        this.btnClearAllContractor.IsVisible = false;
+                    }
+                    else
+                    {
+                        this.btnClearAllContractor.IsVisible = true;
+                    }
 				}
 			}
 			catch(Exception) {

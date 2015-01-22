@@ -22,7 +22,7 @@ namespace FormSample.Views
 		{
 
 			width= (Utility.DEVICEWIDTH)*25/ 100;
-			height = (Utility.DEVICEHEIGHT)*23/ 100;
+			height = (Utility.DEVICEHEIGHT)*24/ 100;
 			ToolbarItems.Add(new ToolbarItem("logo","logo.png",()=>
 				{
 					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},

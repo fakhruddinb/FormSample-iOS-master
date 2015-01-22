@@ -12,13 +12,15 @@ namespace FormSample.Views
 	
 		public ContactUsPage()
 		{
-			double width = 350;
-			double height = 150;
+//			double width = 350;
+//			double height = 150;
+			double width= Utility.DEVICEWIDTH;
+			double height = (Utility.DEVICEHEIGHT*19)/ 100;
 
-			double widthGoogleandLinkedIn = 175;
+			double widthGoogleandLinkedIn = (Utility.DEVICEWIDTH*50)/100;
 
 			phoneNumberImage = new Image (){
-				WidthRequest = width,
+				//WidthRequest = width,
 				HeightRequest = height,
 				Aspect = Aspect.AspectFill
 			};
@@ -189,7 +191,7 @@ namespace FormSample.Views
 				Orientation = StackOrientation.Vertical
 			};
 
-			return new StackLayout { Children = {layout} };
+			return new StackLayout { Children = {layout}};
 		}
 
 		protected override void OnAppearing ()

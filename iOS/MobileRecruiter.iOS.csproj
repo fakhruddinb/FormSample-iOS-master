@@ -154,6 +154,7 @@
     <Compile Include="CheckBoxRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Services\LocationManager.cs" />
     <Compile Include="SQLite_iOS.cs" />
     <Compile Include="NetworkService.cs" />
     <Compile Include="Services\ProgressService.cs" />

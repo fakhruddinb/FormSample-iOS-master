@@ -121,7 +121,7 @@ namespace FormSample.Views
 			};
 
 			var buttonLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0,Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				HorizontalOptions = LayoutOptions.Fill,
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				Orientation = StackOrientation.Vertical,

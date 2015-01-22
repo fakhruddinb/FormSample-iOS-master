@@ -1,9 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.TWWSIN6TIJDQU8EY" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MobileRecruiter\Views\ChartPage.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MobileRecruiter\Views\CalculatorPage.cs">
     <Files>
-      <File FileName="MobileRecruiter\Views\CalculatorPage.cs" Line="39" Column="39" />
-      <File FileName="MobileRecruiter\Views\ChartPage.cs" Line="7" Column="7" />
+      <File FileName="MobileRecruiter\Views\LoginPage.cs" Line="30" Column="30" />
+      <File FileName="MobileRecruiter\Views\CalculatorPage.cs" Line="29" Column="29" />
+      <File FileName="MobileRecruiter\Views\ChartPage.cs" Line="17" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

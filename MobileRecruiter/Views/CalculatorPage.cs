@@ -406,7 +406,7 @@ namespace FormSample.Views
 					ItemsSource = limitedCompanyModel.limitedCompanyTax,
 					DataMarker = new ChartDataMarker (){ShowLabel = true,LabelStyle=new DataMarkerLabelStyle(){TextColor=Color.Black, Font = Font.OfSize("Arial",40)}},
 					IsVisibleOnLegend =true ,
-					Color = Color.FromHex("f7941d"),
+					Color = Color.FromHex("FF9900"),
 
 				});
 			// chart1.ColorModel.Palette = ChartColorPalette.Metro;
@@ -428,18 +428,19 @@ namespace FormSample.Views
 			chart2.Title.Font = Font.OfSize("Arial", 20);
 			chart2.WidthRequest = chartwidth;
 			chart2.HeightRequest = chartHeight;
-
+			List<Color> brushes = new List<Color> ();
+			brushes.Add(Color.Aqua);
+			brushes.Add(Color.Blue);
 			//Adding Series to the chart 
 			chart2.Series.Add(new Syncfusion.SfChart.XForms.PieSeries()
 				{
 					ItemsSource = umbrellaCompanyModel.umbrallaCompanyTax,
 					DataMarker = new ChartDataMarker (){ShowLabel = true,LabelStyle=new DataMarkerLabelStyle(){TextColor=Color.Black, Font = Font.OfSize("Arial",40)}},
 					IsVisibleOnLegend =true,
-					Color = Color.FromHex("f7941d"),
-					//Color = Color.FromHex("f7941d")
+					//Color = Color.FromHex("FF9900")
 				});
-
-
+			chart2.ColorModel.CustomBrushes = brushes;
+			chart2.ColorModel.Palette = ChartColorPalette.Custom;
 			//Adding Chart Legend for the Chart
 			chart2.Legend = new ChartLegend() 
 			{ 

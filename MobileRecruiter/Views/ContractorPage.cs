@@ -39,7 +39,9 @@ namespace FormSample.Views
 				YAlign = TextAlignment.Center //in the blue box.
 			};
 
-			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill };
+//			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill, Font = Font.SystemFontOfSize (NamedSize.Medium)
+//					.WithAttributes (FontAttributes.Bold)};
+			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
 			firstNameLabel.Text = "First Name";
 
 			var firstName = new MyEntry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -116,17 +118,18 @@ namespace FormSample.Views
 				Children = { firstNameLabel, firstName, lastNameLabel, lastName, phoneNoLabel, phoneNo, emailLabel, email, additionalInfoLabel, additionalInfo, chkInvite}
 			};
 
-			var scrollableContentLayout = new ScrollView (){ 
-				Content = cotrolStakeLayout,
-				Orientation = ScrollOrientation.Vertical,
+			var scrollableContentLayout = new StackLayout (){ 
+				Children = {cotrolStakeLayout},
+				Orientation = StackOrientation.Vertical,
+				//Orientation = ScrollOrientation.Vertical,
 				HorizontalOptions = LayoutOptions.Fill,
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
 			var buttonLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0, Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				HorizontalOptions = LayoutOptions.Fill,
-				VerticalOptions = LayoutOptions.FillAndExpand, 
+				VerticalOptions = LayoutOptions.End, 
 				Orientation = StackOrientation.Vertical,
 				Children= {btnSubmitContractor, contactUsButton}
 			};

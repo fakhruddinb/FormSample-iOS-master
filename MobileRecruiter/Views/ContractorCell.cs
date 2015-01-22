@@ -12,7 +12,7 @@ namespace FormSample
 				Orientation = StackOrientation.Horizontal,
 				Children = { nameLayout }
 			};
-			viewLayout.BackgroundColor = MyContractorPage.counter % 2 == 0 ? Color.Silver: Color.Gray ;
+			viewLayout.BackgroundColor = MyContractorPage.counter % 2 == 0 ? Color.FromHex ("#ccc") : Color.FromHex ("#eef2f3"); ;
 			MyContractorPage.counter++;
 			View = viewLayout;
 		}

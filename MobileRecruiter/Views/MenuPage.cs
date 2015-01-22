@@ -63,17 +63,17 @@ namespace FormSample
 				},
 				new MenuData()
 				{
-					Title="About us",
-					IsSelected= false,
-				},
-				new MenuData()
-				{
 					Title="Take home pay calculator",
 					IsSelected= false,
 				},
 				new MenuData()
 				{
 					Title="Weekly pay chart",
+					IsSelected= false,
+				},
+				new MenuData()
+				{
+					Title="Log out",
 					IsSelected= false,
 				},
 

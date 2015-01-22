@@ -200,9 +200,9 @@ namespace FormSample.ViewModel
 
 		public  async Task BindContractor()
 		{
-			var contractorList =  await  contractorDataService.GetContractors(Settings.GeneralSettings);
-			var list =  contractorList.Where (c => c.DeleteDate == null).OrderByDescending(a=>a.InsertDate).ToList ();
-			this.contractorList = new ObservableCollection<Contractor>(list);
+				var contractorList = await contractorDataService.GetContractors (Settings.GeneralSettings);
+				var list = contractorList.Where (c => c.DeleteDate == null).OrderByDescending (a => a.InsertDate).ToList ();
+				this.contractorList = new ObservableCollection<Contractor> (list);
 		}
 	}
 }
