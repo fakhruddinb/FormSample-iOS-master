@@ -153,23 +153,28 @@ namespace FormSample
 			Syncfusion.SfChart.XForms.CategoryAxis primaryAxis =new Syncfusion.SfChart.XForms.CategoryAxis();
 			primaryAxis.Title = new ChartAxisTitle(){Text= "Daily Rate",Font = Font.OfSize("Arial",22)};
 			primaryAxis.LabelStyle.Font = Font.OfSize("Arial", 30);
-			primaryAxis.LabelStyle.TextColor = Color.Red;
+			//primaryAxis.LabelStyle.TextColor = Color.Red;
 			chart1.PrimaryAxis = primaryAxis;
 
 			//			//Initializing Secondary Axis
 			Syncfusion.SfChart.XForms.NumericalAxis secondaryAxis=new Syncfusion.SfChart.XForms.NumericalAxis();
 			secondaryAxis.Title= new ChartAxisTitle(){Text="Take Home Pay",Font = Font.OfSize("Arial",22)};
 			secondaryAxis.LabelStyle.Font = Font.OfSize("Arial", 30);
-			secondaryAxis.LabelStyle.TextColor = Color.Red;
+			//secondaryAxis.LabelStyle.TextColor = Color.Red;
 			chart1.SecondaryAxis=secondaryAxis;
+
+			List<Color> brushes = new List<Color> ();
+			brushes.Add(Color.FromHex("FF9900"));
+			brushes.Add(Color.FromHex("4F4838"));
 
 			chart1.Series.Add(new Syncfusion.SfChart.XForms.ColumnSeries()
 				{
 					ItemsSource = model.limitedCompanyTax,
 					//YAxis=new NumericalAxis(){IsVisible=true},
 					IsVisibleOnLegend =true  ,
-					Label="Limited"
+					Label="Limited",
 				});
+
 			chart1.Series.Add(new Syncfusion.SfChart.XForms.ColumnSeries()
 				{
 					ItemsSource = model.umbrallaCompanyTax,
@@ -177,6 +182,8 @@ namespace FormSample
 					IsVisibleOnLegend =true,
 					Label="Umbrella"
 				});
+
+			chart1.ColorModel = new ChartColorModel{ CustomBrushes = brushes, Palette = ChartColorPalette.Custom };
 			//Adding Chart Legend for the Chart
 			chart1.Legend = new ChartLegend() 
 			{ 

@@ -15,11 +15,16 @@ namespace FormSample
 	{
 
 		ILoginManager ilm;
+		private IProgressService progressService;
+		private DataService dataService;
+
 		public LoginPage(ILoginManager ilm)
 		{
 			this.ilm = ilm;
 			BindingContext = new LoginViewModel(Navigation,ilm);
-			var topPadding = Utility.DEVICEHEIGHT * 34 / 100;
+			var topPadding = Utility.DEVICEHEIGHT * 38 / 100;
+			this.dataService = new DataService();
+			progressService = DependencyService.Get<IProgressService>();
 
 			var layout = new StackLayout { };
 
@@ -62,6 +67,64 @@ namespace FormSample
             ExtendedLabel forgotPassword = new ExtendedLabel();
             forgotPassword.IsUnderline = true;
             forgotPassword.Text = "I have forgot my password";
+			//forgotPassword.BackgroundColor = Color.FromHex ("#22498a");
+			//forgotPassword.TextColor = Color.White;
+			forgotPassword.Font = Font.SystemFontOfSize (NamedSize.Medium);
+
+			var forgotPasswordGestureRecognizer = new TapGestureRecognizer ();
+			forgotPassword.GestureRecognizers.Add(forgotPasswordGestureRecognizer);
+
+			forgotPasswordGestureRecognizer.Tapped += async (object sender, EventArgs e) => 
+			{
+				try
+				{
+					string errorMessage = string.Empty;
+					progressService.Show();
+
+					if(string.IsNullOrWhiteSpace(username.Text))
+					{
+
+						errorMessage = errorMessage + Utility.EAMAILMESSAGE;
+					}
+					else if (!Utility.IsValidEmailAddress(username.Text))
+					{
+						errorMessage = errorMessage + Utility.INVALIDEMAILMESSAGE;
+					}
+					if(!string.IsNullOrEmpty(errorMessage))
+					{
+						progressService.Dismiss();
+						await DisplayAlert("Message",errorMessage,"OK");
+					}
+					else
+					{
+						var x = DependencyService.Get<FormSample.Helpers.Utility.INetworkService>().IsReachable();
+						if (!x)
+						{
+							progressService.Dismiss();
+							await DisplayAlert("Message",Utility.NOINTERNETMESSAGE,"OK");
+						}
+						else if (await this.dataService.GetAgent(username.Text) == null)
+						{
+							progressService.Dismiss();
+							await DisplayAlert("Message",Utility.INVALIDUSERMESSAGE,"OK");
+						}
+						else
+						{
+							var result = await dataService.ForgotPassword(username.Text);
+							if(result != null)
+							{
+								progressService.Dismiss();
+								await DisplayAlert("Message","Password has been sent to your email...","OK");
+							}
+						}
+					}
+				}
+				catch(Exception) {
+					progressService.Dismiss();
+					DisplayAlert("Message",Utility.SERVERERRORMESSAGE,"OK");
+					//MessagingCenter.Send(this,"msg",Utility.SERVERERRORMESSAGE);
+				}
+			};
 
 			var loginButton = new Button { Text = "Sign In",BackgroundColor = Color.FromHex("#22498a"),
 				TextColor=Color.White};

@@ -67,7 +67,7 @@ namespace FormSample
 			case "Terms and conditions":
 				DependencyService.Get<FormSample.Helpers.Utility.IUrlService> ().OpenUrl (Utility.PDFURL);
 				page = new HomePage ();
-				menuPage.Menu.SelectedItem = "Home";
+				//menuPage.Menu.SelectedItem = "Home";
 				break;
 
 			case "About us":

@@ -399,15 +399,17 @@ namespace FormSample.Views
 			chart1.Title.Font = Font.OfSize("Arial", 20);
 			chart1.WidthRequest = chartwidth;
 			chart1.HeightRequest = chartHeight;
-
+			List<Color> brushes = new List<Color> ();
+			brushes.Add(Color.FromHex("FF9900"));
+			brushes.Add(Color.FromHex("4F4838"));
 			//Adding ColumnSeries to the chart for percipitation
 			chart1.Series.Add(new Syncfusion.SfChart.XForms.PieSeries()
 				{
 					ItemsSource = limitedCompanyModel.limitedCompanyTax,
 					DataMarker = new ChartDataMarker (){ShowLabel = true,LabelStyle=new DataMarkerLabelStyle(){TextColor=Color.Black, Font = Font.OfSize("Arial",40)}},
 					IsVisibleOnLegend =true ,
-					Color = Color.FromHex("FF9900"),
-
+					//Color = Color.FromHex("FF9900"),
+					ColorModel = new ChartColorModel{CustomBrushes=brushes, Palette=ChartColorPalette.Custom}
 				});
 			// chart1.ColorModel.Palette = ChartColorPalette.Metro;
 
@@ -429,18 +431,17 @@ namespace FormSample.Views
 			chart2.WidthRequest = chartwidth;
 			chart2.HeightRequest = chartHeight;
 			List<Color> brushes = new List<Color> ();
-			brushes.Add(Color.Aqua);
-			brushes.Add(Color.Blue);
+			brushes.Add(Color.FromHex("FF9900"));
+			brushes.Add(Color.FromHex("4F4838"));
 			//Adding Series to the chart 
 			chart2.Series.Add(new Syncfusion.SfChart.XForms.PieSeries()
 				{
 					ItemsSource = umbrellaCompanyModel.umbrallaCompanyTax,
 					DataMarker = new ChartDataMarker (){ShowLabel = true,LabelStyle=new DataMarkerLabelStyle(){TextColor=Color.Black, Font = Font.OfSize("Arial",40)}},
 					IsVisibleOnLegend =true,
+					ColorModel = new ChartColorModel{CustomBrushes=brushes, Palette=ChartColorPalette.Custom}
 					//Color = Color.FromHex("FF9900")
 				});
-			chart2.ColorModel.CustomBrushes = brushes;
-			chart2.ColorModel.Palette = ChartColorPalette.Custom;
 			//Adding Chart Legend for the Chart
 			chart2.Legend = new ChartLegend() 
 			{ 

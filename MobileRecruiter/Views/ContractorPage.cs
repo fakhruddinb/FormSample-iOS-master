@@ -118,10 +118,11 @@ namespace FormSample.Views
 				Children = { firstNameLabel, firstName, lastNameLabel, lastName, phoneNoLabel, phoneNo, emailLabel, email, additionalInfoLabel, additionalInfo, chkInvite}
 			};
 
-			var scrollableContentLayout = new StackLayout (){ 
-				Children = {cotrolStakeLayout},
-				Orientation = StackOrientation.Vertical,
-				//Orientation = ScrollOrientation.Vertical,
+			var scrollableContentLayout = new ScrollView (){ 
+				//Children = {cotrolStakeLayout},
+				Content = cotrolStakeLayout,
+				//Orientation = StackOrientation.Vertical,
+				Orientation = ScrollOrientation.Vertical,
 				HorizontalOptions = LayoutOptions.Fill,
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
