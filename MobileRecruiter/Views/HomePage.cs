@@ -22,7 +22,7 @@ namespace FormSample.Views
 		{
 
 			width= (Utility.DEVICEWIDTH)*25/ 100;
-			height = (Utility.DEVICEHEIGHT)*24/ 100;
+			height = (Utility.DEVICEHEIGHT)*30/ 100;
 			ToolbarItems.Add(new ToolbarItem("logo","logo.png",()=>
 				{
 					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
@@ -248,7 +248,7 @@ namespace FormSample.Views
 			var buttonLayout = new StackLayout (){ 
 				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				HorizontalOptions = LayoutOptions.Fill,
-				VerticalOptions = LayoutOptions.FillAndExpand, 
+				VerticalOptions = LayoutOptions.End, 
 				Orientation = StackOrientation.Vertical,
 				Children= {contactUsButton }
 			};

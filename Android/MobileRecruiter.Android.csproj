@@ -29,7 +29,7 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <ConsolePause>false</ConsolePause>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
-    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -37,8 +37,10 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <ConsolePause>false</ConsolePause>
+    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FormsViewGroup">
@@ -83,23 +85,23 @@
       <HintPath>..\packages\Xamarin.Forms.1.2.3.6257\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfChart.Android">
-      <HintPath>..\packages\Static_Syncfusion\Android\Syncfusion.SfChart.Android.dll</HintPath>
+      <HintPath>..\packages\StaticSyncfusion\Android\Syncfusion.SfChart.Android.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfChart.XForms.Android">
-      <HintPath>..\packages\Static_Syncfusion\Android\Syncfusion.SfChart.XForms.Android.dll</HintPath>
+      <HintPath>..\packages\StaticSyncfusion\Android\Syncfusion.SfChart.XForms.Android.dll</HintPath>
     </Reference>
     <Reference Include="AndHUD">
       <HintPath>..\Components\AndHUD-1.3.1\lib\android\AndHUD.dll</HintPath>
     </Reference>
-    <Reference Include="BugSense.Xamarin.Android">
-      <HintPath>..\..\..\FormSample-new-master\FormSample.Android\bin\Debug\BugSense.Xamarin.Android.dll</HintPath>
+    <Reference Include="MobileRecruiter">
+      <HintPath>..\MobileRecruiter\bin\Debug\MobileRecruiter.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MobileRecruiter\MobileRecruiter.csproj">
-      <Project>{DC3EEAC1-1863-4606-A67D-68D0A048DD18}</Project>
-      <Name>MobileRecruiter</Name>
-    </ProjectReference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="BugSense.Xamarin.Android">
+      <HintPath>..\packages\BugSense.Xamarin.Android.3.6.7.0\lib\MonoAndroid\BugSense.Xamarin.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseUrlAndroid.cs" />
@@ -125,6 +127,7 @@
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="packages.config" />
+    <None Include="BugSense\BugSense - SDK License Agreement.txt" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
