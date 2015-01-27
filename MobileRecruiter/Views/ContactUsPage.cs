@@ -15,7 +15,7 @@ namespace FormSample.Views
 //			double width = 350;
 //			double height = 150;
 			double width= Utility.DEVICEWIDTH;
-			double height = (Utility.DEVICEHEIGHT*19)/ 100;
+			double height = (Utility.DEVICEHEIGHT*18)/ 100;
 
 			double widthGoogleandLinkedIn = (Utility.DEVICEWIDTH*50)/100;
 

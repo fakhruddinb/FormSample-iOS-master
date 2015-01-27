@@ -40,11 +40,11 @@ namespace FormSample.Droid
 			Utility.DEVICEHEIGHT = heightInDp;
 			Utility.DEVICEWIDTH = widthInDp;
 
-			if (string.IsNullOrWhiteSpace (Settings.GeneralSettings)) {
-				SetPage (App.GetLoginPage (this));
-			} else {
+//			if (string.IsNullOrWhiteSpace (Settings.GeneralSettings)) {
+//				SetPage (App.GetLoginPage (this));
+//			} else {
 				SetPage(App.GetMainPage(this));
-			}
+			//}
 		}
 
 		public override ActionBar ActionBar {
