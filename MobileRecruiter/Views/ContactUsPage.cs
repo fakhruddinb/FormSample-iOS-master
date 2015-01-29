@@ -56,11 +56,13 @@ namespace FormSample.Views
 		public StackLayout AssignValues()
 		{
 			Label lblTitle = new Label{Text = "Contact us",
-				BackgroundColor = Color.Blue,
+				BackgroundColor = Color.FromHex("#000000"),
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center
+				YAlign = TextAlignment.Center,
+				Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			Label label = new Label() { Text = "To speak with a member of our dedicated team:" };
@@ -103,6 +105,8 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
+				Font = Font.SystemFontOfSize (NamedSize.Large)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			callPhoneNo.Clicked += delegate {
@@ -110,21 +114,25 @@ namespace FormSample.Views
 			};
 
 			Button agencyEmail = new Button{Text= Utility.EMAIL,TextColor = Color.Black,BackgroundColor = new Color(255, 255, 255, 0.5),
-				VerticalOptions = LayoutOptions.End};
+				VerticalOptions = LayoutOptions.End,Font = Font.SystemFontOfSize (NamedSize.Large)
+					.WithAttributes (FontAttributes.Bold)};
 
 			agencyEmail.Clicked += delegate {
 				DependencyService.Get<FormSample.Helpers.Utility.IEmailService>().OpenEmail(Utility.EMAIL);
 			};
 
 			Button mapText = new Button{Text="Map:EN6 1AG",TextColor = Color.Black,BackgroundColor = new Color(255, 255, 255, 0.5),
-				VerticalOptions = LayoutOptions.End};
+				VerticalOptions = LayoutOptions.End,Font = Font.SystemFontOfSize (NamedSize.Large)
+					.WithAttributes (FontAttributes.Bold)};
 
 			mapText.Clicked += delegate {
 				DependencyService.Get<FormSample.Helpers.Utility.IMapService>().OpenMap();
 			};
 
 			Button googleText = new Button {Text = "Follow us on Google+", TextColor = Color.Black, BackgroundColor = new Color (255, 255, 255, 0.5),
-				VerticalOptions = LayoutOptions.End
+				VerticalOptions = LayoutOptions.End,
+				Font = Font.SystemFontOfSize (NamedSize.Large)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			googleText.Clicked+= delegate {
@@ -132,7 +140,9 @@ namespace FormSample.Views
 			};
 
 			Button linkdinText = new Button {Text = "Follow us on Linkedin", TextColor = Color.Black, BackgroundColor = new Color (255, 255, 255, 0.5),
-				VerticalOptions = LayoutOptions.End
+				VerticalOptions = LayoutOptions.End,
+				Font = Font.SystemFontOfSize (NamedSize.Large)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			linkdinText.Clicked += delegate {
@@ -156,6 +166,7 @@ namespace FormSample.Views
 
 			var labelStakeLayout = new StackLayout ()
 			{
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Children = {lblTitle},
 				Orientation = StackOrientation.Vertical
 
@@ -190,7 +201,6 @@ namespace FormSample.Views
 				Children = { labelStakeLayout,labelBeforeGridLayout,controlStakeLayout},
 				Orientation = StackOrientation.Vertical
 			};
-
 			return new StackLayout { Children = {layout}};
 		}
 
@@ -202,7 +212,6 @@ namespace FormSample.Views
 			contactMapImage.Source = ImageSource.FromResource("MobileRecruiter.Images.ContactMap.jpg");
 			googleImage.Source = ImageSource.FromResource("MobileRecruiter.Images.Google.png");
 			linkedinImage.Source = ImageSource.FromResource("MobileRecruiter.Images.LinkedIn.png");
-
 		}
 
 		protected override void OnDisappearing()

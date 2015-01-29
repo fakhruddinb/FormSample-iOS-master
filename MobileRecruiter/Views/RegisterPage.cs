@@ -26,21 +26,25 @@ namespace FormSample.Views
 			var label = new Label
 			{
 				Text = "Registration",
-				BackgroundColor = Color.Blue,
+				BackgroundColor = Color.FromHex("#000000"),
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center
+				YAlign = TextAlignment.Center,
+				Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
-			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)};
 			emailLabel.Text = "Email";
 
 			var emailText = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
 			emailText.SetBinding(Entry.TextProperty, AgentViewModel.AgentEmailPropertyName);
 			emailText.Keyboard = Keyboard.Email;
 
-			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)};
 			firstNameLabel.Text = "First Name";
 
 			var firstName = new MyEntry(){HorizontalOptions = LayoutOptions.FillAndExpand};
@@ -49,7 +53,8 @@ namespace FormSample.Views
 				firstName.Focus();
 			};
 
-			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)};
 			lastNameLabel.Text = "Last Name";
 
 			var lastName = new MyEntry() { HorizontalOptions = LayoutOptions.FillAndExpand};
@@ -58,7 +63,8 @@ namespace FormSample.Views
 				lastName.Focus();
 			};
 
-			var agencyLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var agencyLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)};
 			agencyLabel.Text = "Agency";
 
 			var agencyText = new MyEntry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -67,7 +73,8 @@ namespace FormSample.Views
 				agencyText.Focus();
 			};
 
-			var phoneLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var phoneLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)};
 			phoneLabel.Text = "Phone number";
 
 			var phoneText = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
@@ -101,6 +108,7 @@ namespace FormSample.Views
 
 			var lableStakelayout = new StackLayout()
 			{
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Children = {label},
 				Orientation = StackOrientation.Vertical
 			};
@@ -110,7 +118,7 @@ namespace FormSample.Views
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
-				Children = {emailLabel, emailText, firstNameLabel, firstName, lastNameLabel, lastName, agencyLabel, agencyText, phoneLabel, phoneText, chkInvite}
+				Children = {emailLabel, emailText, firstNameLabel, firstName, lastNameLabel, lastName, agencyLabel, agencyText, phoneLabel, phoneText, chkInvite,btnRegister, loginButton, downloadButton}
 			};
 
 			var scrollableContentLayout = new ScrollView (){ 
@@ -120,20 +128,21 @@ namespace FormSample.Views
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
-			var buttonLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0,Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
-				HorizontalOptions = LayoutOptions.Fill,
-				VerticalOptions = LayoutOptions.FillAndExpand, 
-				Orientation = StackOrientation.Vertical,
-				Children= {btnRegister, loginButton, downloadButton}
-			};
+//			var buttonLayout = new StackLayout (){ 
+//				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0,Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+//				HorizontalOptions = LayoutOptions.Fill,
+//				VerticalOptions = LayoutOptions.FillAndExpand, 
+//				Orientation = StackOrientation.Vertical,
+//				Children= {btnRegister, loginButton, downloadButton}
+//			};
 
 			var nameLayout = new StackLayout()
 			{
 				HorizontalOptions = LayoutOptions.Fill,
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				Orientation = StackOrientation.Vertical,
-				Children = {lableStakelayout,scrollableContentLayout,buttonLayout}
+				//Children = {lableStakelayout,scrollableContentLayout,buttonLayout}
+				Children = {lableStakelayout,scrollableContentLayout}
 			};
 			return new StackLayout{Children= {nameLayout}};
 		}
@@ -148,6 +157,7 @@ namespace FormSample.Views
 		{
 			base.OnDisappearing();
 			MessagingCenter.Unsubscribe<AgentViewModel, string>(this, "msg");
+			GC.Collect ();
 		}
 	}
 

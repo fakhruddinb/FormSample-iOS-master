@@ -27,7 +27,7 @@ namespace FormSample.Droid
 
 			BugSenseHandler.Instance.InitAndStartSession (new ExceptionManager(), ApplicationContext, "000a57a1");
 			this.ActionBar.SetDisplayUseLogoEnabled (true);
-
+			this.ActionBar.SetDisplayShowHomeEnabled (false);
 			Xamarin.Forms.Forms.Init(this, bundle);
 
 			// SetPage(App.GetMainPage());
@@ -40,11 +40,11 @@ namespace FormSample.Droid
 			Utility.DEVICEHEIGHT = heightInDp;
 			Utility.DEVICEWIDTH = widthInDp;
 
-//			if (string.IsNullOrWhiteSpace (Settings.GeneralSettings)) {
-//				SetPage (App.GetLoginPage (this));
-//			} else {
+			if (string.IsNullOrWhiteSpace (Settings.GeneralSettings)) {
+				SetPage (App.GetLoginPage (this));
+			} else {
 				SetPage(App.GetMainPage(this));
-			//}
+			}
 		}
 
 		public override ActionBar ActionBar {

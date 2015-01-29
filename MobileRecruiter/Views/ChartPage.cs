@@ -22,11 +22,13 @@ namespace FormSample
 			Label header = new Label
 			{
 				Text = "Pay Chart", 
-				BackgroundColor = Color.Blue,
+				BackgroundColor = Color.FromHex("#000000"),
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center
+				YAlign = TextAlignment.Center,
+				Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			Label description = new Label
@@ -73,6 +75,7 @@ namespace FormSample
 			GenerateChart();
 
 			var headerStackLayout = new StackLayout (){ 
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Children = {header},
 				Orientation = StackOrientation.Vertical
 			};
@@ -85,21 +88,29 @@ namespace FormSample
 				Children= {description}
 			};
 
-			var buttonLayout = new StackLayout (){ 
-				Orientation = StackOrientation.Vertical,
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
-				VerticalOptions = LayoutOptions.FillAndExpand, 
-				HorizontalOptions = LayoutOptions.Fill,
-				Children= {contactUsButton}
-			};
+//			var buttonLayout = new StackLayout (){ 
+//				Orientation = StackOrientation.Vertical,
+//				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+//				VerticalOptions = LayoutOptions.FillAndExpand, 
+//				HorizontalOptions = LayoutOptions.Fill,
+//				Children= {contactUsButton}
+//			};
 
-			var layout = new StackLayout
-			{
-				Children = {headerStackLayout,descriptionLayout,grid, list, chart1,buttonLayout},
+			var contentStackLayout = new StackLayout{ 
+				Children = {descriptionLayout,grid, list, chart1,contactUsButton},
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				HorizontalOptions = LayoutOptions.Fill,
 			};
-			Content = new ScrollView(){Content= layout};
+
+			var layout = new ScrollView
+			{
+				Content = contentStackLayout,
+				VerticalOptions = LayoutOptions.FillAndExpand,
+				HorizontalOptions = LayoutOptions.Fill,
+				Orientation = ScrollOrientation.Vertical
+			};
+			//Content = new ScrollView(){Content= layout};
+			Content = new StackLayout(){Children= {headerStackLayout,layout}};
 		}
 
 		private List<DailyRateCalcuationTable> GenerateDailyRateTable()

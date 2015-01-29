@@ -81,11 +81,13 @@ namespace FormSample.Views
 
 			Label lblTitle = new Label(){
 				Text = "Home",
-				BackgroundColor = Color.Blue,
+				BackgroundColor =  Color.FromHex("#000000"),
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center
+				YAlign = TextAlignment.Center,
+				Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)
 			};
 			var grid = new Grid
 			{
@@ -107,9 +109,11 @@ namespace FormSample.Views
 			Button referContractorButton = new Button()
 			{
 				Text = "Refer a contractor",
-				TextColor = Color.Black,
+				TextColor = Color.FromHex("#000000"),
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
-				VerticalOptions = LayoutOptions.End
+				VerticalOptions = LayoutOptions.End,
+				Font = Font.SystemFontOfSize (NamedSize.Large)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			Button myContractorButton = new Button()
@@ -117,7 +121,9 @@ namespace FormSample.Views
 				Text = "My contractors",
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
-				VerticalOptions = LayoutOptions.End
+				VerticalOptions = LayoutOptions.End,
+				Font = Font.SystemFontOfSize (NamedSize.Large)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			Button aboutUsButton = new Button()
@@ -125,7 +131,9 @@ namespace FormSample.Views
 				Text = "About us",
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
-				VerticalOptions = LayoutOptions.End
+				VerticalOptions = LayoutOptions.End,
+				Font = Font.SystemFontOfSize (NamedSize.Large)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			Button amendDetailButton = new Button()
@@ -133,7 +141,9 @@ namespace FormSample.Views
 				Text = "Amend details",
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
-				VerticalOptions = LayoutOptions.End
+				VerticalOptions = LayoutOptions.End,
+				Font = Font.SystemFontOfSize (NamedSize.Large)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			Button payChartButton = new Button()
@@ -141,7 +151,9 @@ namespace FormSample.Views
 				Text = "Pay chart",
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
-				VerticalOptions = LayoutOptions.End
+				VerticalOptions = LayoutOptions.End,
+				Font = Font.SystemFontOfSize (NamedSize.Large)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			Button payCalcButton = new Button()
@@ -149,7 +161,9 @@ namespace FormSample.Views
 				Text = "Pay calculator",
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
-				VerticalOptions = LayoutOptions.End
+				VerticalOptions = LayoutOptions.End,
+				Font = Font.SystemFontOfSize (NamedSize.Large)
+					.WithAttributes (FontAttributes.Bold)
 			};
 			grid.Children.Add(imgReferContractor, 0, 0); // Left, First element
 			grid.Children.Add(referContractorButton, 0, 0);
@@ -233,6 +247,7 @@ namespace FormSample.Views
 				App.RootPage.NavigateTo("Contact us");
 			};
 			var labelStakeLayout = new StackLayout (){ 
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Children = {lblTitle},
 				Orientation = StackOrientation.Vertical
 			};

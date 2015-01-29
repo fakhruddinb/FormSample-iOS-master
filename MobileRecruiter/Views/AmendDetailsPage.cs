@@ -8,7 +8,7 @@ namespace FormSample.Views
 {
 	public class AmendDetailsPage : ContentPage
 	{
-		private IProgressService progressService;
+		//private IProgressService progressService;
 		private DataService dataService;
 		Entry firstName ;
 		Entry lastName;
@@ -20,7 +20,7 @@ namespace FormSample.Views
 		public AmendDetailsPage ()
 		{
 			dataService = new DataService ();
-			progressService = DependencyService.Get<IProgressService> ();
+			//progressService = DependencyService.Get<IProgressService> ();
 			var layout = this.AssignValues();
 			this.Content = layout;
 		}
@@ -32,7 +32,7 @@ namespace FormSample.Views
 			var label = new Label
 			{
 				Text = "Amend Details",
-				BackgroundColor = Color.Blue,
+				BackgroundColor = Color.FromHex("#000000"),
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
@@ -103,6 +103,7 @@ namespace FormSample.Views
 			};
 
 			var labelStakeLayout = new StackLayout (){ 
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Children= {label}
 			};
 
@@ -112,8 +113,10 @@ namespace FormSample.Views
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
 				Children = 
-				{emailLabel, email, firstNameLabel, firstName, lastNameLabel, lastName, agencyLabel, 
-					agencyName, phoneLabel, phone}
+				{
+					emailLabel, email, firstNameLabel, firstName, lastNameLabel, lastName, agencyLabel, 
+					agencyName, phoneLabel, phone,btnUpdate, contactUsButton
+				}
 				};
 
 			var scrollableContentLayout = new StackLayout (){ 
@@ -125,18 +128,19 @@ namespace FormSample.Views
 				HeightRequest = controlHeight
 			};
 
-			var buttonLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0, Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
-				VerticalOptions = LayoutOptions.End, 
-				Orientation = StackOrientation.Vertical,
-				//HeightRequest = buttonHeight,
-				Children= {btnUpdate, contactUsButton}
-			};
+//			var buttonLayout = new StackLayout (){ 
+//				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0, Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+//				VerticalOptions = LayoutOptions.End, 
+//				Orientation = StackOrientation.Vertical,
+//				//HeightRequest = buttonHeight,
+//				Children= {btnUpdate, contactUsButton}
+//			};
 
 			var nameLayout = new StackLayout()
 			{
 				Children = 
-				{ labelStakeLayout, scrollableContentLayout,buttonLayout}
+				{ labelStakeLayout, scrollableContentLayout}
+					//labelStakeLayout, scrollableContentLayout,buttonLayout}
 				};
 			return new StackLayout{Children= {nameLayout}};
 		}
@@ -160,7 +164,7 @@ namespace FormSample.Views
 		{
 			try{
 
-				progressService.Show();
+				//progressService.Show();
 				string errorMessage = string.Empty;
 
 				if (string.IsNullOrWhiteSpace(this.firstName.Text))
@@ -180,7 +184,7 @@ namespace FormSample.Views
 
 				if (!string.IsNullOrEmpty(errorMessage))
 				{
-					progressService.Dismiss();
+					//progressService.Dismiss();
 					await this.DisplayAlert("Message", errorMessage, "OK");
 				}
 				else
@@ -202,7 +206,7 @@ namespace FormSample.Views
 					}
 
 					UpdateAgent(a);
-					progressService.Dismiss();
+					//progressService.Dismiss();
 					App.RootPage.NavigateTo("Home");
 
 				}

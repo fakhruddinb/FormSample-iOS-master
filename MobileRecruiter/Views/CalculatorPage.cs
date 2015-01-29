@@ -28,7 +28,7 @@ namespace FormSample.Views
 		Label labelAfterChart;
 		DataModel limitedCompanyModel;
 		DataModel umbrellaCompanyModel;
-		IProgressService progressiveService;
+		//IProgressService progressiveService;
 		double chartwidth;
 		double chartHeight;
 		double diffLimitedAndUmbrell;
@@ -40,7 +40,7 @@ namespace FormSample.Views
 		{
 			chartwidth= (Utility.DEVICEWIDTH)*75/ 100;
 			chartHeight = Utility.DEVICEHEIGHT*75/ 100;
-			progressiveService = DependencyService.Get<IProgressService> ();
+			//progressiveService = DependencyService.Get<IProgressService> ();
 			chart1 = new SfChart();
 			chart2 = new SfChart();
 			takeHomePayLimitedLabel = new Label(){ XAlign = TextAlignment.Center};
@@ -54,11 +54,13 @@ namespace FormSample.Views
 			var label = new Label  
 			{ 
 				Text = "Take home pay calculator", 
-				BackgroundColor = Color.Blue,
+				BackgroundColor = Color.FromHex("#000000"),
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center
+				YAlign = TextAlignment.Center,
+				Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			var grid = SetDailyGrid();
@@ -114,6 +116,7 @@ namespace FormSample.Views
 
 			var layout = new StackLayout
 			{
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Orientation = StackOrientation.Vertical,
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};
@@ -121,14 +124,16 @@ namespace FormSample.Views
 			layout.Children.Add(label);
 
 			var controlLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				Orientation = StackOrientation.Vertical,
 				HorizontalOptions = LayoutOptions.Fill,
 				VerticalOptions = LayoutOptions.Fill,
 				Children = {grid,lblText,chart1,chart2,this.takeHomeGridBelowChart,labelAfterChart,contactUsButton}
 			};
-			layout.Children.Add (controlLayout);
-
+			//layout.Children.Add (controlLayout);
+			layout.Children.Add (new ScrollView {
+				Content=controlLayout,
+				Orientation = ScrollOrientation.Vertical
+			});
 			//
 //			layout.Children.Add(grid);
 //			layout.Children.Add(new StackLayout
@@ -157,8 +162,8 @@ namespace FormSample.Views
 //					VerticalOptions = LayoutOptions.Fill,
 //					Children = {contactUsButton}
 //				});
-
-			Content = new ScrollView { Content = layout};
+		
+			Content = new StackLayout { Children = {layout}};
 		}
 
 		protected override void OnAppearing()
@@ -314,7 +319,7 @@ namespace FormSample.Views
 		private List<PayTable> payTableData = new List<PayTable> ();
 		private async Task CalculatePayTableData()
 		{
-			this.progressiveService.Show();
+			//this.progressiveService.Show();
 			 
 			if (!payTableData.Any ()) {
 				FormSample.PayTableDatabase d = new PayTableDatabase();

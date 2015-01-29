@@ -16,11 +16,13 @@ namespace FormSample
 		{
 			var lblTitle = new Label {
 				Text = "About Churchill Knight & Associate Ltd.",
-				BackgroundColor = Color.Blue,
+				BackgroundColor = Color.FromHex("#000000"),
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center
+				YAlign = TextAlignment.Center,
+				Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			var browser = new BaseUrlWebView(); // temporarily use this so we can custom-render in iOS
@@ -41,24 +43,25 @@ namespace FormSample
 			};
 
 			var labelStakeLayout = new StackLayout (){ 
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Children = {lblTitle},
 				Orientation = StackOrientation.Vertical,
 			};
 
-			var buttonLayout = new StackLayout (){ 
-				Orientation = StackOrientation.Vertical,
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
-				Children= {contactUsButton}
-			};
+//			var buttonLayout = new StackLayout (){ 
+//				Orientation = StackOrientation.Vertical,
+//				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+//				Children= {contactUsButton}
+//			};
 
 			var layout = new StackLayout()
 			{
 				VerticalOptions = LayoutOptions.Fill,
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
-				Children = { labelStakeLayout,browser,buttonLayout},
-				WidthRequest = 200,
-				HeightRequest = 200
+				Children = { labelStakeLayout,browser,contactUsButton},
+				//WidthRequest = 200,
+				//HeightRequest = 200
 			};
 
 			Content = layout;

@@ -22,7 +22,8 @@ namespace FormSample
 		{
 			this.ilm = ilm;
 			BindingContext = new LoginViewModel(Navigation,ilm);
-			var topPadding = Utility.DEVICEHEIGHT * 38 / 100;
+//			var topPadding = Utility.DEVICEHEIGHT * 30 / 100;
+			var topPadding = 0;
 			this.dataService = new DataService();
 			progressService = DependencyService.Get<IProgressService>();
 
@@ -31,25 +32,30 @@ namespace FormSample
 			var label = new Label
 			{
 				Text = "Sign in",
-				BackgroundColor = Color.Blue,
+				BackgroundColor = Color.FromHex("#000000"),
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center
+				YAlign = TextAlignment.Center,
+				Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)
 			};
 
 			var labelStakeLayout = new StackLayout (){ 
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Children = {label}
 			};
 
-			var userNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var userNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)};
 			userNameLabel.Text = "Email";
 
 			var username = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
 			username.SetBinding(Entry.TextProperty, LoginViewModel.UsernamePropertyName);
 			username.Keyboard = Keyboard.Email;
 
-			var passwordLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var passwordLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)};
 			passwordLabel.Text = "Password";
 
 			var password = new Entry() {HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -69,7 +75,7 @@ namespace FormSample
             forgotPassword.Text = "I have forgot my password";
 			//forgotPassword.BackgroundColor = Color.FromHex ("#22498a");
 			//forgotPassword.TextColor = Color.White;
-			forgotPassword.Font = Font.SystemFontOfSize (NamedSize.Medium);
+			forgotPassword.Font = Font.SystemFontOfSize (NamedSize.Large).WithAttributes(FontAttributes.Bold);
 
 			var forgotPasswordGestureRecognizer = new TapGestureRecognizer ();
 			forgotPassword.GestureRecognizers.Add(forgotPasswordGestureRecognizer);
@@ -126,7 +132,7 @@ namespace FormSample
 				}
 			};
 
-			var loginButton = new Button { Text = "Sign In",BackgroundColor = Color.FromHex("#22498a"),
+			var loginButton = new Button { Text = "Sign In",BackgroundColor = Color.FromRgb(34,73,138),
 				TextColor=Color.White};
 			loginButton.SetBinding(Button.CommandProperty, LoginViewModel.LoginCommandPropertyName);
 
@@ -143,14 +149,14 @@ namespace FormSample
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
-				Children = {userNameLabel,username,passwordLabel,password}
+				Children = {userNameLabel,username,passwordLabel,password,forgotPassword}
 			};
 
 			var buttonStakeLayout = new StackLayout (){ 
 				Orientation = StackOrientation.Vertical,
 				Padding = new Thickness(Device.OnPlatform(5, 5, 5),Device.OnPlatform(topPadding,topPadding,topPadding), Device.OnPlatform(5, 5, 5),0) ,//new Thickness(5,0, 5,0)
 				HorizontalOptions = LayoutOptions.Fill,
-				Children= {forgotPassword,loginButton,registerButton,downloadButton}
+				Children= {loginButton,registerButton,downloadButton}
 			};
 
 			layout.Children.Add(labelStakeLayout);

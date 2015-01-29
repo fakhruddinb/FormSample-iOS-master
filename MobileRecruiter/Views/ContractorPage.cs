@@ -21,7 +21,7 @@ namespace FormSample.Views
 
 		public ContractorPage()
 		{
-			Icon = "menu_icon.png";
+			//Icon = "menu_icon.png";
 			var Layout = this.AssignValues();
 			this.Content = Layout;
 		}
@@ -32,7 +32,7 @@ namespace FormSample.Views
 			var label = new Label
 			{
 				Text = "Refer a contractor",
-				BackgroundColor = Color.Blue,
+				BackgroundColor = Color.FromHex("#000000"),
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
@@ -96,7 +96,6 @@ namespace FormSample.Views
 			chkInvite.SetBinding(CheckBox.CheckedProperty,ContractorViewModel.isCheckedPropertyName,BindingMode.TwoWay);
 			chkInvite.DefaultText = "I Agree to the terms and condition";
 
-
 			Button btnSubmitContractor = new Button
 			{
 				HorizontalOptions = LayoutOptions.Fill,
@@ -113,6 +112,7 @@ namespace FormSample.Views
 			};
 
 			var labelStakeLayout = new StackLayout () {
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Children = { label },
 				Orientation = StackOrientation.Vertical
 			};
@@ -122,7 +122,7 @@ namespace FormSample.Views
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
-				Children = { firstNameLabel, firstName, lastNameLabel, lastName, phoneNoLabel, phoneNo, emailLabel, email, additionalInfoLabel, additionalInfo, chkInvite}
+				Children = { firstNameLabel, firstName, lastNameLabel, lastName, phoneNoLabel, phoneNo, emailLabel, email, additionalInfoLabel, additionalInfo, chkInvite,btnSubmitContractor, contactUsButton}
 			};
 
 			var scrollableContentLayout = new ScrollView (){ 
@@ -134,20 +134,20 @@ namespace FormSample.Views
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
-			var buttonLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0, Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
-				HorizontalOptions = LayoutOptions.Fill,
-				VerticalOptions = LayoutOptions.End, 
-				Orientation = StackOrientation.Vertical,
-				Children= {btnSubmitContractor, contactUsButton}
-			};
+//			var buttonLayout = new StackLayout (){ 
+//				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0, Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+//				HorizontalOptions = LayoutOptions.Fill,
+//				VerticalOptions = LayoutOptions.End, 
+//				Orientation = StackOrientation.Vertical,
+//				Children= {btnSubmitContractor, contactUsButton}
+//			};
 
 			var nameLayout = new StackLayout()
 			{
 				HorizontalOptions = LayoutOptions.Fill,
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				Orientation = StackOrientation.Vertical,
-				Children = {labelStakeLayout,scrollableContentLayout,buttonLayout}
+				Children = {labelStakeLayout,scrollableContentLayout}
 			};
 			return new StackLayout{Children= {nameLayout}};
 		}
