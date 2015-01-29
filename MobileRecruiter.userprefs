@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Android\MobileRecruiter.Android.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.LGG3" />
   <MonoDevelop.Ide.Workbench ActiveDocument="MobileRecruiter\Views\LoginPage.cs">
@@ -5,11 +6,13 @@
       <File FileName="MobileRecruiter\Views\LoginPage.cs" Line="26" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
+=======
+﻿<Properties GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.AsusNexus7" />
+  <MonoDevelop.Ide.Workbench />
+>>>>>>> origin/master
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <DisabledProjects>
-    <String>iOS\MobileRecruiter.iOS.csproj</String>
-  </DisabledProjects>
 </Properties>

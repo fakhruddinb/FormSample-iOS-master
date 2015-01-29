@@ -27,8 +27,8 @@ namespace FormSample.Views
 
 		public StackLayout AssignValues()
 		{
-			//var buttonHeight = Utility.DEVICEHEIGHT * 18/ 100;
-			var controlHeight = Utility.DEVICEHEIGHT * 65 / 100;
+			var topPadding = Utility.DEVICEHEIGHT * 34 / 100;
+
 			var label = new Label
 			{
 				Text = "Amend Details",
@@ -36,24 +36,19 @@ namespace FormSample.Views
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center,
-				Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)
+				YAlign = TextAlignment.Center
 			};
 
-			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-									.WithAttributes (FontAttributes.Bold)};
+			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
 			emailLabel.Text = "Email";
 
 			this.email= new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
 			this.email.IsEnabled = false;
 
-			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
 			firstNameLabel.Text = "First Name";
 
-			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
 			lastNameLabel.Text = "Last Name";
 
 			this.firstName = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -63,8 +58,7 @@ namespace FormSample.Views
 				lastName.Focus();
 			};
 
-			var agencyLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var agencyLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
 			agencyLabel.Text = "Agency";
 
 			this.agencyName = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -72,8 +66,7 @@ namespace FormSample.Views
 				agencyName.Focus();
 			};
 
-			var phoneLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var phoneLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
 			phoneLabel.Text = "Phone number";
 
 			this.phone = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
@@ -108,7 +101,7 @@ namespace FormSample.Views
 			};
 
 			var controlStakeLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5), 0, Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
@@ -119,15 +112,12 @@ namespace FormSample.Views
 				}
 				};
 
-			var scrollableContentLayout = new StackLayout (){ 
-				//Content = controlStakeLayout,
-				Children = {controlStakeLayout},
-				Orientation = StackOrientation.Vertical,
-				HorizontalOptions = LayoutOptions.Fill,
-				VerticalOptions = LayoutOptions.End,
-				HeightRequest = controlHeight
+			var scrollableContentLayout = new ScrollView (){ 
+				Content = controlStakeLayout,
+				Orientation = ScrollOrientation.Vertical,
 			};
 
+<<<<<<< HEAD
 //			var buttonLayout = new StackLayout (){ 
 //				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0, Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 //				VerticalOptions = LayoutOptions.End, 
@@ -135,6 +125,14 @@ namespace FormSample.Views
 //				//HeightRequest = buttonHeight,
 //				Children= {btnUpdate, contactUsButton}
 //			};
+=======
+			var buttonLayout = new StackLayout (){ 
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),Device.OnPlatform(topPadding,topPadding,topPadding), Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+				VerticalOptions = LayoutOptions.FillAndExpand, 
+				Orientation = StackOrientation.Vertical,
+				Children= {btnUpdate, contactUsButton}
+			};
+>>>>>>> origin/master
 
 			var nameLayout = new StackLayout()
 			{
@@ -220,16 +218,6 @@ namespace FormSample.Views
 		{
 			AgentDatabase agent = new AgentDatabase();
 			agent.SaveItem(agentToUpdate);
-		}
-		protected override void OnAppearing()
-		{
-			base.OnAppearing();
-		}
-
-		protected override void OnDisappearing()
-		{
-			base.OnDisappearing();
-			GC.Collect ();
 		}
 	}
 

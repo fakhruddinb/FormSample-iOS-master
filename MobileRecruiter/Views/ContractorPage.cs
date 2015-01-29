@@ -36,22 +36,18 @@ namespace FormSample.Views
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center, //in the blue box.
-				Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)
+				YAlign = TextAlignment.Center //in the blue box.
 			};
 
 //			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill, Font = Font.SystemFontOfSize (NamedSize.Medium)
 //					.WithAttributes (FontAttributes.Bold)};
-			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
 			firstNameLabel.Text = "First Name";
 
 			var firstName = new MyEntry() { HorizontalOptions = LayoutOptions.FillAndExpand };
 			firstName.SetBinding (MyEntry.TextProperty, ContractorViewModel.ContractorFirstNamePropertyName);
 
-			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
 			lastNameLabel.Text = "Last Name";
 
 			var lastName = new MyEntry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -60,8 +56,7 @@ namespace FormSample.Views
 				lastName.Focus();
 			};
 
-			var phoneNoLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var phoneNoLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
 			phoneNoLabel.Text = "Phone";
 
 			var phoneNo = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
@@ -71,8 +66,7 @@ namespace FormSample.Views
 				phoneNo.Focus();
 			};
 
-			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
 			emailLabel.Text = "Email";
 
 			var email = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -82,8 +76,7 @@ namespace FormSample.Views
 				email.Focus();
 			};
 
-			var additionalInfoLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var additionalInfoLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
 			additionalInfoLabel.Text = "Additional Information";
 
 			var additionalInfo = new MyEntry() { HorizontalOptions = LayoutOptions.FillAndExpand};

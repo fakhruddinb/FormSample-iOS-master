@@ -22,7 +22,7 @@ namespace FormSample.Views
 		{
 
 			width= (Utility.DEVICEWIDTH)*25/ 100;
-			height = (Utility.DEVICEHEIGHT)*25/ 100;
+			height = (Utility.DEVICEHEIGHT)*30/ 100;
 			ToolbarItems.Add(new ToolbarItem("logo","logo.png",()=>
 				{
 					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
@@ -252,15 +252,12 @@ namespace FormSample.Views
 				Orientation = StackOrientation.Vertical
 			};
 
-			var controlStakeLayout = new StackLayout () {
+			var controlStakeLayout = new ScrollView () {
 				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
-				Orientation = StackOrientation.Vertical,
-				//Orientation = ScrollOrientation.Vertical,
-				Children ={grid},
-				//Content = grid,
-					HeightRequest = Utility.DEVICEHEIGHT
+				Orientation = ScrollOrientation.Vertical,
+				Content = grid
 			};
 
 			var buttonLayout = new StackLayout (){ 
