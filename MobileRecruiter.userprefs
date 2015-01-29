@@ -1,10 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Android\MobileRecruiter.Android.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.htcm8" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MobileRecruiter\Views\HomePage.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.LGG3" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MobileRecruiter\Views\LoginPage.cs">
     <Files>
-      <File FileName="MobileRecruiter\Views\AmendDetailsPage.cs" Line="1" Column="1" />
-      <File FileName="MobileRecruiter\Views\HomePage.cs" Line="18" Column="18" />
-      <File FileName="MobileRecruiter\Views\ContactUsPage.cs" Line="1" Column="1" />
+      <File FileName="MobileRecruiter\Views\LoginPage.cs" Line="26" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
