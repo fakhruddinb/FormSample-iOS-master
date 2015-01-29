@@ -3,12 +3,13 @@ using Xamarin.Forms;
 using FormSample.ViewModel;
 using FormSample.Helpers;
 using System.Threading.Tasks;
+using MobileRecruiter;
 
 namespace FormSample.Views
 {
 	public class AmendDetailsPage : ContentPage
 	{
-		//private IProgressService progressService;
+		private IProgressService progressService;
 		private DataService dataService;
 		Entry firstName ;
 		Entry lastName;
@@ -20,15 +21,15 @@ namespace FormSample.Views
 		public AmendDetailsPage ()
 		{
 			dataService = new DataService ();
-			//progressService = DependencyService.Get<IProgressService> ();
+			progressService = DependencyService.Get<IProgressService> ();
 			var layout = this.AssignValues();
 			this.Content = layout;
 		}
 
 		public StackLayout AssignValues()
 		{
-			var topPadding = Utility.DEVICEHEIGHT * 34 / 100;
-
+			//var buttonHeight = Utility.DEVICEHEIGHT * 18/ 100;
+			var controlHeight = Utility.DEVICEHEIGHT * 65 / 100;
 			var label = new Label
 			{
 				Text = "Amend Details",
@@ -36,19 +37,23 @@ namespace FormSample.Views
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center
-			};
+				YAlign = TextAlignment.Center,
+				Font = StyleConstant.GlobalFont
+				};
 
-			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)};
 			emailLabel.Text = "Email";
 
 			this.email= new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
 			this.email.IsEnabled = false;
 
-			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)};
 			firstNameLabel.Text = "First Name";
 
-			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)};
 			lastNameLabel.Text = "Last Name";
 
 			this.firstName = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -58,7 +63,8 @@ namespace FormSample.Views
 				lastName.Focus();
 			};
 
-			var agencyLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var agencyLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)};
 			agencyLabel.Text = "Agency";
 
 			this.agencyName = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -66,7 +72,8 @@ namespace FormSample.Views
 				agencyName.Focus();
 			};
 
-			var phoneLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var phoneLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
+					.WithAttributes (FontAttributes.Bold)};
 			phoneLabel.Text = "Phone number";
 
 			this.phone = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
@@ -101,38 +108,31 @@ namespace FormSample.Views
 			};
 
 			var controlStakeLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5), 0, Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
 				Children = 
-				{
-					emailLabel, email, firstNameLabel, firstName, lastNameLabel, lastName, agencyLabel, 
-					agencyName, phoneLabel, phone,btnUpdate, contactUsButton
-				}
+				{emailLabel, email, firstNameLabel, firstName, lastNameLabel, lastName, agencyLabel, 
+					agencyName, phoneLabel, phone,btnUpdate, contactUsButton}
 				};
 
-			var scrollableContentLayout = new ScrollView (){ 
-				Content = controlStakeLayout,
-				Orientation = ScrollOrientation.Vertical,
+			var scrollableContentLayout = new StackLayout (){ 
+				//Content = controlStakeLayout,
+				Children = {controlStakeLayout},
+				Orientation = StackOrientation.Vertical,
+				HorizontalOptions = LayoutOptions.Fill,
+				VerticalOptions = LayoutOptions.End,
+				HeightRequest = controlHeight
 			};
 
-<<<<<<< HEAD
-//			var buttonLayout = new StackLayout (){ 
-//				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0, Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
-//				VerticalOptions = LayoutOptions.End, 
-//				Orientation = StackOrientation.Vertical,
-//				//HeightRequest = buttonHeight,
-//				Children= {btnUpdate, contactUsButton}
-//			};
-=======
-			var buttonLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),Device.OnPlatform(topPadding,topPadding,topPadding), Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
-				VerticalOptions = LayoutOptions.FillAndExpand, 
-				Orientation = StackOrientation.Vertical,
-				Children= {btnUpdate, contactUsButton}
-			};
->>>>>>> origin/master
+			//			var buttonLayout = new StackLayout (){ 
+			//				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0, Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+			//				VerticalOptions = LayoutOptions.End, 
+			//				Orientation = StackOrientation.Vertical,
+			//				//HeightRequest = buttonHeight,
+			//				Children= {btnUpdate, contactUsButton}
+			//			};
 
 			var nameLayout = new StackLayout()
 			{
@@ -162,7 +162,7 @@ namespace FormSample.Views
 		{
 			try{
 
-				//progressService.Show();
+				progressService.Show();
 				string errorMessage = string.Empty;
 
 				if (string.IsNullOrWhiteSpace(this.firstName.Text))
@@ -182,7 +182,7 @@ namespace FormSample.Views
 
 				if (!string.IsNullOrEmpty(errorMessage))
 				{
-					//progressService.Dismiss();
+					progressService.Dismiss();
 					await this.DisplayAlert("Message", errorMessage, "OK");
 				}
 				else
@@ -204,7 +204,7 @@ namespace FormSample.Views
 					}
 
 					UpdateAgent(a);
-					//progressService.Dismiss();
+					progressService.Dismiss();
 					App.RootPage.NavigateTo("Home");
 
 				}
@@ -218,6 +218,16 @@ namespace FormSample.Views
 		{
 			AgentDatabase agent = new AgentDatabase();
 			agent.SaveItem(agentToUpdate);
+		}
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+		}
+
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+			GC.Collect ();
 		}
 	}
 

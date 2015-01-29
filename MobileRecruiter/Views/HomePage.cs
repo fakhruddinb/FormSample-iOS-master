@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FormSample.Helpers;
+using MobileRecruiter;
 
 namespace FormSample.Views
 {
@@ -22,7 +23,11 @@ namespace FormSample.Views
 		{
 
 			width= (Utility.DEVICEWIDTH)*25/ 100;
-			height = (Utility.DEVICEHEIGHT)*30/ 100;
+			height = (Utility.DEVICEHEIGHT)*28/ 100;
+			if (Utility.DEVICEHEIGHT < 960) {
+				height = (Utility.DEVICEHEIGHT)*25/ 100;
+			}
+
 			ToolbarItems.Add(new ToolbarItem("logo","logo.png",()=>
 				{
 					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
@@ -78,6 +83,11 @@ namespace FormSample.Views
 
 		public StackLayout AssignValues()
 		{
+//			Font f = new Font ();
+//
+//			f.FontFamily = "Arial";
+//			f.FontSize = 30;
+//			f.FontAttributes = FontAttributes.Bold;
 
 			Label lblTitle = new Label(){
 				Text = "Home",
@@ -86,8 +96,11 @@ namespace FormSample.Views
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
 				YAlign = TextAlignment.Center,
-				Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)
+
+				//Font = Font.SystemFontOfSize(NamedSize,FontAttributes.Bold)
+				Font = StyleConstant.GlobalFont
+//				Font.SystemFontOfSize (NamedSize.Large)
+//					.WithAttributes (FontAttributes.Bold),
 			};
 			var grid = new Grid
 			{
@@ -112,8 +125,7 @@ namespace FormSample.Views
 				TextColor = Color.FromHex("#000000"),
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = Font.SystemFontOfSize (NamedSize.Large)
-					.WithAttributes (FontAttributes.Bold)
+				Font = StyleConstant.HomePageButtonsText
 			};
 
 			Button myContractorButton = new Button()
@@ -122,8 +134,7 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = Font.SystemFontOfSize (NamedSize.Large)
-					.WithAttributes (FontAttributes.Bold)
+				Font = StyleConstant.HomePageButtonsText
 			};
 
 			Button aboutUsButton = new Button()
@@ -132,8 +143,7 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = Font.SystemFontOfSize (NamedSize.Large)
-					.WithAttributes (FontAttributes.Bold)
+				Font = StyleConstant.HomePageButtonsText
 			};
 
 			Button amendDetailButton = new Button()
@@ -142,8 +152,7 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = Font.SystemFontOfSize (NamedSize.Large)
-					.WithAttributes (FontAttributes.Bold)
+				Font = StyleConstant.HomePageButtonsText
 			};
 
 			Button payChartButton = new Button()
@@ -152,8 +161,7 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = Font.SystemFontOfSize (NamedSize.Large)
-					.WithAttributes (FontAttributes.Bold)
+				Font = StyleConstant.HomePageButtonsText
 			};
 
 			Button payCalcButton = new Button()
@@ -162,8 +170,7 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = Font.SystemFontOfSize (NamedSize.Large)
-					.WithAttributes (FontAttributes.Bold)
+				Font = StyleConstant.HomePageButtonsText
 			};
 			grid.Children.Add(imgReferContractor, 0, 0); // Left, First element
 			grid.Children.Add(referContractorButton, 0, 0);
@@ -252,25 +259,25 @@ namespace FormSample.Views
 				Orientation = StackOrientation.Vertical
 			};
 
-			var controlStakeLayout = new ScrollView () {
+			var controlStakeLayout = new StackLayout () {
 				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
-				Orientation = ScrollOrientation.Vertical,
-				Content = grid
+				Orientation = StackOrientation.Vertical,
+				Children = {grid}
 			};
 
-			var buttonLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
-				HorizontalOptions = LayoutOptions.Fill,
-				VerticalOptions = LayoutOptions.End, 
-				Orientation = StackOrientation.Vertical,
-				Children= {contactUsButton }
-			};
+//			var buttonLayout = new StackLayout (){ 
+//				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+//				HorizontalOptions = LayoutOptions.Fill,
+//				VerticalOptions = LayoutOptions.End, 
+//				Orientation = StackOrientation.Vertical,
+//				Children= {contactUsButton }
+//			};
 
 			var layout = new StackLayout
 			{
-				Children = {labelStakeLayout,controlStakeLayout,buttonLayout},
+				Children = {labelStakeLayout,controlStakeLayout,contactUsButton},
 				Orientation = StackOrientation.Vertical
 			};
 			//progressService.Dismiss ();

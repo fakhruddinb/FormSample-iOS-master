@@ -1,5 +1,6 @@
 ﻿using FormSample.Helpers;
 using System;
+using MobileRecruiter;
 
 namespace FormSample.Views
 {
@@ -61,8 +62,7 @@ namespace FormSample.Views
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
 				YAlign = TextAlignment.Center,
-				Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)
+				Font = StyleConstant.GlobalFont
 			};
 
 			Label label = new Label() { Text = "To speak with a member of our dedicated team:" };

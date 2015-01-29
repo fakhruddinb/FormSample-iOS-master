@@ -1,5 +1,6 @@
 ﻿using FormSample.Helpers;
 using System;
+using MobileRecruiter;
 
 
 namespace FormSample
@@ -21,8 +22,7 @@ namespace FormSample
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
 				YAlign = TextAlignment.Center,
-				Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)
+				Font = StyleConstant.GlobalFont
 			};
 
 			var browser = new BaseUrlWebView(); // temporarily use this so we can custom-render in iOS

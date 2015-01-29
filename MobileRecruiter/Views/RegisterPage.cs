@@ -1,4 +1,5 @@
 using FormSample.Helpers;
+using MobileRecruiter;
 
 namespace FormSample.Views
 {
@@ -31,8 +32,7 @@ namespace FormSample.Views
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
 				YAlign = TextAlignment.Center,
-				Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)
+				Font = StyleConstant.GlobalFont
 			};
 
 			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)

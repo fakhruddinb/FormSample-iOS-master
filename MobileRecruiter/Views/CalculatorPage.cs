@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Syncfusion.SfChart.XForms;
 using System.Collections.ObjectModel;
+using MobileRecruiter;
 
 
 namespace FormSample.Views
@@ -59,8 +60,7 @@ namespace FormSample.Views
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
 				YAlign = TextAlignment.Center,
-				Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)
+				Font = StyleConstant.GlobalFont
 			};
 
 			var grid = SetDailyGrid();

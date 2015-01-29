@@ -29,7 +29,7 @@ namespace FormSample.Droid
 			this.ActionBar.SetDisplayUseLogoEnabled (true);
 			this.ActionBar.SetDisplayShowHomeEnabled (false);
 			Xamarin.Forms.Forms.Init(this, bundle);
-
+			ActionBar.SetIcon(Android.Resource.Color.Transparent);
 			// SetPage(App.GetMainPage());
 
 			var metrics = Resources.DisplayMetrics;
@@ -37,14 +37,24 @@ namespace FormSample.Droid
 			int widthInDp = ConvertPixelsToDp(metrics.WidthPixels);
 			int heightInDp = ConvertPixelsToDp(metrics.HeightPixels);
 
+//			double wi=(double)metrics.WidthPixels/(double)metrics.Density;
+//			double hi=(double)metrics.HeightPixels/(double)metrics.Density;
+//			double x = Math.Pow(wi,2);
+//			double y = Math.Pow(hi,2);
+//			double screenInches = Math.Sqrt(x+y);
+
+			double x = Math.Pow(metrics.WidthPixels/metrics.Xdpi,2);
+				double y = Math.Pow(metrics.HeightPixels/metrics.Ydpi,2);
+			double screenInches = Math.Sqrt(x+y);
+
 			Utility.DEVICEHEIGHT = heightInDp;
 			Utility.DEVICEWIDTH = widthInDp;
 
-			if (string.IsNullOrWhiteSpace (Settings.GeneralSettings)) {
-				SetPage (App.GetLoginPage (this));
-			} else {
+//			if (string.IsNullOrWhiteSpace (Settings.GeneralSettings)) {
+//				SetPage (App.GetLoginPage (this));
+//			} else {
 				SetPage(App.GetMainPage(this));
-			}
+			//}
 		}
 
 		public override ActionBar ActionBar {

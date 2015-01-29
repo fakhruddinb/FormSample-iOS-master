@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FormSample.Helpers;
+using MobileRecruiter;
 
 namespace FormSample.Views
 {
@@ -36,7 +37,8 @@ namespace FormSample.Views
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
 				XAlign = TextAlignment.Center, // Center the text in the blue box.
-				YAlign = TextAlignment.Center //in the blue box.
+				YAlign = TextAlignment.Center,//in the blue box.
+				Font = StyleConstant.GlobalFont
 			};
 
 //			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill, Font = Font.SystemFontOfSize (NamedSize.Medium)

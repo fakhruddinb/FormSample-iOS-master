@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using FormSample.Views;
 using System.Collections.Generic;
+using MobileRecruiter;
 
 namespace FormSample
 {
@@ -106,7 +107,7 @@ namespace FormSample
 		public MenuPage Host { get; set; }
 		public MenuCell()
 		{
-			var nameLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand };
+			var nameLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand,Font = StyleConstant.HomePageButtonsText};
 			nameLabel.SetBinding(Label.TextProperty, new Binding("Title"));
 			nameLabel.TextColor = Color.FromHex ("#22498a");
 			var layout = new StackLayout
