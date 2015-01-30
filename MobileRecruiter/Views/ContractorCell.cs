@@ -1,5 +1,9 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Labs.Controls;
+using MobileRecruiter;
+using FormSample.Helpers;
+
+
 namespace FormSample
 {
 	public class ContractorCell : ViewCell
@@ -20,13 +24,15 @@ namespace FormSample
 		{
 			var nameLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand };
 			nameLabel.SetBinding(Label.TextProperty, new Binding("FirstName"));
-			nameLabel.WidthRequest = 200;
+			nameLabel.WidthRequest = Utility.DEVICEWIDTH/2;
 			nameLabel.TextColor = Color.Black;
+			nameLabel.Font = StyleConstant.ListItemFontStyle;
 
 			var referDateLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand };
 			referDateLabel.SetBinding(Label.TextProperty, new Binding("InsertDate"));
-			referDateLabel.WidthRequest = 200;
+			referDateLabel.WidthRequest = Utility.DEVICEWIDTH/2;
 			referDateLabel.TextColor = Color.Black;
+			referDateLabel.Font = StyleConstant.ListItemFontStyle;
 
 			var contractorIdLabel = new Label ();
 			contractorIdLabel.SetBinding(Label.TextProperty, new Binding("Id"));

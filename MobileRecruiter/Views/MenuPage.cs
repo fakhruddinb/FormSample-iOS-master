@@ -107,7 +107,7 @@ namespace FormSample
 		public MenuPage Host { get; set; }
 		public MenuCell()
 		{
-			var nameLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand,Font = StyleConstant.HomePageButtonsText};
+			var nameLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand,Font = StyleConstant.GenerelLabelAndButtonText};
 			nameLabel.SetBinding(Label.TextProperty, new Binding("Title"));
 			nameLabel.TextColor = Color.FromHex ("#22498a");
 			var layout = new StackLayout

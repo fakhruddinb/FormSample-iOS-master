@@ -16,12 +16,11 @@ namespace FormSample.Views
 //			double width = 350;
 //			double height = 150;
 			double width= Utility.DEVICEWIDTH;
-			double height = (Utility.DEVICEHEIGHT*19)/ 100;
-
+			double height = (Utility.DEVICEHEIGHT*21)/ 100;
 			double widthGoogleandLinkedIn = (Utility.DEVICEWIDTH*50)/100;
 
 			phoneNumberImage = new Image (){
-				//WidthRequest = width,
+				WidthRequest = width,
 				HeightRequest = height,
 				Aspect = Aspect.AspectFill
 			};
@@ -65,7 +64,7 @@ namespace FormSample.Views
 				Font = StyleConstant.GlobalFont
 			};
 
-			Label label = new Label() { Text = "To speak with a member of our dedicated team:" };
+			Label label = new Label() { Text = "To speak with a member of our dedicated team:",Font= StyleConstant.GenerelLabelAndButtonText };
 
 			var grid = new Grid
 			{
@@ -105,8 +104,7 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = Font.SystemFontOfSize (NamedSize.Large)
-					.WithAttributes (FontAttributes.Bold)
+				Font= StyleConstant.GenerelLabelAndButtonText
 			};
 
 			callPhoneNo.Clicked += delegate {
@@ -114,16 +112,14 @@ namespace FormSample.Views
 			};
 
 			Button agencyEmail = new Button{Text= Utility.EMAIL,TextColor = Color.Black,BackgroundColor = new Color(255, 255, 255, 0.5),
-				VerticalOptions = LayoutOptions.End,Font = Font.SystemFontOfSize (NamedSize.Large)
-					.WithAttributes (FontAttributes.Bold)};
+				VerticalOptions = LayoutOptions.End,Font= StyleConstant.GenerelLabelAndButtonText};
 
 			agencyEmail.Clicked += delegate {
 				DependencyService.Get<FormSample.Helpers.Utility.IEmailService>().OpenEmail(Utility.EMAIL);
 			};
 
 			Button mapText = new Button{Text="Map:EN6 1AG",TextColor = Color.Black,BackgroundColor = new Color(255, 255, 255, 0.5),
-				VerticalOptions = LayoutOptions.End,Font = Font.SystemFontOfSize (NamedSize.Large)
-					.WithAttributes (FontAttributes.Bold)};
+				VerticalOptions = LayoutOptions.End,Font= StyleConstant.GenerelLabelAndButtonText};
 
 			mapText.Clicked += delegate {
 				DependencyService.Get<FormSample.Helpers.Utility.IMapService>().OpenMap();
@@ -131,8 +127,7 @@ namespace FormSample.Views
 
 			Button googleText = new Button {Text = "Follow us on Google+", TextColor = Color.Black, BackgroundColor = new Color (255, 255, 255, 0.5),
 				VerticalOptions = LayoutOptions.End,
-				Font = Font.SystemFontOfSize (NamedSize.Large)
-					.WithAttributes (FontAttributes.Bold)
+				Font= StyleConstant.GenerelLabelAndButtonText
 			};
 
 			googleText.Clicked+= delegate {
@@ -141,8 +136,7 @@ namespace FormSample.Views
 
 			Button linkdinText = new Button {Text = "Follow us on Linkedin", TextColor = Color.Black, BackgroundColor = new Color (255, 255, 255, 0.5),
 				VerticalOptions = LayoutOptions.End,
-				Font = Font.SystemFontOfSize (NamedSize.Large)
-					.WithAttributes (FontAttributes.Bold)
+				Font= StyleConstant.GenerelLabelAndButtonText
 			};
 
 			linkdinText.Clicked += delegate {
@@ -185,7 +179,8 @@ namespace FormSample.Views
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
-				Children = {grid,gridGoogleAndLinkedIn}
+				Children = {grid,gridGoogleAndLinkedIn},
+
 			};
 
 			var controlStakeLayout = new StackLayout (){
@@ -193,7 +188,7 @@ namespace FormSample.Views
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
-				Children = {new ScrollView{ Content = gridLayout}}
+				Children = {new ScrollView{ Content = gridLayout}},
 			};
 
 			var layout = new StackLayout

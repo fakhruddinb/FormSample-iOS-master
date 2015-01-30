@@ -200,9 +200,92 @@ namespace FormSample.ViewModel
 
 		public  async Task BindContractor()
 		{
-				var contractorList = await contractorDataService.GetContractors (Settings.GeneralSettings);
+			var contractorList = GetTempContractor (); // await contractorDataService.GetContractors (Settings.GeneralSettings);
 				var list = contractorList.Where (c => c.DeleteDate == null).OrderByDescending (a => a.InsertDate).ToList ();
 				this.contractorList = new ObservableCollection<Contractor> (list);
+		}
+
+		public List<Contractor> GetTempContractor()
+		{
+			var contractorList = new List<Contractor> ();
+
+			contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="alex",
+				InsertDate = DateTime.Now
+			});
+
+			contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="john",
+				InsertDate = DateTime.Now
+			});
+
+			contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="welly",
+				InsertDate = DateTime.Now
+			});
+
+			contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});
+			contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});
+			contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});
+			contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});
+			contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});
+			contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});contractorList.Add (new Contractor (){ 
+				AgentId="a@a.com",
+				FirstName ="micheal",
+				InsertDate = DateTime.Now
+			});
+			return contractorList;
 		}
 	}
 }

@@ -41,19 +41,16 @@ namespace FormSample.Views
 				Font = StyleConstant.GlobalFont
 				};
 
-			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font= StyleConstant.GenerelLabelAndButtonText};
 			emailLabel.Text = "Email";
 
 			this.email= new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
 			this.email.IsEnabled = false;
 
-			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font= StyleConstant.GenerelLabelAndButtonText};
 			firstNameLabel.Text = "First Name";
 
-			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font= StyleConstant.GenerelLabelAndButtonText};
 			lastNameLabel.Text = "Last Name";
 
 			this.firstName = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -63,8 +60,7 @@ namespace FormSample.Views
 				lastName.Focus();
 			};
 
-			var agencyLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var agencyLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font= StyleConstant.GenerelLabelAndButtonText};
 			agencyLabel.Text = "Agency";
 
 			this.agencyName = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -72,8 +68,7 @@ namespace FormSample.Views
 				agencyName.Focus();
 			};
 
-			var phoneLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var phoneLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font= StyleConstant.GenerelLabelAndButtonText};
 			phoneLabel.Text = "Phone number";
 
 			this.phone = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
@@ -89,14 +84,15 @@ namespace FormSample.Views
 				HorizontalOptions = LayoutOptions.Fill,
 				BackgroundColor = Color.FromHex("#22498a"),
 				TextColor = Color.White,
-				Text = "Update"
+				Text = "Update",
+				Font= StyleConstant.GenerelLabelAndButtonText
 			};
 			btnUpdate.Clicked += async (object sender, EventArgs e) => 
 			{
 				await  ExecuteUpdateCommand();
 			};
 
-			var contactUsButton = new Button { Text = "Contact Us", BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
+			var contactUsButton = new Button { Text = "Contact Us", BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White,Font= StyleConstant.GenerelLabelAndButtonText };
 			contactUsButton.Clicked += delegate
 			{
 				App.RootPage.NavigateTo("Contact us");

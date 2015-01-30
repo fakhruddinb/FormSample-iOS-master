@@ -43,13 +43,13 @@ namespace FormSample.Views
 
 //			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill, Font = Font.SystemFontOfSize (NamedSize.Medium)
 //					.WithAttributes (FontAttributes.Bold)};
-			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font= StyleConstant.GenerelLabelAndButtonText};
 			firstNameLabel.Text = "First Name";
 
 			var firstName = new MyEntry() { HorizontalOptions = LayoutOptions.FillAndExpand };
 			firstName.SetBinding (MyEntry.TextProperty, ContractorViewModel.ContractorFirstNamePropertyName);
 
-			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font= StyleConstant.GenerelLabelAndButtonText};
 			lastNameLabel.Text = "Last Name";
 
 			var lastName = new MyEntry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -58,7 +58,7 @@ namespace FormSample.Views
 				lastName.Focus();
 			};
 
-			var phoneNoLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var phoneNoLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font= StyleConstant.GenerelLabelAndButtonText};
 			phoneNoLabel.Text = "Phone";
 
 			var phoneNo = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
@@ -68,7 +68,7 @@ namespace FormSample.Views
 				phoneNo.Focus();
 			};
 
-			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font= StyleConstant.GenerelLabelAndButtonText};
 			emailLabel.Text = "Email";
 
 			var email = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -78,7 +78,7 @@ namespace FormSample.Views
 				email.Focus();
 			};
 
-			var additionalInfoLabel = new Label { HorizontalOptions = LayoutOptions.Fill};
+			var additionalInfoLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font= StyleConstant.GenerelLabelAndButtonText};
 			additionalInfoLabel.Text = "Additional Information";
 
 			var additionalInfo = new MyEntry() { HorizontalOptions = LayoutOptions.FillAndExpand};
@@ -96,11 +96,12 @@ namespace FormSample.Views
 				HorizontalOptions = LayoutOptions.Fill,
 				BackgroundColor = Color.FromHex("#22498a"),
 				TextColor = Color.White,
-				Text = "Submit"
+				Text = "Submit",
+				Font= StyleConstant.GenerelLabelAndButtonText
 			};
 			btnSubmitContractor.SetBinding(Button.CommandProperty,ContractorViewModel.SubmitCommandPropertyName);
 
-			var contactUsButton = new Button { Text = "Contact Us", BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
+			var contactUsButton = new Button { Text = "Contact Us", BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White,Font= StyleConstant.GenerelLabelAndButtonText };
 			contactUsButton.Clicked +=  (object sender, EventArgs e) =>
 			{
 				App.RootPage.NavigateTo("Contact us");

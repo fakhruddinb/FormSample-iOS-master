@@ -23,9 +23,11 @@ namespace FormSample.Views
 		{
 
 			width= (Utility.DEVICEWIDTH)*25/ 100;
-			height = (Utility.DEVICEHEIGHT)*28/ 100;
-			if (Utility.DEVICEHEIGHT < 960) {
-				height = (Utility.DEVICEHEIGHT)*25/ 100;
+//			height = (Utility.DEVICEHEIGHT)*28/ 100;
+			if (Utility.DEVICEINCH > 6.0) {
+				height = (Utility.DEVICEHEIGHT) * 28 / 100;
+			} else {
+				height = (Utility.DEVICEHEIGHT) * 25 / 100;
 			}
 
 			ToolbarItems.Add(new ToolbarItem("logo","logo.png",()=>
@@ -125,7 +127,7 @@ namespace FormSample.Views
 				TextColor = Color.FromHex("#000000"),
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = StyleConstant.HomePageButtonsText
+				Font = StyleConstant.GenerelLabelAndButtonText
 			};
 
 			Button myContractorButton = new Button()
@@ -134,7 +136,7 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = StyleConstant.HomePageButtonsText
+				Font = StyleConstant.GenerelLabelAndButtonText
 			};
 
 			Button aboutUsButton = new Button()
@@ -143,7 +145,7 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = StyleConstant.HomePageButtonsText
+				Font = StyleConstant.GenerelLabelAndButtonText
 			};
 
 			Button amendDetailButton = new Button()
@@ -152,7 +154,7 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = StyleConstant.HomePageButtonsText
+				Font = StyleConstant.GenerelLabelAndButtonText
 			};
 
 			Button payChartButton = new Button()
@@ -161,7 +163,7 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = StyleConstant.HomePageButtonsText
+				Font = StyleConstant.GenerelLabelAndButtonText
 			};
 
 			Button payCalcButton = new Button()
@@ -170,7 +172,7 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				BackgroundColor = new Color(255, 255, 255, 0.5),// Color.Transparent,
 				VerticalOptions = LayoutOptions.End,
-				Font = StyleConstant.HomePageButtonsText
+				Font = StyleConstant.GenerelLabelAndButtonText
 			};
 			grid.Children.Add(imgReferContractor, 0, 0); // Left, First element
 			grid.Children.Add(referContractorButton, 0, 0);
@@ -247,7 +249,8 @@ namespace FormSample.Views
 				App.RootPage.NavigateTo("Weekly pay chart");
 			};
 
-			var contactUsButton = new Button { Text = "Contact us", BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
+			var contactUsButton = new Button { Text = "Contact us", BackgroundColor = Color.FromHex("0d9c00"),
+				TextColor = Color.White,Font = StyleConstant.GenerelLabelAndButtonText };
 			// contactUsButton.SetBinding (Button.CommandProperty, HomeViewModel.GotoContactUsCommandPropertyName);
 
 			contactUsButton.Clicked += (object sender, EventArgs e) => {

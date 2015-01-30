@@ -45,7 +45,7 @@ namespace FormSample.Droid
 
 			double x = Math.Pow(metrics.WidthPixels/metrics.Xdpi,2);
 				double y = Math.Pow(metrics.HeightPixels/metrics.Ydpi,2);
-			double screenInches = Math.Sqrt(x+y);
+			Utility.DEVICEINCH = Math.Sqrt(x+y);
 
 			Utility.DEVICEHEIGHT = heightInDp;
 			Utility.DEVICEWIDTH = widthInDp;

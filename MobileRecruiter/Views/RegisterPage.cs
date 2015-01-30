@@ -35,16 +35,14 @@ namespace FormSample.Views
 				Font = StyleConstant.GlobalFont
 			};
 
-			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var emailLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = StyleConstant.GenerelLabelAndButtonText};
 			emailLabel.Text = "Email";
 
 			var emailText = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
 			emailText.SetBinding(Entry.TextProperty, AgentViewModel.AgentEmailPropertyName);
 			emailText.Keyboard = Keyboard.Email;
 
-			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = StyleConstant.GenerelLabelAndButtonText};
 			firstNameLabel.Text = "First Name";
 
 			var firstName = new MyEntry(){HorizontalOptions = LayoutOptions.FillAndExpand};
@@ -53,8 +51,7 @@ namespace FormSample.Views
 				firstName.Focus();
 			};
 
-			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var lastNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = StyleConstant.GenerelLabelAndButtonText};
 			lastNameLabel.Text = "Last Name";
 
 			var lastName = new MyEntry() { HorizontalOptions = LayoutOptions.FillAndExpand};
@@ -63,8 +60,7 @@ namespace FormSample.Views
 				lastName.Focus();
 			};
 
-			var agencyLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var agencyLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = StyleConstant.GenerelLabelAndButtonText};
 			agencyLabel.Text = "Agency";
 
 			var agencyText = new MyEntry() { HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -73,8 +69,7 @@ namespace FormSample.Views
 				agencyText.Focus();
 			};
 
-			var phoneLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var phoneLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = StyleConstant.GenerelLabelAndButtonText};
 			phoneLabel.Text = "Phone number";
 
 			var phoneText = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
@@ -94,14 +89,15 @@ namespace FormSample.Views
 				HorizontalOptions = LayoutOptions.Fill,
 				BackgroundColor = Color.FromHex("#22498a"),
 				TextColor=Color.White,
-				Text = "Register"
+				Text = "Register",
+				Font = StyleConstant.GenerelLabelAndButtonText
 			};
 			btnRegister.SetBinding(Button.CommandProperty, AgentViewModel.SubmitCommandPropertyName);
 
-			var loginButton = new Button {Text="I already have a recruiter account...", BackgroundColor=Color.FromHex("3b73b9"), TextColor= Color.White };
+			var loginButton = new Button {Text="I already have a recruiter account...", BackgroundColor=Color.FromHex("3b73b9"), TextColor= Color.White,Font = StyleConstant.GenerelLabelAndButtonText };
 			loginButton.SetBinding(Button.CommandProperty,AgentViewModel.GotoLoginCommandPropertyName);
 
-			var downloadButton = new Button { Text = "Download Terms and Conditions", BackgroundColor = Color.FromHex("f7941d"), TextColor = Color.White };
+			var downloadButton = new Button { Text = "Download Terms and Conditions", BackgroundColor = Color.FromHex("f7941d"), TextColor = Color.White,Font = StyleConstant.GenerelLabelAndButtonText };
 			downloadButton.Clicked += (object sender, EventArgs e) => {
 				DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.PDFURL);
 			};

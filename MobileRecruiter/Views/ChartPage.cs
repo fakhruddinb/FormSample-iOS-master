@@ -4,6 +4,7 @@ using Syncfusion.SfChart.XForms;
 using FormSample.Helpers;
 using System;
 using MobileRecruiter;
+using System.Linq;
 
 namespace FormSample
 {
@@ -36,7 +37,8 @@ namespace FormSample
 				Text="Please find the helpful guide below to show how much difference a Limited company option could make to " +
 					"your contractor's take home pay.",
 				TextColor = Color.Black,
-				HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand,
+				HorizontalOptions = LayoutOptions.FillAndExpand, //VerticalOptions = LayoutOptions.FillAndExpand,
+				Font = StyleConstant.GenerelLabelAndButtonText
 			};
 
 			var grid = new Grid
@@ -54,19 +56,20 @@ namespace FormSample
 //				},
 				Padding= new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0)
 			};
-			grid.Children.Add(new Label { Text = "Daily Rate", BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.Black}, 0, 0); // Left, First element
-			grid.Children.Add(new Label { Text = "Limited Company" , BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.Black}, 1, 0);
-			grid.Children.Add(new Label { Text = "Umbrella Company" , BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.Black}, 2, 0);
+			grid.Children.Add(new Label {WidthRequest = Utility.DEVICEWIDTH * 32 / 100, Text = "Daily Rate", BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.Black,Font = StyleConstant.GenerelLabelAndButtonText}, 0, 0); // Left, First element
+			grid.Children.Add(new Label {WidthRequest = Utility.DEVICEWIDTH * 32 / 100, Text = "Limited Company" , BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.Black,Font = StyleConstant.GenerelLabelAndButtonText}, 1, 0);
+			grid.Children.Add(new Label {WidthRequest = Utility.DEVICEWIDTH * 32 / 100, Text = "Umbrella Company" , BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.Black,Font = StyleConstant.GenerelLabelAndButtonText}, 2, 0);
 
-			ListView list= new ListView{};
-			list.VerticalOptions  = LayoutOptions.EndAndExpand;
-			list.HeightRequest = Utility.DEVICEHEIGHT*70/100;
-			list.WidthRequest = Utility.DEVICEWIDTH;
+			ListView list= new ListView{
+			};
+			//list.VerticalOptions  = LayoutOptions.EndAndExpand;
+			//list.MinimumHeightRequest = 170;
+			list.WidthRequest = Utility.DEVICEWIDTH-10;
 			list.ItemTemplate = new DataTemplate(typeof(DailyRateCell));
 			list.ItemsSource = GenerateDailyRateTable();
 			chart1= new SfChart();
 
-			var contactUsButton = new Button { Text = "Contact us",BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
+			var contactUsButton = new Button { Text = "Contact us",BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White,Font = StyleConstant.GenerelLabelAndButtonText };
 			contactUsButton.Clicked +=  (object sender, EventArgs e) => 
 			{
 				App.RootPage.NavigateTo("Contact us");
@@ -83,7 +86,7 @@ namespace FormSample
 			var descriptionLayout = new StackLayout () {
 				Orientation = StackOrientation.Vertical,
 				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
-				VerticalOptions = LayoutOptions.FillAndExpand, 
+				//VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
 				Children= {description}
 			};
@@ -97,6 +100,7 @@ namespace FormSample
 //			};
 
 			var contentStackLayout = new StackLayout{ 
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Children = {descriptionLayout,grid, list, chart1,contactUsButton},
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				HorizontalOptions = LayoutOptions.Fill,
@@ -113,17 +117,23 @@ namespace FormSample
 			Content = new StackLayout(){Children= {headerStackLayout,layout}};
 		}
 
+		List<PayTable> payTableData = new List<PayTable> ();
+
 		private List<DailyRateCalcuationTable> GenerateDailyRateTable()
 		{
+			getTempData ();
 
-			FormSample.PayTableDatabase d = new  FormSample.PayTableDatabase();
+			if (!payTableData.Any ()) {
+				FormSample.PayTableDatabase d = new  FormSample.PayTableDatabase ();
+				payTableData = d.GetPayTables ().ToList ();
+			}
 			for (double rate = 100; rate <= 500; rate += 50)
 			{
 				double weeklyExpense = 50;
 				var grossPay = rate * 5;
 				var taxablePay = grossPay - weeklyExpense;
 				double takeHomePayLimited = 0;
-				var payData = d.GetPayTableTaxablePay(taxablePay); //TODO: taxable pay
+				var payData = payTableData.FirstOrDefault (p => p.TaxablePay == taxablePay); //  d.GetPayTableTaxablePay(taxablePay); //TODO: taxable pay
 				if (payData != null)
 				{
 					var netPay = payData.TakeHomeLimited;
@@ -132,7 +142,7 @@ namespace FormSample
 				}
 
 				double takeHomeUmbrella = 0;
-				payData = d.GetPayTableTaxablePay(grossPay);
+				payData = payTableData.FirstOrDefault (p => p.TaxablePay == grossPay); // d.GetPayTableTaxablePay(grossPay);
 				if (payData != null)
 				{
 					takeHomeUmbrella = payData.TakeHomeUmbrella;
@@ -153,23 +163,23 @@ namespace FormSample
 		private void GenerateChart()
 		{
 			chart1.Title=new ChartTitle(){Text="Your weekly pay"};
-			chart1.Title.Font = Font.OfSize("Arial", 18);
-			//chart1.WidthRequest = 200;
-			//chart1.HeightRequest = 200;
+			chart1.Title.Font =Font.OfSize("Arial",20);
+//			chart1.WidthRequest = 200;
+//			chart1.HeightRequest = 200;
 
-			chart1.WidthRequest = (Utility.DEVICEWIDTH * 20) / 100;
-			chart1.HeightRequest = (Utility.DEVICEHEIGHT*50)/100;
+			chart1.WidthRequest = (Utility.DEVICEWIDTH * 15) / 100;
+			chart1.HeightRequest = (Utility.DEVICEHEIGHT*30)/100;
 
 			//Initializing Primary Axis
 			Syncfusion.SfChart.XForms.CategoryAxis primaryAxis =new Syncfusion.SfChart.XForms.CategoryAxis();
-			primaryAxis.Title = new ChartAxisTitle(){Text= "Daily Rate",Font = Font.OfSize("Arial",22)};
+			primaryAxis.Title = new ChartAxisTitle(){Text= "Daily Rate",Font = StyleConstant.GenerelLabelAndButtonText};
 			primaryAxis.LabelStyle.Font = Font.OfSize("Arial", 30);
 			//primaryAxis.LabelStyle.TextColor = Color.Red;
 			chart1.PrimaryAxis = primaryAxis;
 
 			//			//Initializing Secondary Axis
 			Syncfusion.SfChart.XForms.NumericalAxis secondaryAxis=new Syncfusion.SfChart.XForms.NumericalAxis();
-			secondaryAxis.Title= new ChartAxisTitle(){Text="Take Home Pay",Font = Font.OfSize("Arial",22)};
+			secondaryAxis.Title= new ChartAxisTitle(){Text="Take Home Pay",Font = StyleConstant.GenerelLabelAndButtonText};
 			secondaryAxis.LabelStyle.Font = Font.OfSize("Arial", 30);
 			//secondaryAxis.LabelStyle.TextColor = Color.Red;
 			chart1.SecondaryAxis=secondaryAxis;
@@ -200,8 +210,37 @@ namespace FormSample
 			{ 
 				IsVisible = true, 
 				DockPosition= Syncfusion.SfChart.XForms.LegendPlacement.Bottom ,
-				LabelStyle = new ChartLegendLabelStyle(){Font = Font.OfSize("Arial", 18) }
+				LabelStyle = new ChartLegendLabelStyle(){ Font = Font.OfSize("Arial",22) }
 			};
+		}
+
+		void  getTempData ()
+		{
+			payTableData.Add (new PayTable () {
+				TakeHomeLimited = 100,
+				TakeHomeUmbrella = 250,
+				TaxablePay = 1000
+			});payTableData.Add (new PayTable () {
+				TakeHomeLimited = 100,
+				TakeHomeUmbrella = 25,
+				TaxablePay = 450
+			});
+			payTableData.Add (new PayTable () {
+				TakeHomeLimited = 100,
+				TakeHomeUmbrella = 250,
+				TaxablePay = 950
+			});
+			payTableData.Add (new PayTable () {
+				TakeHomeLimited = 100,
+				TakeHomeUmbrella = 250,
+				TaxablePay = 350
+			});
+			payTableData.Add (new PayTable () {
+				TakeHomeLimited = 100,
+				TakeHomeUmbrella = 250,
+				TaxablePay = 400
+			});
+
 		}
 	}
 
@@ -254,19 +293,19 @@ namespace FormSample
 		}
 		private StackLayout CreateLayout()
 		{
-			var nameLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand };
+			var nameLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand ,Font = StyleConstant.GenerelLabelAndButtonText};
 			nameLabel.SetBinding(Label.TextProperty, new Binding("DailyRate"));
 			//nameLabel.WidthRequest = 130;
 			nameLabel.WidthRequest = Utility.DEVICEWIDTH * 32 / 100;
 			nameLabel.TextColor = Color.Black;
 
-			var limitedCompanyLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand };
+			var limitedCompanyLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand ,Font = StyleConstant.GenerelLabelAndButtonText};
 			limitedCompanyLabel.SetBinding(Label.TextProperty, new Binding("LimitedCompany"));
 			//limitedCompanyLabel.WidthRequest = 130;
 			limitedCompanyLabel.WidthRequest =Utility.DEVICEWIDTH * 32 / 100;
 			limitedCompanyLabel.TextColor = Color.Black;
 
-			var UmbrellaCompanyLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand };
+			var UmbrellaCompanyLabel = new Label { HorizontalOptions = LayoutOptions.FillAndExpand,Font = StyleConstant.GenerelLabelAndButtonText };
 			UmbrellaCompanyLabel.SetBinding(Label.TextProperty, new Binding("UmbrellaCompany"));
 			//UmbrellaCompanyLabel.WidthRequest = 80;
 			UmbrellaCompanyLabel.WidthRequest =Utility.DEVICEWIDTH * 32 / 100;

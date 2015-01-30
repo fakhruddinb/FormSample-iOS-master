@@ -6,7 +6,7 @@ namespace MobileRecruiter
 {
 	public class StyleConstant
 	{
-		public static Font HomePageButtonsText { 
+		public static Font GenerelLabelAndButtonText { 
 			get
 			{ 
 				if (Utility.DEVICEHEIGHT > 1000) {
@@ -23,6 +23,16 @@ namespace MobileRecruiter
 					return Font.OfSize ("Roboto", 30).WithAttributes(FontAttributes.Bold);
 				}
 				return Font.OfSize ("Roboto", NamedSize.Medium).WithAttributes(FontAttributes.Bold);
+			} 
+		}
+
+		public static Font ListItemFontStyle { 
+			get
+			{ 
+				if (Utility.DEVICEHEIGHT > 1000) {
+					return Font.OfSize ("Roboto", 25);
+				}
+				return Font.OfSize ("Roboto", NamedSize.Medium);
 			} 
 		}
 	}

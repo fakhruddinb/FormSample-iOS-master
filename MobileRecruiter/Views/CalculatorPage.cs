@@ -35,22 +35,22 @@ namespace FormSample.Views
 		double diffLimitedAndUmbrell;
 		Label lblText = new Label(){TextColor = Color.Black,
 			HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand,
-
+			Font= StyleConstant.GenerelLabelAndButtonText
 		};
 		public CalculatorPage()
 		{
 			chartwidth= (Utility.DEVICEWIDTH)*75/ 100;
-			chartHeight = Utility.DEVICEHEIGHT*75/ 100;
+			chartHeight = Utility.DEVICEHEIGHT*60/ 100;
 			//progressiveService = DependencyService.Get<IProgressService> ();
 			chart1 = new SfChart();
 			chart2 = new SfChart();
-			takeHomePayLimitedLabel = new Label(){ XAlign = TextAlignment.Center};
-			percentageLimitedLabel = new Label(){ BackgroundColor = Color.Gray, XAlign = TextAlignment.Center };
+			takeHomePayLimitedLabel = new Label(){ XAlign = TextAlignment.Center,Font = StyleConstant.GenerelLabelAndButtonText};
+			percentageLimitedLabel = new Label(){ BackgroundColor = Color.Gray, XAlign = TextAlignment.Center,Font = StyleConstant.GenerelLabelAndButtonText };
 
-			takeHomePayumbrellaLabel = new Label{XAlign = TextAlignment.Center};
-			percentageumbrellaLabel =  new Label{BackgroundColor = Color.Gray, XAlign = TextAlignment.Center };
+			takeHomePayumbrellaLabel = new Label{XAlign = TextAlignment.Center,Font = StyleConstant.GenerelLabelAndButtonText};
+			percentageumbrellaLabel =  new Label{BackgroundColor = Color.Gray, XAlign = TextAlignment.Center,Font = StyleConstant.GenerelLabelAndButtonText };
 
-			labelAfterChart = new Label(){ TextColor = Color.Black};
+			labelAfterChart = new Label(){ TextColor = Color.Black,Font = StyleConstant.GenerelLabelAndButtonText};
 
 			var label = new Label  
 			{ 
@@ -108,7 +108,7 @@ namespace FormSample.Views
 
 				};
 
-			var contactUsButton = new Button { Text = "Contact us",BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
+			var contactUsButton = new Button { Text = "Contact us",BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White,Font= StyleConstant.GenerelLabelAndButtonText };
 			contactUsButton.Clicked +=  (object sender, EventArgs e) => 
 			{
 				App.RootPage.NavigateTo("Contact us");
@@ -132,7 +132,8 @@ namespace FormSample.Views
 			//layout.Children.Add (controlLayout);
 			layout.Children.Add (new ScrollView {
 				Content=controlLayout,
-				Orientation = ScrollOrientation.Vertical
+				Orientation = ScrollOrientation.Vertical,
+				IsClippedToBounds=true
 			});
 			//
 //			layout.Children.Add(grid);
@@ -177,7 +178,12 @@ namespace FormSample.Views
 			var grid = new Grid
 			{
 				RowSpacing = 5,
-				ColumnSpacing = 50,
+				//ColumnSpacing = 50,
+//				ColumnDefinitions = 
+//				{
+//					new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)}
+//				 
+//				},
 				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 			};
 
@@ -187,7 +193,8 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				HorizontalOptions = LayoutOptions.Start,
 				VerticalOptions = LayoutOptions.Center,
-				WidthRequest = 100
+				Font= StyleConstant.GenerelLabelAndButtonText,
+				WidthRequest = (Utility.DEVICEWIDTH * 25)/100
 			};
 			this.txtDailyRate = new Entry
 			{
@@ -204,7 +211,8 @@ namespace FormSample.Views
 				TextColor = Color.Black,
 				HorizontalOptions = LayoutOptions.Start,
 				VerticalOptions = LayoutOptions.Center,
-				WidthRequest = 100
+				Font= StyleConstant.GenerelLabelAndButtonText,
+				WidthRequest = (Utility.DEVICEWIDTH * 25)/100
 			};
 			this.txtWeeklyExpense = new Entry
 			{
@@ -317,10 +325,40 @@ namespace FormSample.Views
 		}
 
 		private List<PayTable> payTableData = new List<PayTable> ();
+
+		void  getTempData ()
+		{
+			payTableData.Add (new PayTable () {
+				TakeHomeLimited = 100,
+				TakeHomeUmbrella = 250,
+				TaxablePay = 1000
+			});payTableData.Add (new PayTable () {
+				TakeHomeLimited = 100,
+				TakeHomeUmbrella = 250,
+				TaxablePay = 300
+			});
+			payTableData.Add (new PayTable () {
+				TakeHomeLimited = 100,
+				TakeHomeUmbrella = 250,
+				TaxablePay = 950
+			});
+			payTableData.Add (new PayTable () {
+				TakeHomeLimited = 100,
+				TakeHomeUmbrella = 250,
+				TaxablePay = 350
+			});
+			payTableData.Add (new PayTable () {
+				TakeHomeLimited = 100,
+				TakeHomeUmbrella = 250,
+				TaxablePay = 400
+			});
+			 
+		}
+
 		private async Task CalculatePayTableData()
 		{
 			//this.progressiveService.Show();
-			 
+			getTempData ();
 			if (!payTableData.Any ()) {
 				FormSample.PayTableDatabase d = new PayTableDatabase();
 				payTableData = d.GetPayTables().ToList();
@@ -348,13 +386,13 @@ namespace FormSample.Views
 
 
 				Label limitedCompany = new Label()
-				{ Text = "Limited company", BackgroundColor = Color.Gray };
+				{ Text = "Limited company", BackgroundColor = Color.Gray,Font= StyleConstant.GenerelLabelAndButtonText };
 
 				takeHomePayLimitedLabel.Text = takeHomePayLimited.ToString("C");
 				percentageLimitedLabel.Text = percentLimited.ToString("F") + " %";
 
-				var takeHomePayLabel = new Label{ Text = "Take Home Pay" };
-				var percentPayLabel = new Label{ Text = "Percentage", BackgroundColor = Color.Gray };
+				var takeHomePayLabel = new Label{ Text = "Take Home Pay",Font= StyleConstant.GenerelLabelAndButtonText };
+				var percentPayLabel = new Label{ Text = "Percentage", BackgroundColor = Color.Gray ,Font= StyleConstant.GenerelLabelAndButtonText};
 
 				this.takeHomeGridBelowChart.Children.Add(limitedCompany, 0, 1);
 				this.takeHomeGridBelowChart.Children.Add(takeHomePayLimitedLabel, 0, 2);
@@ -382,7 +420,7 @@ namespace FormSample.Views
 				GenerateSyncFusionchartUmbrella("Pay break down - Umbrella Company");
 
 				Label umbrellaCompany = new Label()
-				{ Text = "Umbrella company", BackgroundColor = Color.Gray, XAlign = TextAlignment.Start };
+				{ Text = "Umbrella company", BackgroundColor = Color.Gray, XAlign = TextAlignment.Start,Font= StyleConstant.GenerelLabelAndButtonText };
 				takeHomePayumbrellaLabel.Text = takeHomeUmbrella.ToString("C");
 				percentageumbrellaLabel.Text = percentUmbrella.ToString("F") + " %";
 
@@ -401,7 +439,7 @@ namespace FormSample.Views
 		{
 			// SfChart  chart=new SfChart();
 			chart1.Title=new ChartTitle(){Text=title};
-			chart1.Title.Font = Font.OfSize("Arial", 20);
+			chart1.Title.Font = Font.OfSize("Arial",20);
 			chart1.WidthRequest = chartwidth;
 			chart1.HeightRequest = chartHeight;
 			List<Color> brushes = new List<Color> ();
@@ -411,7 +449,7 @@ namespace FormSample.Views
 			chart1.Series.Add(new Syncfusion.SfChart.XForms.PieSeries()
 				{
 					ItemsSource = limitedCompanyModel.limitedCompanyTax,
-					DataMarker = new ChartDataMarker (){ShowLabel = true,LabelStyle=new DataMarkerLabelStyle(){TextColor=Color.Black, Font = Font.OfSize("Arial",40)}},
+					DataMarker = new ChartDataMarker (){ShowLabel = true,LabelStyle=new DataMarkerLabelStyle(){TextColor=Color.Black, Font= Font.OfSize("Arial",40)}},
 					IsVisibleOnLegend =true ,
 					//Color = Color.FromHex("FF9900"),
 					ColorModel = new ChartColorModel{CustomBrushes=brushes, Palette=ChartColorPalette.Custom}
@@ -432,7 +470,7 @@ namespace FormSample.Views
 		{
 
 			chart2.Title=new ChartTitle() { Text=title};
-			chart2.Title.Font = Font.OfSize("Arial", 20);
+			chart2.Title.Font = Font.OfSize ("Arial", 20);
 			chart2.WidthRequest = chartwidth;
 			chart2.HeightRequest = chartHeight;
 			List<Color> brushes = new List<Color> ();
@@ -442,7 +480,7 @@ namespace FormSample.Views
 			chart2.Series.Add(new Syncfusion.SfChart.XForms.PieSeries()
 				{
 					ItemsSource = umbrellaCompanyModel.umbrallaCompanyTax,
-					DataMarker = new ChartDataMarker (){ShowLabel = true,LabelStyle=new DataMarkerLabelStyle(){TextColor=Color.Black, Font = Font.OfSize("Arial",40)}},
+					DataMarker = new ChartDataMarker (){ShowLabel = true,LabelStyle=new DataMarkerLabelStyle(){TextColor=Color.Black, Font= Font.OfSize("Arial",40)}},
 					IsVisibleOnLegend =true,
 					ColorModel = new ChartColorModel{CustomBrushes=brushes, Palette=ChartColorPalette.Custom}
 					//Color = Color.FromHex("FF9900")

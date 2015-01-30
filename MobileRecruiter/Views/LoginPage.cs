@@ -46,16 +46,14 @@ namespace FormSample
 				Children = {label}
 			};
 
-			var userNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var userNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = StyleConstant.GenerelLabelAndButtonText};
 			userNameLabel.Text = "Email";
 
 			var username = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand};
 			username.SetBinding(Entry.TextProperty, LoginViewModel.UsernamePropertyName);
 			username.Keyboard = Keyboard.Email;
 
-			var passwordLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = Font.SystemFontOfSize (NamedSize.Medium)
-					.WithAttributes (FontAttributes.Bold)};
+			var passwordLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font = StyleConstant.GenerelLabelAndButtonText};
 			passwordLabel.Text = "Password";
 
 			var password = new Entry() {HorizontalOptions = LayoutOptions.FillAndExpand };
@@ -75,7 +73,7 @@ namespace FormSample
             forgotPassword.Text = "I have forgot my password";
 			//forgotPassword.BackgroundColor = Color.FromHex ("#22498a");
 			//forgotPassword.TextColor = Color.White;
-			forgotPassword.Font = Font.SystemFontOfSize (NamedSize.Large).WithAttributes(FontAttributes.Bold);
+			forgotPassword.Font = StyleConstant.GenerelLabelAndButtonText;
 
 			var forgotPasswordGestureRecognizer = new TapGestureRecognizer ();
 			forgotPassword.GestureRecognizers.Add(forgotPasswordGestureRecognizer);
@@ -133,13 +131,13 @@ namespace FormSample
 			};
 
 			var loginButton = new Button { Text = "Sign In",BackgroundColor = Color.FromRgb(34,73,138),
-				TextColor=Color.White};
+				TextColor=Color.White,Font = StyleConstant.GenerelLabelAndButtonText};
 			loginButton.SetBinding(Button.CommandProperty, LoginViewModel.LoginCommandPropertyName);
 
-			var registerButton = new Button { Text = "I don't have a recruiter account..", BackgroundColor=Color.FromHex("3b73b9"),TextColor = Color.White};
+			var registerButton = new Button { Text = "I don't have a recruiter account..", BackgroundColor=Color.FromHex("3b73b9"),TextColor = Color.White,Font = StyleConstant.GenerelLabelAndButtonText};
 			registerButton.SetBinding(Button.CommandProperty, LoginViewModel.GoToRegisterCommandPropertyName);
 
-			var downloadButton = new Button { Text = "Download Terms and Conditions", BackgroundColor = Color.FromHex("f7941d"),TextColor = Color.White};
+			var downloadButton = new Button { Text = "Download Terms and Conditions", BackgroundColor = Color.FromHex("f7941d"),TextColor = Color.White,Font = StyleConstant.GenerelLabelAndButtonText};
 			downloadButton.Clicked += (object sender, EventArgs e) => {
 				DependencyService.Get<FormSample.Helpers.Utility.IUrlService> ().OpenUrl (Utility.PDFURL);
 			};

@@ -23,7 +23,7 @@ namespace FormSample
 			contractorViewModel = new ContractorViewModel();
 			counter = 1;
 
-			var label = new Label{ Text = "My contractor",
+			var label = new Label{ Text = "My contractor1",
 				BackgroundColor = Color.FromHex("#000000"),
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
@@ -38,12 +38,17 @@ namespace FormSample
 			};
 			var grid = new Grid
 			{
-				ColumnSpacing = 100
+				// ColumnSpacing = 100,
+				ColumnDefinitions = 
+				{
+					new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)},
+					new ColumnDefinition { Width =  new GridLength(1, GridUnitType.Star) },
+				}
 			};
-			grid.Children.Add(new Label { Text = "Contractor", BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.FromHex("#000000") }, 0, 0); // Left, First element
-			grid.Children.Add(new Label { Text = "Date refered" ,BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.FromHex("#000000")}, 1, 0);
+			grid.Children.Add(new Label { Text = "Contractor", WidthRequest = Utility.DEVICEWIDTH/2, BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.FromHex("#000000") ,Font = StyleConstant.GenerelLabelAndButtonText}, 0, 0); // Left, First element
+			grid.Children.Add(new Label { Text = "Date refered" ,WidthRequest = Utility.DEVICEWIDTH/2,BackgroundColor=Color.FromHex("#eef2f3"), TextColor=Color.FromHex("#000000"),Font = StyleConstant.GenerelLabelAndButtonText}, 1, 0);
 
-           btnClearAllContractor = new Button { Text = "Clear all contractor", BackgroundColor = Color.FromHex("3b73b9"), TextColor = Color.White };
+			btnClearAllContractor = new Button { Text = "Clear all contractor", BackgroundColor = Color.FromHex("3b73b9"), TextColor = Color.White,Font = StyleConstant.GenerelLabelAndButtonText };
             btnClearAllContractor.Clicked += async (object sender, EventArgs e) =>
             {
 				try
@@ -76,7 +81,7 @@ namespace FormSample
 					DisplayAlert("Message", Utility.SERVERERRORMESSAGE, "OK");
 				}
 			};
-			var contactUsButton = new Button { Text = "Contact Us", BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White };
+			var contactUsButton = new Button { Text = "Contact Us", BackgroundColor = Color.FromHex("0d9c00"), TextColor = Color.White,Font = StyleConstant.GenerelLabelAndButtonText };
 			contactUsButton.Clicked += delegate
 			{
 				App.RootPage.NavigateTo("Contact us");
@@ -89,23 +94,23 @@ namespace FormSample
 
 			var controlStakeLayout = new StackLayout (){ 
 				Orientation = StackOrientation.Vertical,
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 5), //new Thickness(5,0,5,0),
 				VerticalOptions = LayoutOptions.FillAndExpand,
-				Children = { grid, listView}
+				Children = { grid, listView,btnClearAllContractor, contactUsButton}
 
 			};
 
-			var buttonLayout = new StackLayout (){ 
-				Orientation = StackOrientation.Vertical,
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
-				Children= {btnClearAllContractor, contactUsButton}
-			};
+//			var buttonLayout = new StackLayout (){ 
+//				Orientation = StackOrientation.Vertical,
+//				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+//				Children= {btnClearAllContractor, contactUsButton}
+//			};
 
 			var nameLayOut = new StackLayout
 			{
 				Orientation = StackOrientation.Vertical,
 				VerticalOptions = LayoutOptions.FillAndExpand,
-				Children = {labelStakeLayout,controlStakeLayout,buttonLayout}
+				Children = {labelStakeLayout,controlStakeLayout}
 			};
 
 			Content = new StackLayout
@@ -153,11 +158,11 @@ namespace FormSample
 			//progressService.Show ();
 			try
 			{
-				var x = DependencyService.Get<FormSample.Helpers.Utility.INetworkService>().IsReachable();
-				if (!x) {
-					//progressService.Dismiss ();
-					await DisplayAlert ("Message", Utility.NOINTERNETMESSAGE, "OK");
-				} else {
+//				var x = DependencyService.Get<FormSample.Helpers.Utility.INetworkService>().IsReachable();
+//				if (!x) {
+//					//progressService.Dismiss ();
+//					await DisplayAlert ("Message", Utility.NOINTERNETMESSAGE, "OK");
+//				} else {
 					await this.contractorViewModel.BindContractor ();
 					listView.ItemTemplate = new DataTemplate (typeof(ContractorCell));
 					listView.ItemsSource = this.contractorViewModel.contractorList;
@@ -169,7 +174,7 @@ namespace FormSample
                     {
                         this.btnClearAllContractor.IsVisible = true;
                     }
-				}
+				//}
 			}
 			catch(Exception) {
 				//progressService.Dismiss ();

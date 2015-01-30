@@ -21,6 +21,7 @@ namespace FormSample.Helpers
 		public static string LONGITUDE = "-0.191415";
 		public static int DEVICEWIDTH;
 		public static int DEVICEHEIGHT;
+		public static double DEVICEINCH;
 
 		#region custome messages
 		public static string EAMAILMESSAGE = "Email is required.\n";
