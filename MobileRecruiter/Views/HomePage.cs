@@ -25,12 +25,12 @@ namespace FormSample.Views
 			width= (Utility.DEVICEWIDTH)*25/ 100;
 //			height = (Utility.DEVICEHEIGHT)*28/ 100;
 			if (Utility.DEVICEINCH > 6.0) {
-				height = (Utility.DEVICEHEIGHT) * 28 / 100;
+				height = (Utility.DEVICEHEIGHT) * 28.5 / 100;
 			} else {
 				height = (Utility.DEVICEHEIGHT) * 25 / 100;
 			}
 
-			ToolbarItems.Add(new ToolbarItem("logo","logo.png",()=>
+			ToolbarItems.Add(new ToolbarItem("logo","logo_72x72.png",()=>
 				{
 					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
 				ToolbarItemOrder.Primary
@@ -257,13 +257,13 @@ namespace FormSample.Views
 				App.RootPage.NavigateTo("Contact us");
 			};
 			var labelStakeLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
+				//Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Children = {lblTitle},
 				Orientation = StackOrientation.Vertical
 			};
 
 			var controlStakeLayout = new StackLayout () {
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
+				//Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
@@ -281,6 +281,7 @@ namespace FormSample.Views
 			var layout = new StackLayout
 			{
 				Children = {labelStakeLayout,controlStakeLayout,contactUsButton},
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Orientation = StackOrientation.Vertical
 			};
 			//progressService.Dismiss ();

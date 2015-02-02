@@ -1,5 +1,6 @@
 ﻿using System;
 using Android.Widget;
+using FormSample.Helpers;
 
 namespace FormSample.Droid
 {
@@ -32,12 +33,18 @@ namespace FormSample.Droid
 
 			if (e.NewElement.FontSize > 0)
 			{
+//				if (Utility.DEVICEINCH > 6.0) {
+//					Control.TextSize = Utility.GenerelFontSize;
+//				} else {
+//					Control.TextSize = (float)e.NewElement.FontSize;
+//				}
 				Control.TextSize = (float)e.NewElement.FontSize;
 			}
 
 			if (!string.IsNullOrEmpty(e.NewElement.FontName))
 			{
-				Control.Typeface = TrySetFont(e.NewElement.FontName);
+					//Control.Typeface = TrySetFont (Utility.FontName);
+					Control.Typeface = TrySetFont (e.NewElement.FontName);
 			}
 		}
 
@@ -57,13 +64,19 @@ namespace FormSample.Droid
 			case "FontName":
 				if (!string.IsNullOrEmpty(Element.FontName))
 				{
+					//Control.Typeface = TrySetFont (Utility.FontName);
 					Control.Typeface = TrySetFont(Element.FontName);
 				}
 				break;
 			case "FontSize":
 				if (Element.FontSize > 0)
 				{
-					Control.TextSize = (float)Element.FontSize;
+//					if (Utility.DEVICEINCH > 6.0) {
+//						Control.TextSize = Utility.GenerelFontSize;
+//					} else {
+//						Control.TextSize = (float)Element.FontSize;
+//					}
+						Control.TextSize = (float)Element.FontSize;
 				}
 				break;
 			case "CheckedText":

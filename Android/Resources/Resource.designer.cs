@@ -258,19 +258,16 @@ namespace MobileRecruiter.Android
 			public const int Icon = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int logo = 2130837509;
+			public const int logo_72x72 = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int logo_large_c9y13k30 = 2130837510;
+			public const int menu_icon = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int menu_icon = 2130837511;
+			public const int roundedbg = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int roundedbg = 2130837512;
-			
-			// aapt resource value: 0x7f020009
-			public const int roundedbgdark = 2130837513;
+			public const int roundedbgdark = 2130837512;
 			
 			static Drawable()
 			{

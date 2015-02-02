@@ -22,13 +22,18 @@ namespace FormSample.Views
 
 		public ContractorPage()
 		{
-			//Icon = "menu_icon.png";
 			var Layout = this.AssignValues();
 			this.Content = Layout;
 		}
 
 		public StackLayout AssignValues()
 		{
+			ToolbarItems.Add(new ToolbarItem("logo","logo_72x72.png",()=>
+				{
+					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
+				ToolbarItemOrder.Primary
+				,0));
+
 			BindingContext = new ContractorViewModel();
 			var label = new Label
 			{
@@ -41,8 +46,6 @@ namespace FormSample.Views
 				Font = StyleConstant.GlobalFont
 			};
 
-//			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill, Font = Font.SystemFontOfSize (NamedSize.Medium)
-//					.WithAttributes (FontAttributes.Bold)};
 			var firstNameLabel = new Label { HorizontalOptions = LayoutOptions.Fill,Font= StyleConstant.GenerelLabelAndButtonText};
 			firstNameLabel.Text = "First Name";
 
@@ -90,6 +93,12 @@ namespace FormSample.Views
 			var chkInvite = new CheckBox();
 			chkInvite.SetBinding(CheckBox.CheckedProperty,ContractorViewModel.isCheckedPropertyName,BindingMode.TwoWay);
 			chkInvite.DefaultText = "I Agree to the terms and condition";
+			chkInvite.FontName = Utility.FontName;
+			chkInvite.FontSize = 18;
+		
+			if (Utility.DEVICEHEIGHT > 1000) {
+				chkInvite.FontSize = Utility.GenerelFontSize;
+			}
 
 			Button btnSubmitContractor = new Button
 			{

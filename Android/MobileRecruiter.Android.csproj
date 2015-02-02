@@ -41,6 +41,7 @@
     <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <DebugSymbols>true</DebugSymbols>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FormsViewGroup">
@@ -133,18 +134,17 @@
     <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
-    <AndroidResource Include="Resources\drawable\logo_large_c9y13k30.png" />
     <AndroidResource Include="Resources\drawable\menu_icon.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\logo.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_icon.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\logo.png" />
     <AndroidResource Include="Resources\drawable-ldpi\menu_icon.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\logo.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\logo.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_icon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\logo.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\logo_72x72.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\logo_72x72.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\logo_72x72.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\logo_72x72.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\logo_72x72.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\_SettingsStarted.txt" />
@@ -170,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Images\Accountancy.jpg" />
-    <AndroidAsset Include="Assets\Images\APSCo.jpg" />
+    <AndroidAsset Include="Assets\Images\APSC.jpg" />
+    <AndroidAsset Include="Assets\Images\logo_large_c9y13k30.png" />
   </ItemGroup>
 </Project>

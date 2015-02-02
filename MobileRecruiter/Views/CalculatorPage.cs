@@ -39,6 +39,12 @@ namespace FormSample.Views
 		};
 		public CalculatorPage()
 		{
+			ToolbarItems.Add(new ToolbarItem("logo","logo_72x72.png",()=>
+				{
+					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
+				ToolbarItemOrder.Primary
+				,0));
+
 			chartwidth= (Utility.DEVICEWIDTH)*75/ 100;
 			chartHeight = Utility.DEVICEHEIGHT*60/ 100;
 			//progressiveService = DependencyService.Get<IProgressService> ();
@@ -116,7 +122,7 @@ namespace FormSample.Views
 
 			var layout = new StackLayout
 			{
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 5),
 				Orientation = StackOrientation.Vertical,
 				VerticalOptions = LayoutOptions.FillAndExpand,
 			};

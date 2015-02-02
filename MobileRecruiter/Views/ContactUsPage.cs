@@ -13,6 +13,12 @@ namespace FormSample.Views
 	
 		public ContactUsPage()
 		{
+			ToolbarItems.Add(new ToolbarItem("logo","logo_72x72.png",()=>
+				{
+					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
+				ToolbarItemOrder.Primary
+				,0));
+
 //			double width = 350;
 //			double height = 150;
 			double width= Utility.DEVICEWIDTH;
@@ -188,7 +194,7 @@ namespace FormSample.Views
 				VerticalOptions = LayoutOptions.FillAndExpand, 
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
-				Children = {new ScrollView{ Content = gridLayout}},
+				Children = {new ScrollView{ Content = gridLayout,IsClippedToBounds = true}},
 			};
 
 			var layout = new StackLayout

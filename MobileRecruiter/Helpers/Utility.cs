@@ -22,6 +22,9 @@ namespace FormSample.Helpers
 		public static int DEVICEWIDTH;
 		public static int DEVICEHEIGHT;
 		public static double DEVICEINCH;
+		public static string FontName = "Roboto";
+		public static float TabletFontSize = 30;
+		public static float GenerelFontSize = 25;
 
 		#region custome messages
 		public static string EAMAILMESSAGE = "Email is required.\n";

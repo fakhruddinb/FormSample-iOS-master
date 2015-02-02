@@ -10,9 +10,9 @@ namespace MobileRecruiter
 			get
 			{ 
 				if (Utility.DEVICEHEIGHT > 1000) {
-					return Font.OfSize ("Roboto", 25).WithAttributes(FontAttributes.Bold);
+					return Font.OfSize (Utility.FontName , Utility.GenerelFontSize).WithAttributes(FontAttributes.Bold);
 				}
-				return Font.OfSize ("Roboto", NamedSize.Medium).WithAttributes(FontAttributes.Bold);
+				return Font.OfSize (Utility.FontName, NamedSize.Medium).WithAttributes(FontAttributes.Bold);
 			} 
 		}
 
@@ -20,9 +20,9 @@ namespace MobileRecruiter
 			get
 			{ 
 				if (Utility.DEVICEHEIGHT > 1000) {
-					return Font.OfSize ("Roboto", 30).WithAttributes(FontAttributes.Bold);
+					return Font.OfSize (Utility.FontName, Utility.TabletFontSize).WithAttributes(FontAttributes.Bold);
 				}
-				return Font.OfSize ("Roboto", NamedSize.Medium).WithAttributes(FontAttributes.Bold);
+				return Font.OfSize (Utility.FontName, NamedSize.Medium).WithAttributes(FontAttributes.Bold);
 			} 
 		}
 
@@ -30,11 +30,12 @@ namespace MobileRecruiter
 			get
 			{ 
 				if (Utility.DEVICEHEIGHT > 1000) {
-					return Font.OfSize ("Roboto", 25);
+					return Font.OfSize (Utility.FontName, Utility.GenerelFontSize);
 				}
-				return Font.OfSize ("Roboto", NamedSize.Medium);
+				return Font.OfSize (Utility.FontName, NamedSize.Medium);
 			} 
 		}
+
 	}
 }
 

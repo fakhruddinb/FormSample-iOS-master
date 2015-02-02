@@ -9,6 +9,7 @@ using FormSample.Helpers;
 using Xamarin.Forms;
 using BugSense;
 using BugSense.Model;
+using Android.Graphics.Drawables;
 
 namespace FormSample.Droid
 {
@@ -24,12 +25,19 @@ namespace FormSample.Droid
 		{
 
 			base.OnCreate(bundle);
+			Xamarin.Forms.Forms.Init(this, bundle);
 
 			BugSenseHandler.Instance.InitAndStartSession (new ExceptionManager(), ApplicationContext, "000a57a1");
+
+//			ColorDrawable colorDrawable = new ColorDrawable(Android.Graphics.Color.Black);
+//			ActionBar.SetBackgroundDrawable(colorDrawable);
+
 			this.ActionBar.SetDisplayUseLogoEnabled (true);
+
 			this.ActionBar.SetDisplayShowHomeEnabled (false);
-			Xamarin.Forms.Forms.Init(this, bundle);
+
 			ActionBar.SetIcon(Android.Resource.Color.Transparent);
+
 			// SetPage(App.GetMainPage());
 
 			var metrics = Resources.DisplayMetrics;

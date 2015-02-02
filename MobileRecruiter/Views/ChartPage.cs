@@ -18,6 +18,12 @@ namespace FormSample
 
 		public ChartPage ()
 		{
+			ToolbarItems.Add(new ToolbarItem("logo","logo_72x72.png",()=>
+				{
+					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
+				ToolbarItemOrder.Primary
+				,0));
+
 			dailyRate = new List<DailyRateCalcuationTable>();
 			model = new DailyRateDataModel();
 
@@ -100,7 +106,7 @@ namespace FormSample
 //			};
 
 			var contentStackLayout = new StackLayout{ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0, Device.OnPlatform(5, 5, 5), 5),
 				Children = {descriptionLayout,grid, list, chart1,contactUsButton},
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				HorizontalOptions = LayoutOptions.Fill,
@@ -168,7 +174,7 @@ namespace FormSample
 //			chart1.HeightRequest = 200;
 
 			chart1.WidthRequest = (Utility.DEVICEWIDTH * 15) / 100;
-			chart1.HeightRequest = (Utility.DEVICEHEIGHT*30)/100;
+			chart1.HeightRequest = (Utility.DEVICEHEIGHT*35)/100;
 
 			//Initializing Primary Axis
 			Syncfusion.SfChart.XForms.CategoryAxis primaryAxis =new Syncfusion.SfChart.XForms.CategoryAxis();

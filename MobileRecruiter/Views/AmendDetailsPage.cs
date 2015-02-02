@@ -28,6 +28,12 @@ namespace FormSample.Views
 
 		public StackLayout AssignValues()
 		{
+			ToolbarItems.Add(new ToolbarItem("logo","logo_72x72.png",()=>
+				{
+					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
+				ToolbarItemOrder.Primary
+				,0));
+
 			//var buttonHeight = Utility.DEVICEHEIGHT * 18/ 100;
 			var controlHeight = Utility.DEVICEHEIGHT * 65 / 100;
 			var label = new Label

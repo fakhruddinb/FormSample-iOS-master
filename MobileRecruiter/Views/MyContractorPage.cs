@@ -18,12 +18,18 @@ namespace FormSample
 		Button btnClearAllContractor;
 		public MyContractorPage()
 		{
+			ToolbarItems.Add(new ToolbarItem("logo","logo_72x72.png",()=>
+				{
+					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
+				ToolbarItemOrder.Primary
+				,0));
+
 			BindingContext = new ContractorViewModel ();
 			//progressService = DependencyService.Get<IProgressService> ();
 			contractorViewModel = new ContractorViewModel();
 			counter = 1;
 
-			var label = new Label{ Text = "My contractor1",
+			var label = new Label{ Text = "My Contractor",
 				BackgroundColor = Color.FromHex("#000000"),
 				TextColor = Color.White,
 				VerticalOptions = LayoutOptions.Center,
@@ -34,7 +40,7 @@ namespace FormSample
 
 			listView = new ListView
 			{
-				RowHeight = 40
+				RowHeight = 40,
 			};
 			var grid = new Grid
 			{
@@ -64,16 +70,6 @@ namespace FormSample
 									listView.ItemsSource = this.contractorViewModel.contractorList;
 								}
 							}
-//					if (answer)
-//					{
-//						progressService.Show();
-//						var result = await dataService.DeleteAllContractor(Settings.GeneralSettings);
-//						if(result != null)
-//						{
-//							progressService.Dismiss();
-//							listView.ItemsSource = this.contractorViewModel.contractorList;
-//						}
-//					}
 				}
 				catch
 				{
@@ -100,6 +96,14 @@ namespace FormSample
 
 			};
 
+			var scrollableContent = new ScrollView (){ 
+			Orientation = ScrollOrientation.Vertical,
+			VerticalOptions = LayoutOptions.FillAndExpand,
+			IsClippedToBounds = true,
+			Content = controlStakeLayout
+			};
+
+
 //			var buttonLayout = new StackLayout (){ 
 //				Orientation = StackOrientation.Vertical,
 //				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0), //new Thickness(5,0,5,0),
@@ -110,7 +114,7 @@ namespace FormSample
 			{
 				Orientation = StackOrientation.Vertical,
 				VerticalOptions = LayoutOptions.FillAndExpand,
-				Children = {labelStakeLayout,controlStakeLayout}
+				Children = {labelStakeLayout,scrollableContent}
 			};
 
 			Content = new StackLayout

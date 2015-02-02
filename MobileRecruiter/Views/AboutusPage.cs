@@ -15,6 +15,12 @@ namespace FormSample
 	{
 		public AboutusPage()
 		{
+			ToolbarItems.Add(new ToolbarItem("logo","logo_72x72.png",()=>
+				{
+					DependencyService.Get<FormSample.Helpers.Utility.IUrlService>().OpenUrl(Utility.CHURCHILKNIGHTURL);},
+				ToolbarItemOrder.Primary
+				,0));
+
 			var lblTitle = new Label {
 				Text = "About Churchill Knight & Associate Ltd.",
 				BackgroundColor = Color.FromHex("#000000"),
@@ -43,7 +49,7 @@ namespace FormSample
 			};
 
 			var labelStakeLayout = new StackLayout (){ 
-				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
+				//Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Children = {lblTitle},
 				Orientation = StackOrientation.Vertical,
 			};
@@ -59,6 +65,7 @@ namespace FormSample
 				VerticalOptions = LayoutOptions.Fill,
 				HorizontalOptions = LayoutOptions.Fill,
 				Orientation = StackOrientation.Vertical,
+				Padding = new Thickness(Device.OnPlatform(5, 5, 5),0 , Device.OnPlatform(5, 5, 5), 0),
 				Children = { labelStakeLayout,browser,contactUsButton},
 				//WidthRequest = 200,
 				//HeightRequest = 200
@@ -93,7 +100,7 @@ namespace FormSample
 				" <p> We are now accredited by Professional Passport. Professional Passport audits service providers to the flexible workers market, helping to ensure their services meet the regulatory requirements." +
 				" <p> We also recently became an APSCo affiliate. APSCo is the only trade body dedicated to representing the interests of the UK Professional Staffing industry, ensuring that members offer the highest possible standards of trading practice." +
 				" <table width='100%'><tr><td width='200px'> <img src='Images/Accountancy.jpg' width=150 height=150 /></td>" +
-				"<td width='200px'> <img src='Images/APSCo.jpg' width=150 height=150 /></td></tr></table> "; // [Passport Logo Image] [APSCo Logo Image]
+				"<td width='200px'><img src='Images/APSC.jpg' width=150 height=150 /></td></tr></table>"; // [Passport Logo Image] [APSCo Logo Image]
 		}
 	}
 }

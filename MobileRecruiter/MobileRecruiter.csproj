@@ -138,11 +138,14 @@
     <EmbeddedResource Include="Images\homeheader.jpg" />
     <EmbeddedResource Include="Images\Icon.png" />
     <EmbeddedResource Include="Images\LinkedIn.png" />
-    <EmbeddedResource Include="Images\logo.png" />
     <EmbeddedResource Include="Images\logo_large_c9y13k30.png" />
     <EmbeddedResource Include="Images\menu_icon.png" />
     <EmbeddedResource Include="Images\MyContractors.jpg" />
     <EmbeddedResource Include="Images\PayCalculator.jpg" />
     <EmbeddedResource Include="Images\PayChart.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Images\Accountancy.jpg" />
+    <AndroidAsset Include="Images\APSCo.jpg" />
   </ItemGroup>
 </Project>

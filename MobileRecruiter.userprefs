@@ -1,24 +1,23 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 ﻿<Properties GitUserInfo="UsingGIT" StartupItem="Android\MobileRecruiter.Android.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.LGG3" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MobileRecruiter\Views\LoginPage.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.192.168.56.102:5555" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Android\Resources\Resource.designer.cs">
     <Files>
-      <File FileName="MobileRecruiter\Views\LoginPage.cs" Line="26" Column="26" />
+      <File FileName="MobileRecruiter\Views\HomePage.cs" Line="10" Column="10" />
+      <File FileName="Android\MainActivity.cs" Line="1" Column="1" />
+      <File FileName="MobileRecruiter\Views\ContractorPage.cs" Line="4" Column="4" />
+      <File FileName="Android\Resources\Resource.designer.cs" Line="41" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-=======
-﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.AsusNexus7" />
-  <MonoDevelop.Ide.Workbench />
->>>>>>> origin/master
-=======
-﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.AsusNexus7" />
-  <MonoDevelop.Ide.Workbench />
->>>>>>> origin/master
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint enabled="false" file="D:\Project\FormSample-iOS-master\Android\MainActivity.cs" line="48" column="1" />
+      <Breakpoint file="D:\Project\FormSample-iOS-master\Android\CheckBoxRenderer.cs" line="65" column="1" />
+      <Breakpoint file="D:\Project\FormSample-iOS-master\Android\CheckBoxRenderer.cs" line="46" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>iOS\MobileRecruiter.iOS.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.ItemProperties.MobileRecruiter.Android AndroidDeviceId-Debug="192.168.56.104:5555" />
 </Properties>
